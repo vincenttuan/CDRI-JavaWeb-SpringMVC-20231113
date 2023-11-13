@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
@@ -21,12 +22,17 @@ public class TodayServlet extends GenericServlet {
 		res.setCharacterEncoding("utf-8"); // 給 java 使用
 		res.setContentType("text/html;charset=utf-8"); // 給瀏覽器使用 
 		
+		// 今日日期
 		Date today = new Date();
 		// 格式化
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss E");
 		String todayString = sdf.format(today); // 2023-11-13 下午 12:10:50 星期一
+		// 天氣
+		int temp = new Random().nextInt(10) + 10;
+		
 		// 將結果回應給前端
 		res.getWriter().print("今天: " + todayString);
+		res.getWriter().print("氣溫: " + temp);
 	}
 	
 }

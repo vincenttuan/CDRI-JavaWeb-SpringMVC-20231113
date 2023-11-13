@@ -19,12 +19,14 @@ public class HelloServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		
 		//String name = "John";
-		String name = req.getParameter("name");
+		// 範例: http://localhost:8080/JavaWeb20231113/servlet/hello?name=Helen&age=18 
+		String name = req.getParameter("name"); // 取得網址列上的 name 請求參數
+		String age = req.getParameter("age"); // 取得網址列上的 age 請求參數
 		
 		// 回應
 		PrintWriter out = resp.getWriter();
-		out.println("哈囉 ! " + name);
-		
+		out.println("哈囉 ! " + name + "<p>");
+		out.println("年齡: " + age);
 	}
 	
 	

@@ -32,6 +32,12 @@ public class ScoreServlet extends HttpServlet {
 		Arrays.stream(scores).forEach(score -> out.print(score + "<br>"));
 		//Arrays.stream(scores).forEach(out::print);
 		// 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ? 
+		// 將 String[] scores 轉進到 int[]
+		int[] scoresInt = new int[scores.length];
+		for(int i=0;i<scores.length;i++) {
+			scoresInt[i] = Integer.parseInt(scores[i]);
+		}
+		Arrays.stream(scoresInt).forEach(score -> out.print(score + "<br>"));
 	}
 	
 }

@@ -30,7 +30,7 @@ public class ScoreServlet extends HttpServlet {
 		out.print("所有成績: " + Arrays.toString(scores) + "<p>");
 		// Java 8 Stream
 		Arrays.stream(scores).forEach(score -> out.print(score + "<br>"));
-		Arrays.stream(scores).forEach(out::print);
+		//Arrays.stream(scores).forEach(out::print);
 		// 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ? 
 	}
 	

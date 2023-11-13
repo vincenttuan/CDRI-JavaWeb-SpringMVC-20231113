@@ -31,8 +31,10 @@ public class TodayServlet extends GenericServlet {
 		int temp = new Random().nextInt(10) + 10;
 		
 		// 將結果回應給前端
+		res.getWriter().print("<H1>");
 		res.getWriter().print("今天: " + todayString);
 		res.getWriter().print("氣溫: " + temp);
+		res.getWriter().print("</H1>");
 	}
 	
 }

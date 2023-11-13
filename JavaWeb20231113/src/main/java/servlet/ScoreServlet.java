@@ -23,6 +23,7 @@ public class ScoreServlet extends HttpServlet {
 		// 接收客戶端來的請求參數
 		String[] scores = req.getParameterValues("score");
 		
+		// 請印出所有分數
 		
 	}
 	

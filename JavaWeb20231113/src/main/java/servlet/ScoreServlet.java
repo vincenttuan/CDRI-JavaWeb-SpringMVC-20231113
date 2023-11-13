@@ -31,6 +31,7 @@ public class ScoreServlet extends HttpServlet {
 		// Java 8 Stream
 		Arrays.stream(scores).forEach(score -> out.print(score + "<br>"));
 		//Arrays.stream(scores).forEach(out::print);
+		
 		// 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ? 
 		// 將 String[] scores 轉進到 int[]
 		int[] scoresInt = new int[scores.length];
@@ -38,6 +39,7 @@ public class ScoreServlet extends HttpServlet {
 			scoresInt[i] = Integer.parseInt(scores[i]);
 		}
 		Arrays.stream(scoresInt).forEach(score -> out.print(score + "<br>"));
+		// 利用 scoresInt 計算出 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ?
 	}
 	
 }

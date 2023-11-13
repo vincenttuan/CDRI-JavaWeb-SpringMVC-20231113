@@ -18,7 +18,8 @@ public class HelloServlet extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html;charset=utf-8");
 		
-		String name = "John";
+		//String name = "John";
+		String name = req.getParameter("name");
 		
 		// 回應
 		PrintWriter out = resp.getWriter();

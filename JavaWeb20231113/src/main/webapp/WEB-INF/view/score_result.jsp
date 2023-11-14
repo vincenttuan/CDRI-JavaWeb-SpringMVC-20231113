@@ -32,18 +32,20 @@
 	
 	        var data = google.visualization.arrayToDataTable([
 	          ['Task', 'Hours per Day'],
-	          ['Work',     11],
-	          ['Eat',      2],
-	          ['Commute',  2],
-	          ['Watch TV', 2],
-	          ['Sleep',    7]
+	          
+	          <% 
+	          	for(String score : scores) {
+	        		out.println("['score', " + score + "],");  
+	          	}  
+	          %>
+	          
 	        ]);
 	
 	        var options = {
-	          title: 'My Daily Activities'
+	          title: 'SCORE List'
 	        };
 	
-	        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	        var chart = new google.visualization.LineChart(document.getElementById('piechart'));
 	
 	        chart.draw(data, options);
 	      }

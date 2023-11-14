@@ -17,6 +17,15 @@
 	<body>
 		<h1>成績統計資訊</h1>
 		所有成績 = <%=Arrays.toString(scores) %> <p />
+		<%
+			for(String score : scores) {
+				if(Integer.parseInt(score) < 60) {
+					out.print("<div style='color: red'>" + score + "</div>");
+				} else {
+					out.print("<div style='color: black'>" + score + "</div>");
+				}
+			}
+		%>
 		成績筆數 = <%=scoreInfo.get("count") %> <p />
 		平均 = <%=scoreInfo.get("average") %> <p />
 		總分 = <%=scoreInfo.get("sum") %> <p />

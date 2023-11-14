@@ -35,6 +35,9 @@ public class ScoreServlet extends HttpServlet {
 	}
 	
 	private Map<String, Number> getScoreInfo(String[] scores) {
+		if (scores == null) {
+			return null;
+		}
 		IntSummaryStatistics stat = Arrays.stream(scores) // 字串陣列流
 				//.mapToInt(str -> Integer.parseInt(str)) // int 陣列串流
 				.mapToInt(Integer::parseInt) // int 陣列串流

@@ -36,8 +36,9 @@ public class ScoreServlet extends HttpServlet {
 	
 	private Map<String, Number> getScoreInfo(String[] scores) {
 		IntSummaryStatistics stat = Arrays.stream(scores) // 字串陣列流
-			  .mapToInt(str -> Integer.parseInt(str)) // int 陣列串流
-			  .summaryStatistics();
+				//.mapToInt(str -> Integer.parseInt(str)) // int 陣列串流
+				.mapToInt(Integer::parseInt) // int 陣列串流
+				.summaryStatistics();
 		
 		Map<String , Number> map = new HashMap<>();
 		map.put("count", stat.getCount());

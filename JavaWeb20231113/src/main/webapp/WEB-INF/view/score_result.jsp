@@ -67,5 +67,7 @@
 		總分 = <%=scoreInfo.get("sum") %> <p />
 		最高分 = <%=scoreInfo.get("max") %> <p />
 		最低分 = <%=scoreInfo.get("min") %> <p />
+		<!-- 統計圖表 -->
+		<div id="piechart" style="width: 900px; height: 500px;"></div>
 	</body>
 </html>

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +30,13 @@ public class ScoreServlet extends HttpServlet {
 		String[] scores = req.getParameterValues("score");
 		
 		// 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ? 
-		Map<String, Number> map = getScoreInfo(scores);
-		resp.getWriter().print(map);
+		Map<String, Number> scoreInfo = getScoreInfo(scores);
+		//resp.getWriter().print(scoreInfo);
+		
+		// 將 map 資料丟給 jsp 進行資料渲染
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/score_result.jsp");
+		req.setAttribute("scoreInfo", scoreInfo); // 將要傳遞給 jsp 的資料放到 req 的物件屬性中
+		rd.forward(req, resp);
 		
 	}
 	

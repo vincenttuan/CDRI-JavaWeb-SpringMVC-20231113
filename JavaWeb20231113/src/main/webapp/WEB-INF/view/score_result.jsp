@@ -44,7 +44,7 @@
 	        var options = {
 	          title: 'SCORE List'
 	        };
-	
+			// PieChart, LineChart, BarChart, ColumnChart
 	        var chart = new google.visualization.LineChart(document.getElementById('piechart'));
 	
 	        chart.draw(data, options);

@@ -3,6 +3,9 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.IntSummaryStatistics;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,21 +28,25 @@ public class ScoreServlet extends HttpServlet {
 		// 接收客戶端來的請求參數
 		String[] scores = req.getParameterValues("score");
 		
-		// 請印出所有分數
-		PrintWriter out = resp.getWriter();
-		out.print("所有成績: " + Arrays.toString(scores) + "<p>");
-		// Java 8 Stream
-		Arrays.stream(scores).forEach(score -> out.print(score + "<br>"));
-		//Arrays.stream(scores).forEach(out::print);
-		
 		// 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ? 
-		// 將 String[] scores 轉進到 int[]
-		int[] scoresInt = new int[scores.length];
-		for(int i=0;i<scores.length;i++) {
-			scoresInt[i] = Integer.parseInt(scores[i]);
-		}
-		Arrays.stream(scoresInt).forEach(score -> out.print(score + "<br>"));
-		// 利用 scoresInt 計算出 成績筆數 = ? 平均 = ? 總分 = ? 最高分 = ? 最低分 = ?
+		Map<String, Number> map = getScoreInfo(scores);
+		resp.getWriter().print(map);
+		
 	}
+	
+	private Map<String, Number> getScoreInfo(String[] scores) {
+		IntSummaryStatistics stat = Arrays.stream(scores) // 字串陣列流
+			  .mapToInt(str -> Integer.parseInt(str)) // int 陣列串流
+			  .summaryStatistics();
+		
+		Map<String , Number> map = new HashMap<>();
+		map.put("count", stat.getCount());
+		map.put("average", stat.getAverage());
+		map.put("sum", stat.getSum());
+		map.put("max", stat.getMax());
+		map.put("min", stat.getMin());
+		return map;
+	}
+	
 	
 }

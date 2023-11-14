@@ -13,6 +13,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>成績統計資訊</title>
+		<style type="text/css">
+			.red_color {
+				color: red
+			}
+			.blue_color {
+				color: blue
+			}
+		</style>
 	</head>
 	<body>
 		<h1>成績統計資訊</h1>
@@ -20,9 +28,9 @@
 		<%
 			for(String score : scores) {
 				if(Integer.parseInt(score) < 60) {
-					out.print("<div style='color: red'>" + score + "</div>");
+					out.print("<div class='red_color'>" + score + "</div>");
 				} else {
-					out.print("<div style='color: black'>" + score + "</div>");
+					out.print("<div class='blue_color'>" + score + "</div>");
 				}
 			}
 		%>

@@ -37,6 +37,8 @@ public class ScoreServlet extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/score_result.jsp");
 		req.setAttribute("scoreInfo", scoreInfo); // 將要傳遞給 jsp 的資料放到 req 的物件屬性中
 		req.setAttribute("scores", scores);
+		req.setAttribute("redColor", "red");
+		req.setAttribute("blueColor", "blue");
 		rd.forward(req, resp);
 		
 	}

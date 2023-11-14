@@ -7,6 +7,8 @@
 	// 接收 ScoreServlet 傳來的資料
 	Map<String, Number> scoreInfo = (Map<String, Number>)request.getAttribute("scoreInfo");
 	String[] scores = (String[])request.getAttribute("scores");
+	String redColor = (String)request.getAttribute("redColor");
+	String blueColor = (String)request.getAttribute("blueColor");
 %>
 
 <html>
@@ -15,10 +17,10 @@
 		<title>成績統計資訊</title>
 		<style type="text/css">
 			.red_color {
-				color: red
+				color: <%=redColor %>
 			}
 			.blue_color {
-				color: blue
+				color: <%=blueColor %>
 			}
 		</style>
 	</head>

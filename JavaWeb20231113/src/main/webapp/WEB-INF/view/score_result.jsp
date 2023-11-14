@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -5,6 +6,7 @@
 <% 
 	// 接收 ScoreServlet 傳來的資料
 	Map<String, Number> scoreInfo = (Map<String, Number>)request.getAttribute("scoreInfo");
+	String[] scores = (String[])request.getAttribute("scores");
 %>
 
 <html>
@@ -14,7 +16,7 @@
 	</head>
 	<body>
 		<h1>成績統計資訊</h1>
-		所有成績 = ? <p />
+		所有成績 = <%=Arrays.toString(scores) %> <p />
 		成績筆數 = <%=scoreInfo.get("count") %> <p />
 		平均 = <%=scoreInfo.get("average") %> <p />
 		總分 = <%=scoreInfo.get("sum") %> <p />

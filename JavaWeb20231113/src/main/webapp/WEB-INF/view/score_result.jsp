@@ -31,7 +31,7 @@
 	      function drawChart() {
 	
 	        var data = google.visualization.arrayToDataTable([
-	          ['Task', 'Hours per Day'],
+	          ['Task', 'SCORE'],
 	          
 	          <% 
 	          	for(String score : scores) {

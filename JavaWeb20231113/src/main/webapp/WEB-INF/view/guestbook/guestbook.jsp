@@ -32,7 +32,7 @@
 				<!-- 留言列表 -->
 				<td colspan="2" valign="top">
 					
-					<table>
+					<table border="1">
 						<thead>
 							<tr>
 								<th>id</th><th>暱稱</th><th>年齡</th><th>性別</th><th>時間</th>

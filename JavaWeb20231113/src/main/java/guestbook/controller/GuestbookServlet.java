@@ -32,7 +32,24 @@ public class GuestbookServlet extends HttpServlet {
 	// 給表單新增使用
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().print("Hello Post");
+		req.setCharacterEncoding("UTF-8");
+		String nickname = req.getParameter("nickname");
+		Integer age = Integer.parseInt(req.getParameter("age")); // String 直接轉型 int, 自動裝箱 Integer
+		String sex = req.getParameter("sex");
+		
+		// 建立 GuestBook 物件
+		Guestbook guestbook = new Guestbook();
+		guestbook.setNickname(nickname);
+		guestbook.setAge(age);
+		guestbook.setSex(sex);
+		
+		// 加入到資料庫中
+		guestbookDao.create(guestbook);
+		
+		// 重導到新增完成頁面 /WEB-INF/view/guestbook/guestbook_result.jsp
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbook/guestbook_result.jsp");
+		rd.forward(req, resp);
+		
 	}
 	
 }

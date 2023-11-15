@@ -48,10 +48,10 @@
 							<% for(Guestbook gb : guestbooks) { %>
 								<tr>
 									<td><%=gb.getId() %></td>
-									<td><%=gb.getNickname()() %></td>
-									<td><%=gb.getAge()() %></td>
-									<td><%=gb.getSex()() %></td>
-									<td><%=gb.getDate()() %></td>
+									<td><%=gb.getNickname() %></td>
+									<td><%=gb.getAge() %></td>
+									<td><%=gb.getSex() %></td>
+									<td><%=gb.getDate() %></td>
 								</tr>
 							<% } %>
 						</tbody>

@@ -1,6 +1,11 @@
+<%@page import="guestbook.model.Guestbook"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	List<Guestbook> guestbooks = (List<Guestbook>) request.getAttribute("guestbooks");
+%>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -40,19 +45,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td></td><td></td><td></td><td></td><td></td>
-							</tr>
-							<tr>
-								<td></td><td></td><td></td><td></td><td></td>
-							</tr>
-							<tr>
-								<td></td><td></td><td></td><td></td><td></td>
-							</tr>
-							<tr>
-								<td></td><td></td><td></td><td></td><td></td>
-							</tr>
-							
+							<% for(Guestbook gb : guestbooks) { %>
+								<tr>
+									<td><%=gb.getId() %></td>
+									<td><%=gb.getNickname()() %></td>
+									<td><%=gb.getAge()() %></td>
+									<td><%=gb.getSex()() %></td>
+									<td><%=gb.getDate()() %></td>
+								</tr>
+							<% } %>
 						</tbody>
 					</table>
 					

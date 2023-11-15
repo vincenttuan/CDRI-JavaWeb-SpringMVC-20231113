@@ -1,6 +1,7 @@
 package guestbook.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -42,6 +43,7 @@ public class GuestbookServlet extends HttpServlet {
 		guestbook.setNickname(nickname);
 		guestbook.setAge(age);
 		guestbook.setSex(sex);
+		guestbook.setDate(new Date());
 		
 		// 加入到資料庫中
 		guestbookDao.create(guestbook);

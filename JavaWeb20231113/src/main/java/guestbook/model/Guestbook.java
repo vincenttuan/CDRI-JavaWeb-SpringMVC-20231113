@@ -15,6 +15,20 @@ public class Guestbook {
 	private String  sex;      // 性別
 	private Date    date;     // 時間
 	
+	public Guestbook() {
+		
+	}
+	
+	public Guestbook(Integer id, String nickname, Integer age, String sex, Date date) {
+		this.id = id;
+		this.nickname = nickname;
+		this.age = age;
+		this.sex = sex;
+		this.date = date;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}

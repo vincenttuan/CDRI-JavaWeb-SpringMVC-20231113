@@ -37,6 +37,8 @@
 							年齡: <input type="number" id="age" name="age" placeholder="請輸入年齡" required /><p />
 							性別: <input type="radio" id="sex" name="sex" value="M" checked />男 
 							     <input type="radio" id="sex" name="sex" value="F" />女<p />
+							訊息:<p />
+							<textarea rows="3" cols="30" id="message" name="message" required ></textarea><p />
 							<button type="reset">清除</button>&nbsp;<button type="submit">送出</button>    
 						</fieldset>
 					</form>

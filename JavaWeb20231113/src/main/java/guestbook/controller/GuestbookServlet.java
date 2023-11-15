@@ -40,6 +40,8 @@ public class GuestbookServlet extends HttpServlet {
 		
 		// 建立 GuestBook 物件
 		Guestbook guestbook = new Guestbook();
+		int maxId = 4;
+		guestbook.setId(maxId + 1);
 		guestbook.setNickname(nickname);
 		guestbook.setAge(age);
 		guestbook.setSex(sex);
@@ -51,6 +53,12 @@ public class GuestbookServlet extends HttpServlet {
 		// 重導到新增完成頁面 /WEB-INF/view/guestbook/guestbook_result.jsp
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbook/guestbook_result.jsp");
 		rd.forward(req, resp);
+		
+		// 請瀏覽器根據下面的網址自行重導
+		//resp.sendRedirect("./guestbook");
+		//resp.sendRedirect("/JavaWeb20231113/guestbook");
+		//resp.sendRedirect("http://localhost:8080/JavaWeb20231113/guestbook");
+		//resp.sendRedirect("https://tw.yahoo.com");
 		
 	}
 	

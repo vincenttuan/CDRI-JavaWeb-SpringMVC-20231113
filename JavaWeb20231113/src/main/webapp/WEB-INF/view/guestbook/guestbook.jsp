@@ -50,7 +50,7 @@
 						<tbody>
 							<% for(Guestbook gb : guestbooks) { %>
 								<tr>
-									<td><%=gb.getId() %></td>
+									<td><% out.print(gb.getId()); %></td>
 									<td><%=gb.getNickname() %></td>
 									<td><%=gb.getAge() %></td>
 									<td><%=gb.getSex() %></td>

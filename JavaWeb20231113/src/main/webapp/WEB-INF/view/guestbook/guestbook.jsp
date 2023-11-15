@@ -1,8 +1,18 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="guestbook.model.Guestbook"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%!
+	// 自訂方法, 將日期格式設定成 yyyy-MM-dd HH:mm:ss E
+	private String getDateFormatString(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss E");
+		return sdf.format(date);
+	}
+%>
+
 <%
 	List<Guestbook> guestbooks = (List<Guestbook>) request.getAttribute("guestbooks");
 %>
@@ -54,7 +64,7 @@
 									<td><%=gb.getNickname() %></td>
 									<td><%=gb.getAge() %></td>
 									<td><%=gb.getSex() %></td>
-									<td><%=gb.getDate() %></td>
+									<td><%=getDateFormatString(gb.getDate()) %></td>
 								</tr>
 							<% } %>
 						</tbody>

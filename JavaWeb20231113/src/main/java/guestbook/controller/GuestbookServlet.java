@@ -29,4 +29,10 @@ public class GuestbookServlet extends HttpServlet {
 		rd.forward(req, resp);
 	}
 	
+	// 給表單新增使用
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.getWriter().print("Hello Post");
+	}
+	
 }

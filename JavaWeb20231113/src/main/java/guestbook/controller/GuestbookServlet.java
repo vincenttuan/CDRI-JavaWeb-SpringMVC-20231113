@@ -40,7 +40,13 @@ public class GuestbookServlet extends HttpServlet {
 		
 		// 建立 GuestBook 物件
 		Guestbook guestbook = new Guestbook();
-		int maxId = 4;
+		int maxId = guestbookDao.readAll() // 取得所有 guestbook 集合
+								.stream()  // 轉為 stream 串流, 以利後續分析
+								//.mapToInt(gb -> gb.getId())
+								.mapToInt(Guestbook::getId)
+								.max()
+								.orElse(0);
+		
 		guestbook.setId(maxId + 1);
 		guestbook.setNickname(nickname);
 		guestbook.setAge(age);

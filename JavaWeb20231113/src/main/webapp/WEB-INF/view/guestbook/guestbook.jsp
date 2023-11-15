@@ -7,12 +7,12 @@
 		<title>Guest Book</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
-	<body>
+	<body style="padding: 15px">
 		<table>
 			<tr>
 				<!-- 留言輸入 -->
 				<td valign="top">
-					<form method="post" action="">
+					<form method="post" action="" class="pure-form">
 						<fieldset>
 							<legend>訪客留言輸入</legend>
 							匿稱: <input type="text" id="nickname" name="nickname" placeholder="請輸入暱稱" required /><p />
@@ -33,7 +33,7 @@
 				<!-- 留言列表 -->
 				<td colspan="2" valign="top">
 					
-					<table border="1">
+					<table class="pure-table pure-table-bordered">
 						<thead>
 							<tr>
 								<th>id</th><th>暱稱</th><th>年齡</th><th>性別</th><th>時間</th>

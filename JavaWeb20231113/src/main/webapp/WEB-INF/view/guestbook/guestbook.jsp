@@ -30,7 +30,7 @@
 			<tr>
 				<!-- 留言輸入 -->
 				<td valign="top">
-					<form method="post" action="" class="pure-form">
+					<form method="post" action="./guestbook" class="pure-form">
 						<fieldset>
 							<legend>訪客留言輸入</legend>
 							匿稱: <input type="text" id="nickname" name="nickname" placeholder="請輸入暱稱" required /><p />

@@ -32,6 +32,20 @@
 				<!-- 留言列表 -->
 				<td colspan="2" valign="top">
 					
+					<table>
+						<thead>
+							<tr>
+								<th>id</th><th>暱稱</th><th>年齡</th><th>性別</th><th>時間</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td></td><td></td><td></td><td></td><td></td></tr>
+							<tr><td></td><td></td><td></td><td></td><td></td></tr>
+							<tr><td></td><td></td><td></td><td></td><td></td></tr>
+							<tr><td></td><td></td><td></td><td></td><td></td></tr>
+						</tbody>
+					</table>
+					
 				</td>
 			</tr>
 		</table>

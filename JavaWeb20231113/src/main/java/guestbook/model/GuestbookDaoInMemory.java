@@ -17,17 +17,16 @@ public class GuestbookDaoInMemory implements GuestbookDao {
 		
 	}
 	
-	
+	// 新增資料
 	@Override
 	public void create(Guestbook guestbook) {
-		// TODO Auto-generated method stub
-		
+		guestbooks.add(guestbook);
 	}
 
+	// 取得所有紀錄
 	@Override
 	public List<Guestbook> readAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return guestbooks;
 	}
 
 }

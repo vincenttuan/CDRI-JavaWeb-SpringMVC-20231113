@@ -1,3 +1,5 @@
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="guestbook.model.Guestbook"%>
@@ -17,6 +19,10 @@
 	List<Guestbook> guestbooks = (List<Guestbook>) request.getAttribute("guestbooks");
 	long manAmount = guestbooks.stream().filter(gt -> gt.getSex().equals("M")).count();
 	long femaleAmount = guestbooks.stream().filter(gt -> gt.getSex().equals("F")).count();
+	Map<Integer, Long> ageMap = guestbooks.stream()
+										  .collect(Collectors.groupingBy(Guestbook::getAge, Collectors.counting()));
+	out.print(ageMap);
+	
 %>
 <html>
 	<head>

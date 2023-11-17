@@ -1,3 +1,4 @@
+<%@page import="java.util.Set"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -64,13 +65,17 @@
 	      function drawChart2() {
 	    		
 	        var data = google.visualization.arrayToDataTable([
-	          ['Sex', 'Amount'],
-	          ['Man',    <%=manAmount %>],
-	          ['Female', <%=femaleAmount %>],
+	          ['Age', 'Amount'],
+	          <%
+	          	Set<Integer> keys = ageMap.keySet();
+	          	for(Integer key : keys) {
+	          		out.print("['" + key + "', " + ageMap.get(key) + "],");	
+	          	}
+	          %>
 	        ]);
 	
 	        var options = {
-	          title: 'Guestbook by sex',
+	          title: 'Guestbook by age',
 	          is3D: true
 	        };
 	

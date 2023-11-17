@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/servlet/addArg")
-public class AddArgServlet extends HttpServlet {
+public class AddArgsServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/input_attr.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/input_args.jsp");
 		rd.forward(req, resp);
 	}
 

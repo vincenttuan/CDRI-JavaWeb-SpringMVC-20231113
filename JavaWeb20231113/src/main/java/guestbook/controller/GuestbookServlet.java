@@ -37,6 +37,7 @@ public class GuestbookServlet extends HttpServlet {
 		String nickname = req.getParameter("nickname");
 		Integer age = Integer.parseInt(req.getParameter("age")); // String 直接轉型 int, 自動裝箱 Integer
 		String sex = req.getParameter("sex");
+		String message = req.getParameter("message");
 		
 		// 建立 GuestBook 物件
 		Guestbook guestbook = new Guestbook();
@@ -52,7 +53,7 @@ public class GuestbookServlet extends HttpServlet {
 		guestbook.setAge(age);
 		guestbook.setSex(sex);
 		guestbook.setDate(new Date());
-		
+		guestbook.setMessage(message.trim());
 		// 加入到資料庫中
 		guestbookDao.create(guestbook);
 		

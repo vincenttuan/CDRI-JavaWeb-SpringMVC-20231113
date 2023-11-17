@@ -14,21 +14,20 @@ public class Guestbook {
 	private Integer age;      // 年齡	
 	private String  sex;      // 性別
 	private Date    date;     // 時間
+	private String  message;  // 訊息
 	
 	public Guestbook() {
 		
 	}
 	
-	public Guestbook(Integer id, String nickname, Integer age, String sex, Date date) {
+	public Guestbook(Integer id, String nickname, Integer age, String sex, Date date, String message) {
 		this.id = id;
 		this.nickname = nickname;
 		this.age = age;
 		this.sex = sex;
 		this.date = date;
+		this.message = message;
 	}
-
-
-
 
 
 	public Integer getId() {
@@ -60,6 +59,14 @@ public class Guestbook {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	

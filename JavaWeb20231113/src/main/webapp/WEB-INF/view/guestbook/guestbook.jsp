@@ -56,7 +56,7 @@
 					<table class="pure-table pure-table-bordered">
 						<thead>
 							<tr>
-								<th>id</th><th>暱稱</th><th>年齡</th><th>性別</th><th>時間</th>
+								<th>id</th><th>暱稱</th><th>年齡</th><th>性別</th><th>時間</th><th>訊息</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -67,6 +67,7 @@
 									<td><%=gb.getAge() %></td>
 									<td><%=gb.getSex() %></td>
 									<td><%=getDateFormatString(gb.getDate()) %></td>
+									<td><%=gb.getMessage() %></td>
 								</tr>
 							<% } %>
 						</tbody>

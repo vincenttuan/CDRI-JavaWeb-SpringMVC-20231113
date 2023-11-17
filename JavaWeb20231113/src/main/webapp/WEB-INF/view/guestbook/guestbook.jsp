@@ -37,6 +37,7 @@
 	    <script type="text/javascript">
 	      google.charts.load('current', {'packages':['corechart']});
 	      google.charts.setOnLoadCallback(drawChart);
+	      google.charts.setOnLoadCallback(drawChart2);
 	
 	      function drawChart() {
 	
@@ -52,6 +53,24 @@
 	        };
 	
 	        var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+			
+	        chart.draw(data, options);
+	      }
+	      
+	      function drawChart2() {
+	    		
+	        var data = google.visualization.arrayToDataTable([
+	          ['Sex', 'Amount'],
+	          ['Man',    <%=manAmount %>],
+	          ['Female', <%=femaleAmount %>],
+	        ]);
+	
+	        var options = {
+	          title: 'Guestbook by sex',
+	          is3D: true
+	        };
+	
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart2'));
 			
 	        chart.draw(data, options);
 	      }

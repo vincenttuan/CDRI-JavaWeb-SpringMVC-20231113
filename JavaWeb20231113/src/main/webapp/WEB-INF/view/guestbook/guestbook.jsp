@@ -160,7 +160,7 @@
 			</tr>
 			<tr>
 				<!-- 留言筆數 -->
-				留言筆數: 
+				留言筆數: <%=guestbooks.size() %> 筆 
 				<!-- 留言列表 -->
 				<td colspan="3" valign="top">
 					

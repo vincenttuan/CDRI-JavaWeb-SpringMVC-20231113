@@ -74,7 +74,7 @@
 				<!-- 統計圖表 -->
 				<td valign="top">
 					<div id="chart1" style="width: 500px; height: 300px;" />
-					<div id="chart2" />
+					<div id="chart2" style="width: 500px; height: 300px;" />
 				</td>
 			</tr>
 			<tr>

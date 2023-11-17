@@ -12,8 +12,8 @@
 			<fieldset>
 				<legend>變數讀取</legend>
 				讀取 request 變數: <%=request.getAttribute("arg1") %><p />
-				讀取 session 變數: <%=request.getAttribute("arg2") %><p />
-				讀取 application 變數: <%=request.getAttribute("arg3") %><p />
+				讀取 session 變數: <%=session.getAttribute("arg2") %><p />
+				讀取 application 變數: <%=application.getAttribute("arg3") %><p />
 			</fieldset>
 		</form>
 		

@@ -36,9 +36,13 @@
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	    <script type="text/javascript">
 	      google.charts.load('current', {'packages':['corechart']});
-	      google.charts.setOnLoadCallback(drawChart);
-	      google.charts.setOnLoadCallback(drawChart2);
-	
+	      google.charts.setOnLoadCallback(drawCharts);
+	      
+	      function drawCharts() {
+	    	  drawChart();  // pie chart
+	    	  drawChart2(); // column chart
+	      }
+	      
 	      function drawChart() {
 	
 	        var data = google.visualization.arrayToDataTable([
@@ -74,6 +78,8 @@
 			
 	        chart.draw(data, options);
 	      }
+	      
+	      
 	    </script>
 		
 	</head>
@@ -97,13 +103,15 @@
 				</td>
 				<!-- 統計圖表 -->
 				<td valign="top">
-					<div id="chart1" style="width: 500px; height: 300px;" />
-					<div id="chart2" style="width: 500px; height: 300px;" />
+					<div id="chart1" style="width: 500px; height: 300px;"></div>
+				</td>
+				<td valign="top">
+					<div id="chart2" style="width: 500px; height: 300px;"></div>
 				</td>
 			</tr>
 			<tr>
 				<!-- 留言列表 -->
-				<td colspan="2" valign="top">
+				<td colspan="3" valign="top">
 					
 					<table class="pure-table pure-table-bordered">
 						<thead>

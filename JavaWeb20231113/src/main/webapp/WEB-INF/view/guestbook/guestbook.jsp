@@ -67,6 +67,7 @@
 	        var data = google.visualization.arrayToDataTable([
 	          ['Age', 'Amount'],
 	          <%
+	          	// java 7
 	          	Set<Integer> keys = ageMap.keySet();
 	          	for(Integer key : keys) {
 	          		out.print("['" + key + "', " + ageMap.get(key) + "],");	

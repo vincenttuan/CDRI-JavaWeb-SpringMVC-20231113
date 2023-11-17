@@ -68,10 +68,22 @@
 	          ['Age', 'Amount'],
 	          <%
 	          	// java 7
+	          	/*
+	          	String rowPattern = "['%s', %s],";
 	          	Set<Integer> keys = ageMap.keySet();
 	          	for(Integer key : keys) {
-	          		out.print("['" + key + "', " + ageMap.get(key) + "],");	
+	          		//out.print("['" + key + "', " + ageMap.get(key) + "],");
+	          		out.print(String.format(rowPattern, key, ageMap.get(key)));
 	          	}
+	          	*/
+	          	// java 8
+	          	// 組合 result = ['18', 1],['19', 2],['20', 1],['21', 1],
+	          	String rowPattern = "['%s', %s]";
+	          	String result = ageMap.keySet().stream()
+	          						  .map(key -> String.format(rowPattern, key, ageMap.get(key)))
+	          						  .collect(Collectors.joining(","));
+	          	out.print(result);
+	          	
 	          %>
 	        ]);
 	

@@ -79,15 +79,21 @@
 	          	*/
 	          	// java 8
 	          	// 組合 result = ['18', 1],['19', 2],['20', 1],['21', 1],
+	          	
 	          	String rowPattern = "['%s', %s]";
+	          	
 	          	String result = ageMap.keySet().stream()
 	          						  .map(key -> String.format(rowPattern, key, ageMap.get(key)))
 	          						  .collect(Collectors.joining(","));
+	          	
 	          	out.print(result);
 	          	
+	          	
+	          	
+	          	//rowPattern = "[%d, '%s', %d, '%s', '%s', '%s'],";
 	          %>
 	        ]);
-	
+			
 	        var options = {
 	          title: 'Guestbook by age',
 	          is3D: true
@@ -100,14 +106,20 @@
 	      
 	      function drawTable() {
 	          var data = new google.visualization.DataTable();
-	          data.addColumn('string', 'Name');
-	          data.addColumn('number', 'Salary');
-	          data.addColumn('boolean', 'Full Time Employee');
+	          data.addColumn('number', '序號');
+	          data.addColumn('string', '暱稱');
+	          data.addColumn('number', '年齡');
+	          data.addColumn('string', '性別');
+	          data.addColumn('string', '時間');
+	          data.addColumn('string', '訊息');
 	          data.addRows([
-	            ['Mike',  {v: 10000, f: '$10,000'}, true],
-	            ['Jim',   {v:8000,   f: '$8,000'},  false],
-	            ['Alice', {v: 12500, f: '$12,500'}, true],
-	            ['Bob',   {v: 7000,  f: '$7,000'},  true]
+	        	  <%
+	        	  	String tableRowPattern = "[%d, '%s', %d, '%s', '%s', '%s'],";
+	        	  	for(Guestbook gb : guestbooks) {
+	        	  		out.println(String.format(tableRowPattern, gb.getId(), gb.getNickname(), gb.getAge(),
+	        	  				gb.getSex(), getDateFormatString(gb.getDate()), gb.getMessage()));
+	        	  	}
+	        	  %>
 	          ]);
 
 	          var table = new google.visualization.Table(document.getElementById('chart3'));
@@ -167,7 +179,7 @@
 							<% } %>
 						</tbody>
 					</table>
-					
+					<p />
 					<div id="chart3"></div>
 					
 				</td>

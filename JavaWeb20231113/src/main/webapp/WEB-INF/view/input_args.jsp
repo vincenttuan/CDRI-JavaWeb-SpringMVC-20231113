@@ -8,7 +8,7 @@
 	<title>變數輸入</title>
 	</head>
 	<body style="padding: 15px">
-		<form method="post" class="pure-form" action="./servlet/addArg">
+		<form method="post" class="pure-form" action="./addArg">
 			<fieldset>
 				<legend>變數設定</legend>
 				設定 request 變數: <input type="text" name="arg1" ><p />

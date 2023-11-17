@@ -7,7 +7,7 @@
 	<%@ include file="./guestbook/header.jspf" %>
 	<title>變數輸入</title>
 	</head>
-	<body>
+	<body style="padding: 15px">
 		<form method="post" class="pure-form" action="./servlet/addArg">
 			<fieldset>
 				<legend>變數設定</legend>

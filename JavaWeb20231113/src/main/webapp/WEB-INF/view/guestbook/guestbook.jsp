@@ -36,12 +36,13 @@
 		
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	    <script type="text/javascript">
-	      google.charts.load('current', {'packages':['corechart']});
+	      google.charts.load('current', {'packages':['corechart', 'table']});
 	      google.charts.setOnLoadCallback(drawCharts);
 	      
 	      function drawCharts() {
 	    	  drawChart();  // pie chart
 	    	  drawChart2(); // column chart
+	    	  
 	      }
 	      
 	      function drawChart() {

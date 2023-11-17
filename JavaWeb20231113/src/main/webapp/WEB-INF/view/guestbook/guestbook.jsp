@@ -9,6 +9,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%!
+	interface Pattern {
+		String ROW_PATTERN = "['%s', %s]";
+		String TABLE_ROW_PATTERN = "[%d, '%s', %d, '%s', '%s', '%s'],";
+	}	
+
 	// 自訂方法, 將日期格式設定成 yyyy-MM-dd HH:mm:ss E
 	private String getDateFormatString(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss E");
@@ -80,10 +85,8 @@
 	          	// java 8
 	          	// 組合 result = ['18', 1],['19', 2],['20', 1],['21', 1],
 	          	
-	          	String rowPattern = "['%s', %s]";
-	          	
 	          	String result = ageMap.keySet().stream()
-	          						  .map(key -> String.format(rowPattern, key, ageMap.get(key)))
+	          						  .map(key -> String.format(Pattern.ROW_PATTERN, key, ageMap.get(key)))
 	          						  .collect(Collectors.joining(","));
 	          	
 	          	out.print(result);
@@ -114,9 +117,8 @@
 	          data.addColumn('string', '訊息');
 	          data.addRows([
 	        	  <%
-	        	  	String tableRowPattern = "[%d, '%s', %d, '%s', '%s', '%s'],";
 	        	  	for(Guestbook gb : guestbooks) {
-	        	  		out.println(String.format(tableRowPattern, gb.getId(), gb.getNickname(), gb.getAge(),
+	        	  		out.println(String.format(Pattern.TABLE_ROW_PATTERN, gb.getId(), gb.getNickname(), gb.getAge(),
 	        	  				gb.getSex(), getDateFormatString(gb.getDate()), gb.getMessage()));
 	        	  	}
 	        	  %>

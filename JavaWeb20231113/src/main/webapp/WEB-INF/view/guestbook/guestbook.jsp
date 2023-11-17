@@ -113,7 +113,7 @@
 				<!-- 留言列表 -->
 				<td colspan="3" valign="top">
 					
-					<table class="pure-table pure-table-bordered">
+					<table class="pure-table pure-table-bordered" style="width: 95%">
 						<thead>
 							<tr>
 								<th>id</th><th>暱稱</th><th>年齡</th><th>性別</th><th>時間</th><th>訊息</th>

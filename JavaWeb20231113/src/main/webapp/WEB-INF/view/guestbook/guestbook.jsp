@@ -42,11 +42,12 @@
 	        ]);
 	
 	        var options = {
-	          title: 'My Daily Activities'
+	          title: 'My Daily Activities',
+	          is3D: true
 	        };
 	
 	        var chart = new google.visualization.PieChart(document.getElementById('chart1'));
-	
+			
 	        chart.draw(data, options);
 	      }
 	    </script>
@@ -72,7 +73,7 @@
 				</td>
 				<!-- 統計圖表 -->
 				<td valign="top">
-					<div id="chart1" />
+					<div id="chart1" style="width: 500px; height: 300px;" />
 					<div id="chart2" />
 				</td>
 			</tr>

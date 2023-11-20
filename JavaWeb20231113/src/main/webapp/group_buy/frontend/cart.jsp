@@ -76,7 +76,9 @@
 							</tr>
 							<tr>
 								<td colspan="5" align="right">總計</td><td>1,050</td>
-								<td colspan="2"><button class="pure-button pure-button-primary" onclick="location.href='./finish.jsp'">結帳</button></td>
+								<td colspan="2">
+									<button type="button" class="pure-button pure-button-primary" onclick="window.location.href='./finish.jsp'">結帳</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>

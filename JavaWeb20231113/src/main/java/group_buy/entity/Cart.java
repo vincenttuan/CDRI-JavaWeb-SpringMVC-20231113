@@ -1,5 +1,6 @@
 package group_buy.entity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class Cart {
 	private User user; // 使用者物件
 	private List<CartItem> cartItems; // 購物車明細
 	private Boolean isCheckout; // 是否結帳
+	private Date checkoutTime;
 	
 	public Cart() {
 		
@@ -32,7 +34,8 @@ public class Cart {
 		
 		// 利用 cartId 查找 cartItems
 		
-		this.isCheckout = isCheckout;
+		// 若 isCheckout == true, 就要設定 checkoutTime 的時間
+		setIsCheckout(isCheckout);
 	}
 	public Integer getCartId() {
 		return cartId;
@@ -61,8 +64,21 @@ public class Cart {
 	public Boolean getIsCheckout() {
 		return isCheckout;
 	}
+	
 	public void setIsCheckout(Boolean isCheckout) {
 		this.isCheckout = isCheckout;
+		if(isCheckout) {
+			// 若 isCheckout == true, 就要設定 checkoutTime 的時間
+			setCheckoutTime(new Date());
+		}
+	}
+	
+	public Date getCheckoutTime() {
+		return checkoutTime;
+	}
+
+	private void setCheckoutTime(Date checkoutTime) {
+		this.checkoutTime = checkoutTime;
 	}
 
 	@Override

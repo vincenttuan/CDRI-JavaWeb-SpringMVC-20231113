@@ -49,14 +49,29 @@
 					<table class="pure-table pure-table-bordered">
 						<thead>
 							<tr>
-								<th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>修改數量</th><th>刪除</th>
+								<th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>小計</th><th>修改數量</th><th>刪除</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td><td>雞腳凍</td><td>50</td><td>包</td><td>5</td>
+								<td>1</td><td>雞腳凍</td><td>50</td><td>包</td><td>5</td><td>250</td>
 								<td><button class="button-success pure-button">修改</button></td>
 								<td><button class="button-error pure-button">刪除</button></td>
+							</tr>
+							<tr>
+								<td>2</td><td>可樂</td><td>100</td><td>打</td><td>3</td><td>300</td>
+								<td><button class="button-success pure-button">修改</button></td>
+								<td><button class="button-error pure-button">刪除</button></td>
+							</tr>
+							<tr>
+								<td>3</td><td>漢堡</td><td>250</td><td>箱</td><td>2</td><td>500</td>
+								<td><button class="button-success pure-button">修改</button></td>
+								<td><button class="button-error pure-button">刪除</button></td>
+							</tr>
+							<tr>
+								<td colspan="5">總計</td><td>1050</td>
+								<td><button class="button-success pure-button" onclick="location.href='./finish.jsp'">結帳</button></td>
+								<td></td>
 							</tr>
 						</tbody>
 					</table>

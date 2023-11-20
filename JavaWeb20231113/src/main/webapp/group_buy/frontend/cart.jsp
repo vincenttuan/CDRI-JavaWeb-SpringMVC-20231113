@@ -54,17 +54,23 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td><td>雞腳凍</td><td>50</td><td>包</td><td>5</td><td>250</td>
+								<td>1</td><td>雞腳凍</td><td>50</td><td>包</td>
+								<td><input type="number" value="5" /></td>
+								<td>250</td>
 								<td><button class="button-success pure-button">修改</button></td>
 								<td><button class="button-error pure-button">刪除</button></td>
 							</tr>
 							<tr>
-								<td>2</td><td>可樂</td><td>100</td><td>打</td><td>3</td><td>300</td>
+								<td>2</td><td>可樂</td><td>100</td><td>打</td>
+								<td><input type="number" value="3" /></td>
+								<td>300</td>
 								<td><button class="button-success pure-button">修改</button></td>
 								<td><button class="button-error pure-button">刪除</button></td>
 							</tr>
 							<tr>
-								<td>3</td><td>漢堡</td><td>250</td><td>箱</td><td>2</td><td>500</td>
+								<td>3</td><td>漢堡</td><td>250</td><td>箱</td>
+								<td><input type="number" value="2" /></td>
+								<td>500</td>
 								<td><button class="button-success pure-button">修改</button></td>
 								<td><button class="button-error pure-button">刪除</button></td>
 							</tr>

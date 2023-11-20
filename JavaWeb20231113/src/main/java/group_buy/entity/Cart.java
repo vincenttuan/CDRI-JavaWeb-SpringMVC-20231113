@@ -25,12 +25,13 @@ public class Cart {
 		
 	}
 	
-	public Cart(Integer cartId, Integer userId, List<CartItem> cartItems, Boolean isCheckout) {
+	public Cart(Integer cartId, Integer userId, Boolean isCheckout) {
 		this.cartId = cartId;
 		this.userId = userId;
 		// 利用 userId 查找 User 物件
 		
-		this.cartItems = cartItems;
+		// 利用 cartId 查找 cartItems
+		
 		this.isCheckout = isCheckout;
 	}
 	public Integer getCartId() {

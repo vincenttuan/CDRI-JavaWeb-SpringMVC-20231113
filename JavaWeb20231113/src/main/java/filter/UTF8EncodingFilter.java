@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // UTF-8 過濾器
-@WebFilter(value = {"/*"})
+@WebFilter(value = {"/guestbook/*", "/group_buy/*"})
 public class UTF8EncodingFilter extends HttpFilter {
 
 	@Override

@@ -20,6 +20,7 @@
 					商品: 🍖 雞腳凍(50元/包) <p />
 					數量: 5 包<p />
 				</fieldset>
+				<button type="button" onclick="window.location.href='./main.jsp';" class="pure-button pure-button-primary">回上一頁</button>
 			</form>
 		</div>
 	</body>

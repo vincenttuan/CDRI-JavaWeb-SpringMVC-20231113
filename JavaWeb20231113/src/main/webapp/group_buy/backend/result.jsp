@@ -22,6 +22,7 @@
 					單位: 箱<p />
 					上架: V<p />
 				</fieldset>
+				<button type="button" onclick="window.location.href='./main.jsp';" class="pure-button pure-button-primary">回上一頁</button>
 			</form>
 		</div>
 	</body>

@@ -33,7 +33,6 @@ public class GuestbookServlet extends HttpServlet {
 	// 給表單新增使用
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
 		String nickname = req.getParameter("nickname");
 		Integer age = Integer.parseInt(req.getParameter("age")); // String 直接轉型 int, 自動裝箱 Integer
 		String sex = req.getParameter("sex");

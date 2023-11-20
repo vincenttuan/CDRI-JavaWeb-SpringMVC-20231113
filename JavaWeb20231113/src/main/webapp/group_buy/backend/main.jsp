@@ -16,14 +16,20 @@
 		<div style="padding: 15px">
 			<form method="post" action="./result.jsp" class="pure-form">
 				<fieldset>
-					<legend>商品訂購</legend>
-					商品: <select id="productId" name="productId">
-							<option value="1" selected>🍖 雞腳凍(50元/包)</option>
-							<option value="2">🥤 可樂(100元/打)</option>
-							<option value="3">🍔 漢堡(250元/箱)</option>
-						</select><p />
-					數量: <input type="number" id="amount" name="amount" value="5" /><p />
-					<button type="submit" class="pure-button pure-button-primary">加入購物車</button>	
+					<legend>商品新增</legend>
+					品名: <input type="text" id="productName" name="productName" value="水果茶" placeholder="請輸入品名" required><p />
+					價格: <input type="number" id="price" name="price" value="40" placeholder="請輸入價格" required /><p />
+					單位: <select id="unit" name="unit">
+							<option value="1" selected>包</option>
+							<option value="2">捆</option>
+							<option value="3">打</option>
+							<option value="4">箱</option>
+							<option value="5">組</option>
+						</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;	
+					上架: <input type="checkbox" id="launch" name="launch" checked />	
+					<p />
+					<button type="submit" class="pure-button pure-button-primary">新增</button>	
 				</fieldset>
 			</form>
 		</div>

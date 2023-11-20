@@ -5,8 +5,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>團購網-購物車</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-		<link rel="stylesheet" href="<%=getServletContext().getContextPath() %>/css/group_buy.css">
+		<!-- header -->
+		<%@include file="../include/header.jspf" %>
 	</head>
 	<body>
 		<!-- menu -->

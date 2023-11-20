@@ -1,4 +1,4 @@
-團購系統XD
+團購系統
 
 1. 商品
 Pack(盒), Box(箱), Bottle(瓶), Bag(包), Dozen(打)

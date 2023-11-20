@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="pure-menu pure-menu-horizontal" style="background-color: #EBD6D6">
+<div class="pure-menu pure-menu-horizontal" style="background-color: #D2E9FF">
     <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-selected">
-            <a href="./main.jsp" class="pure-menu-link">‍👨‍👩‍👧‍👦 團購網</a>
+            <a href="./main.jsp" class="pure-menu-link">‍👨‍👩 團購網後台</a>
         </li>
         <li class="pure-menu-item">
-            <a href="./cart.jsp" class="pure-menu-link">🛒 購物車</a>
+            <a href="./report.jsp" class="pure-menu-link">後台報告</a>
         </li>
         <li class="pure-menu-item">
-            <a href="../backend/main.jsp" class="pure-menu-link">👨‍👩 團購網後台</a>
+            <a href="../frontend/main.jsp" class="pure-menu-link">👨‍👩‍👧‍👦 團購網前台</a>
         </li>
         <li class="pure-menu-item">
             <a href="../login.jsp" class="pure-menu-link">🔞 登出</a>

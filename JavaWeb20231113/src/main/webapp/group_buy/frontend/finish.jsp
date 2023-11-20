@@ -45,7 +45,7 @@
 		<div style="padding: 15px">
 			<form class="pure-form">
 				<fieldset>
-					<legend>John 的結帳資料</legend>
+					<legend>John 的結帳資料 (結帳時間: 2023-11-20 12:20:50)</legend>
 					<table class="pure-table pure-table-bordered">
 						<thead>
 							<tr>

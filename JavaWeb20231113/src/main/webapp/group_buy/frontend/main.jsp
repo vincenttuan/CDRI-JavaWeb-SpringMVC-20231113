@@ -9,7 +9,8 @@
 	</head>
 	<body>
 		<!-- menu -->
+		<%@include file="./menu.jspf" %>
 		
-	
+		
 	</body>
 </html>

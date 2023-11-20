@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>團購網-購物車</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<link rel="stylesheet" href="../../css/group_buy.css">
 	</head>
 	<body>
 		<!-- menu -->
@@ -23,7 +24,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							
+							<tr>
+								<td>1</td><td>雞腳凍</td><td>50</td><td>包</td><td>5</td>
+								<td><button class="button-success pure-button">修改</button></td>
+								<td></td>
+							</tr>
 						</tbody>
 					</table>
 				</fieldset>

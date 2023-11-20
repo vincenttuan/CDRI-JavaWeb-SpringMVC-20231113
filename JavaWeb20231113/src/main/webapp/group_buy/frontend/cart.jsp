@@ -6,36 +6,6 @@
 		<meta charset="UTF-8">
 		<title>團購網-購物車</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-		<style>
-			.button-success,
-			.button-error,
-			.button-warning,
-			.button-secondary {
-			    color: white;
-			    border-radius: 4px;
-			    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-			}
-			
-			.button-success {
-			    background: rgb(28, 184, 65);
-			    /* this is a green */
-			}
-			
-			.button-error {
-			    background: rgb(202, 60, 60);
-			    /* this is a maroon */
-			}
-			
-			.button-warning {
-			    background: rgb(223, 117, 20);
-			    /* this is an orange */
-			}
-			
-			.button-secondary {
-			    background: rgb(66, 184, 221);
-			    /* this is a light blue */
-			}
-		</style>
 	</head>
 	<body>
 		<!-- menu -->

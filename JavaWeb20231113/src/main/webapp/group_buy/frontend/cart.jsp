@@ -75,9 +75,8 @@
 								<td><button class="button-error pure-button">刪除</button></td>
 							</tr>
 							<tr>
-								<td colspan="5">總計</td><td>1050</td>
-								<td><button class="button-success pure-button" onclick="location.href='./finish.jsp'">結帳</button></td>
-								<td></td>
+								<td colspan="5" align="right">總計</td><td>1,050</td>
+								<td colspan="2"><button class="pure-button pure-button-primary" onclick="location.href='./finish.jsp'">結帳</button></td>
 							</tr>
 						</tbody>
 					</table>

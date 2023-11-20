@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<!-- menu -->
-		<%@include file="./menu.jspf" %>
+		<%@include file="../include/menu.jspf" %>
 		
 		<!-- 結帳列表 -->
 		<div style="padding: 15px">

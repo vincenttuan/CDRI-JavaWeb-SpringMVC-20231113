@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="pure-menu pure-menu-horizontal">
+<div class="pure-menu pure-menu-horizontal" style="background-color: #EBD6D6">
     <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-selected">
             <a href="./main.jsp" class="pure-menu-link">團購網</a>

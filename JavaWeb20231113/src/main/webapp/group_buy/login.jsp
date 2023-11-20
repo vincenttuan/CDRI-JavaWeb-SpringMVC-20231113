@@ -14,8 +14,8 @@
 					<legend>團購網登入</legend>
 					😜 帳號: <input type="text" id="username" name="username" value="John" placeholder="請輸入帳號" required /><p />
 					🔑 密碼: <input type="password" id="password" name="password" value="1234" placeholder="請輸入密碼" required /><p />
-					<button type="submit" class="pure-button pure-button-bordered">前台登入</button>
-					<button type="button" class="pure-button pure-button-bordered"
+					<button type="submit" class="pure-button pure-button-primary">前台登入</button>
+					<button type="button" class="pure-button pure-button-primary"
 							onclick="window.location.href='./backend/main.jsp';">後台登入</button>
 				</fieldset>
 			</form>

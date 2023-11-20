@@ -3,7 +3,7 @@
 <div class="pure-menu pure-menu-horizontal" style="background-color: #EBD6D6">
     <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-selected">
-            <a href="./main.jsp" class="pure-menu-link">團購網</a>
+            <a href="./main.jsp" class="pure-menu-link">‍👨‍👩‍👧‍👦 團購網</a>
         </li>
         <li class="pure-menu-item">
             <a href="./cart.jsp" class="pure-menu-link">🛒 購物車</a>

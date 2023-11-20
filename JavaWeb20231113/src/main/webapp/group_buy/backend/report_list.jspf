@@ -9,6 +9,7 @@
 		            <th>#</th>
 		            <th>帳號</th>
 		            <th>金額</th>
+		            <th>結帳時間</th>
 		            <th>明細</th>
 		        </tr>
 		    </thead>
@@ -17,6 +18,7 @@
 		            <td>1</td>
 		            <td>John</td>
 		            <td>$1,050</td>
+		            <td>2023-11-20 12:20:50</td>
 		            <td>
 		            	<button class="button-secondary pure-button">明細</button>
 		            </td>
@@ -25,6 +27,7 @@
 		            <td>2</td>
 		            <td>Mary</td>
 		            <td>$250</td>
+		            <td>2023-11-20 12:30:50</td>
 		            <td>
 		            	<button class="button-secondary pure-button">明細</button>
 		            </td>
@@ -33,6 +36,7 @@
 		            <td>3</td>
 		            <td>Mark</td>
 		            <td>$560</td>
+		            <td>2023-11-20 12:40:50</td>
 		            <td>
 		            	<button class="button-secondary pure-button">明細</button>
 		            </td>
@@ -41,6 +45,7 @@
 		            <td>4</td>
 		            <td>Helen</td>
 		            <td>$2,850</td>
+		            <td>2023-11-20 12:50:50</td>
 		            <td>
 		            	<button class="button-secondary pure-button">明細</button>
 		            </td>
@@ -49,6 +54,7 @@
 		            <td>5</td>
 		            <td>Alen</td>
 		            <td>$50</td>
+		            <td>2023-11-20 13:20:50</td>
 		            <td>
 		            	<button class="button-secondary pure-button">明細</button>
 		            </td>

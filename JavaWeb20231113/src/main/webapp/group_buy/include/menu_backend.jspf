@@ -3,7 +3,7 @@
 <div class="pure-menu pure-menu-horizontal" style="background-color: #D2E9FF">
     <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-selected">
-            <a href="./main.jsp" class="pure-menu-link">‍👨‍👩 團購網後台</a>
+            <a href="./main.jsp" class="pure-menu-link">‍👨‍✈️ 團購網後台</a>
         </li>
         <li class="pure-menu-item">
             <a href="./report.jsp" class="pure-menu-link">後台報告</a>

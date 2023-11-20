@@ -9,7 +9,7 @@
             <a href="./cart.jsp" class="pure-menu-link">🛒 購物車</a>
         </li>
         <li class="pure-menu-item">
-            <a href="../backend/main.jsp" class="pure-menu-link">👨‍👩 團購網後台</a>
+            <a href="../backend/main.jsp" class="pure-menu-link">👨‍✈️ 團購網後台</a>
         </li>
         <li class="pure-menu-item">
             <a href="../login.jsp" class="pure-menu-link">🔞 登出</a>

@@ -22,7 +22,7 @@
 							<fieldset>
 								<legend>商品新增</legend>
 								品名: <input type="text" id="productName" name="productName" value="🍺 啤酒" placeholder="請輸入品名" required><p />
-								價格: <input type="number" id="price" name="price" value="40" placeholder="請輸入價格" required /><p />
+								價格: <input type="number" id="price" name="price" value="400" placeholder="請輸入價格" required /><p />
 								單位: <select id="unit" name="unit">
 										<option value="1">包</option>
 										<option value="2">捆</option>

@@ -126,7 +126,7 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public List<Cart> findNoneCheckoutCartsByUserId(Integer userId) {
-		// TODO Auto-generated method stub
+		// 尋找該使用者的尚未結帳購物車
 		return null;
 	}
 

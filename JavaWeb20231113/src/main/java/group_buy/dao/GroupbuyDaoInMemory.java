@@ -20,20 +20,31 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 	
 	@Override
 	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return users;
 	}
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
-		
+		users.add(user);
 	}
 
 	@Override
 	public Boolean updateUserPasswordById(Integer userId, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		/*
+		Optional<User> userOpt = users.stream()
+									  .filter(user -> user.getUserId().equals(userId))
+									  .findAny();
+		if(userOpt.isPresent()) {
+			userOpt.get().setPassword(newPassword);
+			return true;
+		}
+		return false;
+		*/
+		return users.stream()
+				  .filter(user -> user.getUserId().equals(userId))
+				  .peek(user -> user.setPassword(newPassword))
+				  .findAny()
+				  .isPresent();
 	}
 
 	@Override

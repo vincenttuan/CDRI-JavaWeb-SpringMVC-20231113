@@ -70,6 +70,7 @@ public class Cart {
 	
 	public void setIsCheckout(Boolean isCheckout) {
 		this.isCheckout = isCheckout;
+		// 商業邏輯
 		if(isCheckout) {
 			// 若 isCheckout == true, 就要設定 checkoutTime 的時間
 			setCheckoutTime(new Date());

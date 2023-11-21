@@ -11,8 +11,6 @@ import group_buy.entity.User;
 
 public class TestGroupBuy {
 
-	// 測試程式碼1
-	
 	public static void main(String[] args) {
 		GroupBuyDao dao = new GroupbuyDaoInMemory();
 		// 加入 User

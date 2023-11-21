@@ -3,6 +3,8 @@ package group_buy.dao;
 import java.util.List;
 import java.util.Optional;
 
+import group_buy.entity.Cart;
+import group_buy.entity.CartItem;
 import group_buy.entity.Product;
 import group_buy.entity.User;
 
@@ -74,12 +76,46 @@ public interface GroupBuyDao {
 	
 	//
 	//	購物車/購物車項目(Cart/CartItem)
-	//	1. 新增購物車資料
-	//	2. 新增購物車項目資料
-	//	3. 查詢所有購物車資料(多筆)
-	//	4. 根據購物車ID查找購物車資料(單筆)
-	//	5. 根據購物車項目ID查找購物車項目資料(單筆)
-	//	6. 根據使用者ID來查找其所有購物車資料
+	/**	
+	 * 1. 新增購物車資料
+	 * @param cart
+	 */
+	void addCart(Cart cart);
+	
+	/**	
+	 * 2. 新增購物車項目資料
+	 * @param cartItem
+	 */
+	void addCartItem(CartItem cartItem);
+	
+	/**	
+	 * 3. 查詢所有購物車資料(多筆)
+	 * @return 所有購物車資訊
+	 */
+	List<Cart> findAllCarts();
+	
+	/**	
+	 * 4. 根據購物車ID查找購物車資料(單筆)
+	 * @param cartId
+	 * @return 取得單筆購物車資料
+	 */
+	Optional<Cart> findCartById(Integer cartId);
+	
+	/**	
+	 * 5. 根據購物車項目ID查找購物車項目資料(單筆)
+	 * @param itemId
+	 * @return 取得單筆購物車明細資料
+	 */
+	Optional<CartItem> findCartItemById(Integer itemId);
+	
+	/**	
+	 * 6. 根據使用者ID來查找其所有購物車資料(多筆)
+	 * 得到該名使用者的所有購物車資料
+	 * @param userId
+	 * @return 購物車列表資料
+	 */
+	List<Cart> findCartByUserId(Integer userId);
+	
 	//	7. 根據使用者ID及結帳狀態來查找其所有購物車資料
 	//	8. 根據使用者ID來查找其未結帳的購物車資料
 	//	9. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)

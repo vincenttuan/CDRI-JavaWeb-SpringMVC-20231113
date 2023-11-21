@@ -135,14 +135,22 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public Boolean checkoutCartByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		// 尋找該使用者的尚未結帳購物車, 才可以進行結帳
+		Optional<Cart> cartOpt = findNoneCheckoutCartByUserId(userId);
+		if(cartOpt.isPresent()) {
+			cartOpt.get().setIsCheckout(true); // 結帳
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Boolean checkoutCartById(Integer cartId) {
-		// TODO Auto-generated method stub
-		return null;
+		return carts.stream()
+					.filter(cart -> cart.getCartId().equals(cartId))
+					.peek(cart -> cart.setIsCheckout(true)) // 結帳
+					.findAny()
+					.isPresent();
 	}
 
 	@Override

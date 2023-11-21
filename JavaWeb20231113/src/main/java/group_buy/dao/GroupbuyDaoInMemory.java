@@ -84,31 +84,26 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void addCart(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		carts.add(cart);
 	}
 
 	@Override
 	public void addCartItem(CartItem cartItem) {
-		// TODO Auto-generated method stub
-		
+		cartItems.add(cartItem);
 	}
 
 	@Override
 	public List<Cart> findAllCarts() {
-		// TODO Auto-generated method stub
-		return null;
+		return carts;
 	}
 
 	@Override
 	public Optional<Cart> findCartById(Integer cartId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return carts.stream().filter(cart -> cart.getCartId().equals(cartId)).findAny();
 	}
 
 	@Override
 	public Optional<CartItem> findCartItemById(Integer itemId) {
-		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 

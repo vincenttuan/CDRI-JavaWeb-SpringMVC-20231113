@@ -74,8 +74,12 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public Boolean updateProductLaunch(Boolean isLaunch) {
-		return null;
+	public Boolean updateProductLaunchById(Integer productId, Boolean isLaunch) {
+		return products.stream()
+					   .filter(product -> product.getProductId().equals(productId))
+					   .peek(product -> product.setIsLaunch(isLaunch))
+					   .findAny()
+					   .isPresent();
 	}
 
 	@Override

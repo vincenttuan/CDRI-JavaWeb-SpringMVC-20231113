@@ -16,12 +16,15 @@ import java.util.List;
 +--------+----------+-----------+------------+---------------------+
 */
 public class Cart {
+	// Entity 資料
 	private Integer cartId; // 購物車 ID
 	private Integer userId; // 使用者 ID
-	private User user; // 使用者物件
-	private List<CartItem> cartItems; // 購物車明細
 	private Boolean isCheckout; // 是否結帳
 	private Date checkoutTime;
+	
+	// 關聯資料
+	private User user; // 使用者物件
+	private List<CartItem> cartItems; // 購物車明細
 	
 	public Cart() {
 		

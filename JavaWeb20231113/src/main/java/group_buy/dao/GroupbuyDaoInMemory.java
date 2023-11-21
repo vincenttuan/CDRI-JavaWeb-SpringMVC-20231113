@@ -125,9 +125,12 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public List<Cart> findNoneCheckoutCartsByUserId(Integer userId) {
+	public Optional<Cart> findNoneCheckoutCartByUserId(Integer userId) {
 		// 尋找該使用者的尚未結帳購物車
-		return null;
+		return carts.stream()
+					.filter(cart -> cart.getUserId().equals(userId))
+					.filter(cart -> cart.getIsCheckout() == null || !cart.getIsCheckout())
+					.findAny();
 	}
 
 	@Override

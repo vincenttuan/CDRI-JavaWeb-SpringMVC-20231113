@@ -125,11 +125,11 @@ public interface GroupBuyDao {
 	 */
 	List<Cart> findCartsByUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout);
 	
-	/**	8. 根據使用者ID來查找其未結帳的購物車資料
+	/**	8. 根據使用者ID來查找其未結帳的購物車資料(單筆)
 	 * @param userId
-	 * @return 購物車列表資料
+	 * @return 購物車資料
 	 */
-	List<Cart> findNoneCheckoutCartsByUserId(Integer userId);
+	Optional<Cart> findNoneCheckoutCartByUserId(Integer userId);
 	
 	/**	
 	 * 9. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)

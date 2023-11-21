@@ -155,8 +155,14 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public Boolean removeCartItemById(Integer itemId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<CartItem> cartItemOpt = cartItems.stream()
+												  .filter(cartItem -> cartItem.getItemId().equals(itemId))
+												  .findAny();
+		if(cartItemOpt.isPresent()) {
+			cartItems.remove(cartItemOpt.get()); // 移除物件
+			return true;
+		}
+		return false;
 	}
 
 	@Override

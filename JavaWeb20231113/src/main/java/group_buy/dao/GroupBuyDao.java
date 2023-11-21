@@ -1,6 +1,7 @@
 package group_buy.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import group_buy.entity.User;
 
@@ -21,15 +22,22 @@ public interface GroupBuyDao {
 	
 	/**	
 	 * 3. 修改密碼
+	 * 功能說明: 此程式是用來修改密碼用...
 	 * @param userId 使用者編號
 	 * @param newPassword 新密碼
 	 * @return 是否修改成功(true:成功, false:失敗)
 	 */
 	Boolean updateUserPasswordById(Integer userId, String newPassword);
 	
-	//	4. 根據使用者名稱查找使用者(登入用-單筆)
+	/**	
+	 * 4. 根據使用者名稱查找使用者(登入用-單筆)
+	 * @param username
+	 * @return 單一使用者物件
+	 */
+	Optional<User> findUserByName(String username);
 	
 	//	5. 根據使用者ID查找使用者(單筆)
+	
 	//
 	//	商品-Product
 	//	1. 查詢所有商品(多筆)

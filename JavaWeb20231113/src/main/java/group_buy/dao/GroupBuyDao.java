@@ -114,12 +114,47 @@ public interface GroupBuyDao {
 	 * @param userId
 	 * @return 購物車列表資料
 	 */
-	List<Cart> findCartByUserId(Integer userId);
+	List<Cart> findCartsByUserId(Integer userId);
 	
-	//	7. 根據使用者ID及結帳狀態來查找其所有購物車資料
-	//	8. 根據使用者ID來查找其未結帳的購物車資料
-	//	9. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)
-	//	10. 根據購物車ID將購物車設置為已結帳狀態(後台的事件)
-	//	11. 根據購物車項目ID刪除指定的購物車項目
-	//	12. 更新購物車項目的數量
+	/**	
+	 * 7. 根據使用者ID及結帳狀態來查找其所有購物車資料
+	 * @param userId
+	 * @param isCheckout
+	 * @return 購物車列表資料
+	 */
+	List<Cart> findCartsByUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout);
+	
+	/**	8. 根據使用者ID來查找其未結帳的購物車資料
+	 * @param userId
+	 * @return 購物車列表資料
+	 */
+	List<Cart> findNoneCheckoutCartsByUserId(Integer userId);
+	
+	/**	
+	 * 9. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)
+	 * @param userId
+	 * @return 是否結帳成功
+	 */
+	Boolean checkoutCartByUserId(Integer userId);
+	
+	/**	
+	 * 10. 根據購物車ID將購物車設置為已結帳狀態(後台的事件)
+	 * @param cartId
+	 * @return 是否結帳成功
+	 */
+	Boolean checkoutCartById(Integer cartId);
+	
+	/**	
+	 * 11. 根據購物車項目ID刪除指定的購物車項目
+	 * @param itemId
+	 * @return 是否刪除成功
+	 */
+	Boolean removeCartItemById(Integer itemId);
+	
+	/** 12. 更新購物車項目的數量
+	 * @param itemId
+	 * @param quantity
+	 * @return 數量是否修改成功
+	 */
+	Boolean updateCartItemQuantityById(Integer itemId, Integer quantity);
 }

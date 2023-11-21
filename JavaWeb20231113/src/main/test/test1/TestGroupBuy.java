@@ -10,7 +10,7 @@ import group_buy.entity.Product;
 import group_buy.entity.User;
 
 public class TestGroupBuy {
-
+//////////
 	public static void main(String[] args) {
 		GroupBuyDao dao = new GroupbuyDaoInMemory();
 		// 加入 User

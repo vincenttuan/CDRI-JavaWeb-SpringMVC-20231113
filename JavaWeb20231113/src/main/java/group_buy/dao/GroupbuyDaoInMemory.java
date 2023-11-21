@@ -117,8 +117,11 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public List<Cart> findCartsByUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout) {
-		// TODO Auto-generated method stub
-		return null;
+		return carts.stream()
+					//.filter(cart -> cart.getUserId().equals(userId))
+					//.filter(cart -> cart.getIsCheckout().equals(isCheckout))
+					.filter(cart -> cart.getUserId().equals(userId) && cart.getIsCheckout().equals(isCheckout))
+					.collect(toList());
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package group_buy.dao;
 import java.util.List;
 import java.util.Optional;
 
+import group_buy.entity.Product;
 import group_buy.entity.User;
 
 // GroupBuy Data Access Object API 規格
@@ -36,15 +37,41 @@ public interface GroupBuyDao {
 	 */
 	Optional<User> findUserByName(String username);
 	
-	//	5. 根據使用者ID查找使用者(單筆)
+	/**	
+	 * 5. 根據使用者ID查找使用者(單筆)
+	 * @param userId
+	 * @return 單一使用者物件
+	 */
+	Optional<User> findUserById(Integer userId);
 	
 	//
 	//	商品-Product
-	//	1. 查詢所有商品(多筆)
+	/**	
+	 * 1. 查詢所有商品(多筆)
+	 * @return 所有商品列表
+	 */
+	List<Product> findAllProducts();
 	
-	//	2. 根據產品ID來查找商品(單筆)
-	//	3. 新增商品
-	//	4. 變更商品上架狀態
+	/**	
+	 * 2. 根據產品ID來查找商品(單筆)
+	 * @param productId
+	 * @return 單一商品
+	 */
+	Optional<Product> findProductById(Integer productId);
+	
+	/**	
+	 * 3. 新增商品
+	 * @param product
+	 */
+	void addProduct(Product product);
+	
+	/**	4. 變更商品上架狀態
+	 * 若要上架將 isLaunch = true, 反之設定為 false
+	 * @param isLaunch
+	 * @return
+	 */
+	Boolean updateProductLaunch(Boolean isLaunch);
+	
 	//
 	//	購物車/購物車項目(Cart/CartItem)
 	//	1. 新增購物車資料

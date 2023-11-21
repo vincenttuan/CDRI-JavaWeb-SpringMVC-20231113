@@ -3,7 +3,7 @@ package group_buy.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 import group_buy.entity.Cart;
 import group_buy.entity.CartItem;
@@ -112,7 +112,7 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 	public List<Cart> findCartsByUserId(Integer userId) {
 		return carts.stream()
 					.filter(cart -> cart.getUserId().equals(userId))
-					.collect(Collectors.toList());
+					.collect(toList());
 	}
 
 	@Override

@@ -15,12 +15,15 @@ package group_buy.entity;
 +--------+----------+-----------+------------+
  * */
 public class CartItem {
+	// Entity 資料
 	private Integer itemId; // 明細檔 Id
 	private Integer cartId; // 購物車 Id
-	private Cart cart; // 購物車物件
 	private Integer productId; // 商品 Id
-	private Product product; // 商品物件
 	private Integer quantity; // 購買數量
+	
+	// 關聯資料
+	private Cart cart; // 購物車物件
+	private Product product; // 商品物件
 	
 	public CartItem() {
 		

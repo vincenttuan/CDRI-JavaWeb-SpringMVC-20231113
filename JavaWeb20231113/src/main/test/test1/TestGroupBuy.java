@@ -50,6 +50,7 @@ public class TestGroupBuy {
 			System.out.printf("Id: %d 商品ID: %d 商品名稱: %s 數量: %d \n", 
 					item.getItemId(), 
 					item.getProductId(), 
+					// 請將商品名稱有資料
 					item.getProduct() == null ? "null" : item.getProduct().getProductName(), 
 					item.getQuantity());
 		}

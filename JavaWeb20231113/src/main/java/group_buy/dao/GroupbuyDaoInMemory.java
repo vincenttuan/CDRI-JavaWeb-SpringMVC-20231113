@@ -65,18 +65,16 @@ public class GroupbuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public Optional<Product> findProductById(Integer productId) {
-		return Optional.empty();
+		return products.stream().filter(product -> product.getProductId().equals(productId)).findAny();
 	}
 
 	@Override
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+		products.add(product);
 	}
 
 	@Override
 	public Boolean updateProductLaunch(Boolean isLaunch) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

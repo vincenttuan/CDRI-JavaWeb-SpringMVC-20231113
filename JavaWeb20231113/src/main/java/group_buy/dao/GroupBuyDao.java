@@ -67,12 +67,13 @@ public interface GroupBuyDao {
 	 */
 	void addProduct(Product product);
 	
-	/**	4. 變更商品上架狀態
+	/**	4. 變更該商品上架狀態
 	 * 若要上架將 isLaunch = true, 反之設定為 false
+	 * @param productId
 	 * @param isLaunch
 	 * @return
 	 */
-	Boolean updateProductLaunch(Boolean isLaunch);
+	Boolean updateProductLaunchById(Integer productId, Boolean isLaunch);
 	
 	//
 	//	購物車/購物車項目(Cart/CartItem)

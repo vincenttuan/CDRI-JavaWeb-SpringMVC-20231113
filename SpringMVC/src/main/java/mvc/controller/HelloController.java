@@ -26,9 +26,15 @@ public class HelloController {
 	}
 	
 	/**
-	 * 2. 取得 Hi SpringMVC 字串
-	 * 路徑: "/hi"
-	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/hi
+	 * 2. ? 帶參數
+	 * 路徑: "/hi?name=John&age=18"
+	 * 路徑: "/hi?name=Mary&age=20"
+	 * 路徑: "/hi?name=Helen"
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/hi?name=John&age=18
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/hi?name=Mary&age=20
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/hi?name=Helen
+	 * 限制: name 參數是一定要有的(預設)
+	 *      age 參數是不一定要有的, 初始值 = 0
 	 * */
 	@GetMapping("/hi")
 	@ResponseBody

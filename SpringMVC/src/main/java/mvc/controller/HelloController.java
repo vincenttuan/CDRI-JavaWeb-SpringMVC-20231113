@@ -45,4 +45,13 @@ public class HelloController {
 		return String.format("Hi %s, %d", name, age);
 	}
 	
+	/*
+	 * 3. Lab 練習
+	 * 路徑: "/bmi?h=170.0&w=60.0"
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/bmi?h=170.0&w=60.0
+	 * 限制: h, w 是一定要有的
+	 * 執行結果: h = 170.0, w = 60.0, bmi = 20.76
+	 * 請設計~
+	 * */
+	
 }

@@ -29,7 +29,7 @@
     
     <!-- 設定 MySQL 的連線資源 -->
     <Resource
-    	name="jdbc/demo"
+    	name="jdbc/web"
     	type="javax.sql.DataSource"
     	username="web"
     	password="12345678"

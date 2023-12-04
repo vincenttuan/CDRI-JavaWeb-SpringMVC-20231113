@@ -21,4 +21,5 @@
 	
 	<bean id="lotto" scope="prototype" class="session01.bean.Lotto" />
 	
+	
 </beans>		

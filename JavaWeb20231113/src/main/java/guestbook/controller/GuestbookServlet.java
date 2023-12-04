@@ -14,10 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import guestbook.model.Guestbook;
 import guestbook.model.GuestbookDao;
 import guestbook.model.GuestbookDaoInMemory;
+import guestbook.model.GuestbookDaoMySQL;
 
 @WebServlet("/guestbook")
 public class GuestbookServlet extends HttpServlet {
-	private GuestbookDao guestbookDao = new GuestbookDaoInMemory();
+	
+	//private GuestbookDao guestbookDao = new GuestbookDaoInMemory();
+	private GuestbookDao guestbookDao = new GuestbookDaoMySQL();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

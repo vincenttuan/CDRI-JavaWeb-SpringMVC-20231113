@@ -37,12 +37,13 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 
 	@Override
 	public void create(Guestbook guestbook) {
-		String sql = "insert into guestbook(nickname, age, message) values(?, ?, ?);";
+		String sql = "insert into guestbook(nickname, age, sex, message) values(?, ?, ?, ?);";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			// 配置 sql ? 資料
 			pstmt.setString(1, guestbook.getNickname());
 			pstmt.setInt(2, guestbook.getAge());
-			pstmt.setString(3, guestbook.getMessage());
+			pstmt.setString(3, guestbook.getSex());
+			pstmt.setString(4, guestbook.getMessage());
 			// 提交送出
 			int rowcount = pstmt.executeUpdate();
 			System.out.println("rowcount(異動筆數) = " + rowcount);
@@ -54,7 +55,7 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 
 	@Override
 	public List<Guestbook> readAll() {
-		String sql = "select id, nickname, age, message, date from guestbook order by id";
+		String sql = "select id, nickname, age, sex, message, date from guestbook order by id";
 		List<Guestbook> guestbooks = new ArrayList<>();
 		try(Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql) ) {
@@ -65,6 +66,7 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 				guestbook.setId(rs.getInt("id"));
 				guestbook.setNickname(rs.getString("nickname"));
 				guestbook.setAge(rs.getInt("age"));
+				guestbook.setSex(rs.getString("sex"));
 				guestbook.setMessage(rs.getString("message"));
 				guestbook.setDate(rs.getDate("date"));
 				// 加入到 guestbooks 集合中

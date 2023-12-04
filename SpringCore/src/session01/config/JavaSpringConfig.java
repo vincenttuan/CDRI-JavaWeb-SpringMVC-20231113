@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import session01.bean.Hello;
+import session01.bean.Lotto;
 
 // JavaSpringConfig 是一個 Spring 配置檔, 來管理所定義的物件
 @Configuration
@@ -15,6 +16,13 @@ public class JavaSpringConfig {
 	public Hello getHello() {
 		Hello hello = new Hello();
 		return hello;
+	}
+	
+	@Bean(name = "lotto")
+	@Scope("singleton")
+	public Lotto getLotto() {
+		Lotto lotto = new Lotto();
+		return lotto;
 	}
 	
 }

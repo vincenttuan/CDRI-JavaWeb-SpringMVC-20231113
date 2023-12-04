@@ -3,6 +3,7 @@ package mvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /*
@@ -38,8 +39,10 @@ public class HelloController {
 	 * */
 	@GetMapping("/hi")
 	@ResponseBody
-	public String hi() {
-		return "Hi SpringMVC";
+	public String hi(@RequestParam(value = "name", required = true) String name,
+					 @RequestParam(value = "age", required = false, defaultValue = "0") Integer age) {
+		
+		return String.format("Hi %s, %d", name, age);
 	}
 	
 }

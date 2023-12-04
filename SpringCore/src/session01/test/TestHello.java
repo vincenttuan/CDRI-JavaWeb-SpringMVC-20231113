@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import session01.bean.Hello;
+import session01.bean.Lotto;
 import session01.config.JavaSpringConfig;
 
 //執行時請加入 VM 參數: --add-opens java.base/java.lang=ALL-UNNAMED
@@ -23,6 +24,12 @@ public class TestHello {
 		// 2. 取 bean
 		//Hello hello1 = ctx1.getBean("hello", Hello.class); // bean 的名字, bean 類型
 		//System.out.println(hello1.getToday());
+		
+		Lotto lotto1 = ctx1.getBean("lotto", Lotto.class);
+		System.out.println(lotto1.getNumber());
+		
+		Lotto lotto2 = ctx1.getBean("lotto", Lotto.class);
+		System.out.println(lotto2.getNumber());
 		
 	}
 

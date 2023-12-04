@@ -19,7 +19,7 @@ public class JavaSpringConfig {
 	}
 	
 	@Bean(name = "lotto")
-	@Scope("singleton")
+	@Scope("prototype")
 	public Lotto getLotto() {
 		Lotto lotto = new Lotto();
 		return lotto;

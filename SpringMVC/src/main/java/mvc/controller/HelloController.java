@@ -14,12 +14,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/hello")
 public class HelloController {
 	
+	/**
+	 * 1. 取得 Welcome SpringMVC 字串
+	 * 路徑: "/welcome"
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/welcome
+	 * */
 	@GetMapping("/welcome")
 	@ResponseBody
 	public String welcome() {
 		return "Welcome SpringMVC";
 	}
 	
+	/**
+	 * 2. 取得 Hi SpringMVC 字串
+	 * 路徑: "/hi"
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/hi
+	 * */
 	@GetMapping("/hi")
 	@ResponseBody
 	public String hi() {

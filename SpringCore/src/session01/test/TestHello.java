@@ -2,6 +2,7 @@ package session01.test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import session01.bean.Hello;
 import session01.bean.Lotto;
@@ -22,15 +23,17 @@ public class TestHello {
 		// 使用 JavaSpringConfig(Java 配置) 來取得 bean 物件
 		// 1. 得到應用程式的配置環境
 		//ApplicationContext ctx1 = new AnnotationConfigApplicationContext(JavaSpringConfig.class);
-		ApplicationContext ctx2 = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
-		// 2. 取 bean
-		//Hello hello1 = ctx1.getBean("hello", Hello.class); // bean 的名字, bean 類型
-		//System.out.println(hello1.getToday());
+		//ApplicationContext ctx2 = new AnnotationConfigApplicationContext(JavaSpringConfig2.class);
+		ApplicationContext ctx3 = new ClassPathXmlApplicationContext("beans-config.xml");
 		
-		Lotto lotto1 = ctx2.getBean("lotto", Lotto.class);
+		// 2. 取 bean
+		Hello hello1 = ctx3.getBean("hello", Hello.class); // bean 的名字, bean 類型
+		System.out.println(hello1.getToday());
+		
+		Lotto lotto1 = ctx3.getBean("lotto", Lotto.class);
 		System.out.println(lotto1.getNumber());
 		
-		Lotto lotto2 = ctx2.getBean("lotto", Lotto.class);
+		Lotto lotto2 = ctx3.getBean("lotto", Lotto.class);
 		System.out.println(lotto2.getNumber());
 		
 	}

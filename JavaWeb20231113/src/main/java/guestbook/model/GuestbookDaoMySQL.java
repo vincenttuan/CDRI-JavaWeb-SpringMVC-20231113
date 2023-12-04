@@ -2,6 +2,7 @@ package guestbook.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,14 +26,25 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 		}
 	}
 
 	@Override
 	public void create(Guestbook guestbook) {
-		// TODO Auto-generated method stub
+		String sql = "insert into guestbook(nickname, age, message) values(?, ?, ?)";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			// 配置 sql ? 資料
+			pstmt.setString(1, guestbook.getNickname());
+			pstmt.setInt(2, guestbook.getAge());
+			pstmt.setString(3, guestbook.getMessage());
+			// 提交送出
+			int rowcount = pstmt.executeUpdate();
+			System.out.println("rowcount(異動筆數) = " + rowcount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 

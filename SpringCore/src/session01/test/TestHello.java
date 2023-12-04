@@ -21,8 +21,8 @@ public class TestHello {
 		// 1. 得到應用程式的配置環境
 		ApplicationContext ctx1 = new AnnotationConfigApplicationContext(JavaSpringConfig.class);
 		// 2. 取 bean
-		Hello hello1 = ctx1.getBean("hello", Hello.class); // bean 的名字, bean 類型
-		System.out.println(hello1.getToday());
+		//Hello hello1 = ctx1.getBean("hello", Hello.class); // bean 的名字, bean 類型
+		//System.out.println(hello1.getToday());
 		
 	}
 

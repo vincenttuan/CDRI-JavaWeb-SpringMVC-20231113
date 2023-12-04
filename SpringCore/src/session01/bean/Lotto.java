@@ -6,6 +6,7 @@ public class Lotto {
 	private Integer number;
 	
 	public Lotto() {
+		System.out.println("Lotto 建構子");
 		Random random = new Random();
 		number = random.nextInt(100); // 0~99
 	}

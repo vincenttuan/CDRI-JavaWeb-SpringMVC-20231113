@@ -10,10 +10,27 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class GuestbookDaoMySQL implements GuestbookDao {
 	private Connection conn;
 	
 	public GuestbookDaoMySQL() {
+		// 透過 JNDI 來查找資源
+		try {
+			InitialContext ctx = new InitialContext(); // 初始環境
+			Context envContext = (Context)ctx.lookup("java:comp/env"); // 取得環境物件
+			DataSource ds = (DataSource)envContext.lookup("jdbc/web"); // 透過環境物件取得指定資源
+			
+			conn = ds.getConnection(); // 取得資源連線
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/web?serverTimezone=Asia/Taipei";
@@ -23,6 +40,7 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	@Override

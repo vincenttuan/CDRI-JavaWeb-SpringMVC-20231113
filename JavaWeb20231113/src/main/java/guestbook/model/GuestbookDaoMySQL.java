@@ -36,7 +36,7 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 
 	@Override
 	public void create(Guestbook guestbook) {
-		String sql = "insert into guestbook(nickname, age, message) values(?, ?, ?)";
+		String sql = "insert into guestbook(nickname, age, message) values(?, ?, ?);";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			// 配置 sql ? 資料
 			pstmt.setString(1, guestbook.getNickname());

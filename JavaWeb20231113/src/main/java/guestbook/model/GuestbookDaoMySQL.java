@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GuestbookDaoMySQL implements GuestbookDao {
@@ -68,7 +69,8 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 				guestbook.setAge(rs.getInt("age"));
 				guestbook.setSex(rs.getString("sex"));
 				guestbook.setMessage(rs.getString("message"));
-				guestbook.setDate(rs.getDate("date"));
+				//guestbook.setDate(rs.getDate("date"));
+				guestbook.setDate(new Date(rs.getTimestamp("date").getTime()));
 				// 加入到 guestbooks 集合中
 				guestbooks.add(guestbook);
 			}

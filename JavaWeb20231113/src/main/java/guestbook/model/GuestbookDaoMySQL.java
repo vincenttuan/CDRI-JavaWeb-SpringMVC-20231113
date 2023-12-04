@@ -3,7 +3,10 @@ package guestbook.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuestbookDaoMySQL implements GuestbookDao {
@@ -42,7 +45,7 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 			// 提交送出
 			int rowcount = pstmt.executeUpdate();
 			System.out.println("rowcount(異動筆數) = " + rowcount);
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
@@ -50,8 +53,28 @@ public class GuestbookDaoMySQL implements GuestbookDao {
 
 	@Override
 	public List<Guestbook> readAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select id, nickname, age, message, date from guestbook order by id";
+		List<Guestbook> guestbooks = new ArrayList<>();
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql) ) {
+			
+			// 將 rs 的資料逐筆注入到 guestbook 物件中
+			while (rs.next()) {
+				Guestbook guestbook = new Guestbook();
+				guestbook.setId(rs.getInt("id"));
+				guestbook.setNickname(rs.getString("nickname"));
+				guestbook.setAge(rs.getInt("age"));
+				guestbook.setMessage(rs.getString("message"));
+				guestbook.setDate(rs.getDate("date"));
+				// 加入到 guestbooks 集合中
+				guestbooks.add(guestbook);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return guestbooks;
 	}
 
 }

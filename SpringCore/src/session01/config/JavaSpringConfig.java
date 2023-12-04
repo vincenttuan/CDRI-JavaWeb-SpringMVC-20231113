@@ -11,7 +11,7 @@ import session01.bean.Hello;
 public class JavaSpringConfig {
 	
 	@Bean(name = "hello") // bean 資源名稱
-	@Scope("singleton") // 物件範圍(生命週期). singleton(單一物件-共用), prototype(多物件-每次調用都新建一個) 
+	@Scope("prototype") // 物件範圍(生命週期). singleton(單一物件-共用), prototype(多物件-每次調用都新建一個) 
 	public Hello getHello() {
 		Hello hello = new Hello();
 		return hello;

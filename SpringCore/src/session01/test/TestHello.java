@@ -8,7 +8,7 @@ public class TestHello {
 		// 傳統: 自行管理物件
 		Hello hello = new Hello();
 		System.out.println(hello.getToday());
-
+		
 	}
 
 }

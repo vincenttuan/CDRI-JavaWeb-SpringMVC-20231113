@@ -26,4 +26,16 @@
     <!--
     <Manager pathname="" />
     -->
+    
+    <!-- 設定 MySQL 的連線資源 -->
+    <Resource
+    	name="jdbc/demo"
+    	type="javax.sql.DataSource"
+    	username="web"
+    	password="12345678"
+    	driverClassName="com.mysql.cj.jdbc.Driver"
+    	url="jdbc:mysql://localhost:3306/web?serverTimezone=Asia/Taipei"
+     />
+    
+    
 </Context>

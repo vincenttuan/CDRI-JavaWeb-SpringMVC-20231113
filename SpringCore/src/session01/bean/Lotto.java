@@ -2,6 +2,10 @@ package session01.bean;
 
 import java.util.Random;
 
+import org.springframework.stereotype.Component;
+
+// 可被 Spring 掃描並管理
+@Component
 public class Lotto {
 	private Integer number;
 	

@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 1.預訂會議室：
  * 路徑：/booking/bookRoom
  * 參數：會議室ID (roomId), 使用者名稱 (name), 預訂日期 (date)
- * 返回：預訂成功或失敗的消息
+ * 返回：預訂成功(會得到預約號碼 bookingId)或失敗的消息
  * -----------------------------------------------------------------------------------------------
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=102&name=Mary&date=2023-12-05

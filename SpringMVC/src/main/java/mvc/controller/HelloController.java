@@ -64,7 +64,7 @@ public class HelloController {
 	
 	/*
 	 * 4. 同名多筆的資料參數
-	 * 路徑: "/age?age=17&age=21&age=20
+	 * 路徑: "/age?age=17&age=21&age=20"
 	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/age?age=17&age=21&age=20
 	 * 計算平均年齡
 	 * */

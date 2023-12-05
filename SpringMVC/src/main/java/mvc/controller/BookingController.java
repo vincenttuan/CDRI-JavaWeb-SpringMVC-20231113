@@ -38,8 +38,17 @@ import java.util.concurrent.atomic.AtomicInteger;
  * */
 
 public class BookingController {
-	// 預約紀錄
+	/**
+	 * 預約紀錄
+	 +-----------+--------+-------+------------+
+	 | bookingId | roomId | name  |    date    |
+	 +-----------+--------+-------+------------+
+	 |     1     |  101   |  Tom  | 2023-12-04 |
+	 |     2     |  102   |  Mary | 2023-12-05 |
+	 +-----------+--------+-------+------------+
+	*/
 	private static List<Map<String, Object>> bookings = new CopyOnWriteArrayList<>();
+	
 	// 預約號碼: 每次可用 bookingIdCount.incrementAndGet() 來取得
 	private AtomicInteger bookingIdCount = new AtomicInteger(0);
 	

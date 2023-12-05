@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import mvc.bean.Person;
+
 /*
  * Base url = http://localhost:8080/SpringMVC/mvc
  * Controller url = Base url + "/hello"  
@@ -110,6 +112,17 @@ public class HelloController {
 	@ResponseBody
 	public String getPersonMap(@RequestParam Map<String, String> personMap) {
 		return "personMap = " + personMap;
+	}
+	
+	/*
+	 * 7. 多筆參數資料轉 bean (例如: person)
+	 * 路徑: "/person?name=John&age=18&score=80&pass=true
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/person?name=John&age=18&score=80&pass=true
+	 * */
+	@GetMapping("/person")
+	@ResponseBody
+	public String getPerson(Person person) {
+		return "person = " + person;
 	}
 	
 	

@@ -4,10 +4,10 @@
 		<meta charset="UTF-8">
 		<title>Hello SpringMVC</title>
 	</head>
-	<body>
-		Hello SpringMVC
+	<body style="font-family: consolas">
+		<h2>Hello SpringMVC</h2>
 		<ul>
-			HelloController<br />
+			<h3>HelloController</h3>
 			<li>
 				1. 取得 Welcome SpringMVC 字串<br/>
 				<a href="./mvc/hello/welcome">
@@ -15,7 +15,7 @@
 				</a>
 			</li>
 			<li>
-				2. ? 帶參數 <br/>限制: name 參數是一定要有的(預設), age 參數是不一定要有的, 初始值 = 0<br/>
+				2. ? 帶參數 限制: name 參數是一定要有的(預設), age 參數是不一定要有的, 初始值 = 0<br/>
 				<a href="./mvc/hello/hi?name=John&age=18">
 					hello/hi?name=John&age=18
 				</a><br/>
@@ -33,14 +33,13 @@
 				</a>
 			</li>
 			<li>
-				4. 同名多筆的資料參數<br />計算平均年齡<br />
+				4. 同名多筆的資料參數 計算平均年齡<br />
 				<a href="./mvc/hello/age?age=17&age=21&age=20">
 					hello/age?age=17&age=21&age=20
 				</a>
 			</li>
 			<li>
-				5. Lab 練習: 得到多筆 score 資料<br />
-				印出: 最高分=?、最低分=?、平均=?、總分=?、及格分數=?、不及格=?<br />
+				5. Lab 練習: 得到多筆 score 資料, 印出: 最高分=?、最低分=?、平均=?、總分=?、及格分數=?、不及格=?<br />
 				<a href="./mvc/hello/exam?score=80&score=100&score=50&score=70&score=30">
 					hello/exam?score=80&score=100&score=50&score=70&score=30
 				</a>
@@ -69,7 +68,7 @@
 		</ul>
 		
 		<ul>
-			BookingHelloController<br />
+			<h3>BookingHelloController</h3>
 			<li>
 				1. 預訂會議室<br/>
 				<a href="./mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04">

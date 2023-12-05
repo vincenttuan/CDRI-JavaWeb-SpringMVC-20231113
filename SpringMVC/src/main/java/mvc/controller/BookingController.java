@@ -1,5 +1,10 @@
 package mvc.controller;
 
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 會議室預訂系統
  * 假設您正在為一家公司開發一個會議室預訂系統。您需要實現一個控制器，該控制器可以處理會議室的預訂請求、取消請求以及查詢當前預訂狀態。
@@ -33,5 +38,9 @@ package mvc.controller;
  * */
 
 public class BookingController {
-
+	// 預約紀錄
+	private static List<Map<String, Object>> bookings = new CopyOnWriteArrayList<>();
+	// 預約號碼: 每次可用 bookingIdCount.incrementAndGet() 來取得
+	private AtomicInteger bookingIdCount = new AtomicInteger(0);
+	
 }

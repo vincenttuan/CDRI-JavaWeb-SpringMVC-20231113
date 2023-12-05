@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -125,7 +126,18 @@ public class HelloController {
 		return "person = " + person;
 	}
 	
-	
+	/*
+	 * 8. 路徑參數 @PathVairable
+	 * 路徑: "/java_score/75?name=John
+	 * 路徑: "/java_score/45?name=Mary
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/java_score/75?name=John
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/java_score/45?name=Mary
+	 * */
+	@GetMapping("/java_score/{score}")
+	@ResponseBody
+	public String getJavaScore(@PathVariable("score") Integer score, @RequestParam("name") String name) {
+		return String.format("%s's java score: %d, pass: %b", name, score, score >= 60);
+	}
 	
 	
 }

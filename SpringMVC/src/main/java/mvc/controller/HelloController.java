@@ -72,7 +72,7 @@ public class HelloController {
 	@ResponseBody
 	public String getAverageAge(@RequestParam("age") List<Integer> ages) {
 		double avg = ages.stream().mapToInt(Integer::intValue).average().getAsDouble();
-		return String.format("Average age = %.1f", avg);
+		return String.format("平均年齡 = %.1f", avg);
 	}
 	
 	

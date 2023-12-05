@@ -102,7 +102,7 @@ public class HelloController {
 	}
 	
 	/*
-	 * 6. 得到多筆資料
+	 * 6. 多筆參數資料轉 Map
 	 * 路徑: "/personMap?name=John&age=18&score=80&pass=true
 	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/personMap?name=John&age=18&score=80&pass=true
 	 * */
@@ -111,6 +111,8 @@ public class HelloController {
 	public String getPersonMap(@RequestParam Map<String, String> personMap) {
 		return "personMap = " + personMap;
 	}
+	
+	
 	
 	
 }

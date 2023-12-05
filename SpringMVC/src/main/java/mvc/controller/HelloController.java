@@ -1,6 +1,8 @@
 package mvc.controller;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,11 +82,20 @@ public class HelloController {
 	 * 路徑: "/exam?score=80&score=100&score=50&score=70&score=30"
 	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/exam?score=80&score=100&score=50&score=70&score=30
 	 * 請自行設計一個方法，此方法可以
-	 * 印出: 最高分=?、最低分=?、平均=?、總分=? 
-	 *      及格分數=?、不及格=?
+	 * 印出: 最高分=?、最低分=?、平均=?、總分=?、及格分數=?、不及格=?
 	 * (支援中文字印出)     
 	 * */
-	
+	@GetMapping(value = "/exam", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String getExamInfo(@RequestParam("score") List<Integer> scores) {
+		IntSummaryStatistics stat = scores.stream().mapToInt(Integer::intValue).summaryStatistics();
+		List<Integer> passList = scores.stream().filter(score -> score >= 60).collect(Collectors.toList());
+		List<Integer> failList = scores.stream().filter(score -> score < 60).collect(Collectors.toList());
+		
+		return String.format("最高分=%d、最低分=%d、平均=%.1f、總分=%d、及格分數=%s、不及格=%s", 
+				stat.getMax(), stat.getMin(), stat.getAverage(), stat.getSum(), passList, failList);
+		
+	}
 	
 	
 }

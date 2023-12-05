@@ -11,61 +11,95 @@
 			<li>
 				1. 取得 Welcome SpringMVC 字串<br/>
 				<a href="./mvc/hello/welcome">
-					./mvc/hello/welcome
+					hello/welcome
 				</a>
 			</li>
 			<li>
 				2. ? 帶參數 <br/>限制: name 參數是一定要有的(預設), age 參數是不一定要有的, 初始值 = 0<br/>
 				<a href="./mvc/hello/hi?name=John&age=18">
-					./mvc/hello/hi?name=John&age=18
+					hello/hi?name=John&age=18
 				</a><br/>
 				<a href="./mvc/hello/hi?name=Mary&age=20">
-					./mvc/hello/hi?name=Mary&age=20
+					hello/hi?name=Mary&age=20
 				</a><br/>
 				<a href="./mvc/hello/hi?name=Helen">
-					./mvc/hello/hi?name=Helen
+					hello/hi?name=Helen
 				</a>
 			</li>
 			<li>
 				3. BMI Lab 練習 (限制: h, w 是一定要有)<br />
 				<a href="./mvc/hello/bmi?h=170.0&w=60.0">
-					./mvc/hello/bmi?h=170.0&w=60.0
+					hello/bmi?h=170.0&w=60.0
 				</a>
 			</li>
 			<li>
 				4. 同名多筆的資料參數<br />計算平均年齡<br />
 				<a href="./mvc/hello/age?age=17&age=21&age=20">
-					./mvc/hello/age?age=17&age=21&age=20
+					hello/age?age=17&age=21&age=20
 				</a>
 			</li>
 			<li>
 				5. Lab 練習: 得到多筆 score 資料<br />
 				印出: 最高分=?、最低分=?、平均=?、總分=?、及格分數=?、不及格=?<br />
 				<a href="./mvc/hello/exam?score=80&score=100&score=50&score=70&score=30">
-					./mvc/hello/exam?score=80&score=100&score=50&score=70&score=30
+					hello/exam?score=80&score=100&score=50&score=70&score=30
 				</a>
 			</li>
 			<li>
 				6. 多筆參數資料轉 Map<br />
 				<a href="./mvc/hello/personMap?name=John&age=18&score=80&pass=true">
-					./mvc/hello/personMap?name=John&age=18&score=80&pass=true
+					hello/personMap?name=John&age=18&score=80&pass=true
 				</a>
 			</li>
 			<li>
 				7. 多筆參數資料轉 bean (例如: person)<br />
 				<a href="./mvc/hello/person?name=John&age=18&score=80&pass=true">
-					./mvc/hello/person?name=John&age=18&score=80&pass=true
+					hello/person?name=John&age=18&score=80&pass=true
 				</a>
 			</li>
 			<li>
 				8. 路徑參數 @PathVairable<br />
 				<a href="./mvc/hello/java_score/75?name=John">
-					./mvc/hello/java_score/75?name=John
+					hello/java_score/75?name=John
 				</a><br />
 				<a href="./mvc/hello/java_score/45?name=Mary">
-					./mvc/hello/java_score/45?name=Mary
+					hello/java_score/45?name=Mary
 				</a>
 			</li>
 		</ul>
+		
+		<ul>
+			BookingHelloController<br />
+			<li>
+				1. 預訂會議室<br/>
+				<a href="./mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04">
+					booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
+				</a><br />
+				<a href="./mvc/booking/bookRoom?roomId=102&name=Mary&date=2023-12-05">
+					booking/bookRoom?roomId=102&name=Mary&date=2023-12-05
+				</a><br />
+				<a href="./mvc/booking/bookRoom?roomId=201&name=Jack&date=2023-12-06">
+					booking/bookRoom?roomId=201&name=Jack&date=2023-12-06
+				</a><br />
+				<a href="./mvc/booking/bookRoom?roomId=403&name=Rose&date=2023-12-06">
+					booking/bookRoom?roomId=403&name=Rose&date=2023-12-06
+				</a>
+			</li>
+			<li>
+				2.取消預訂<br/>
+				<a href="./mvc/booking/cancelBooking/1">
+					booking/cancelBooking/1
+				</a><br />
+				<a href="./mvc/booking/cancelBooking/2">
+					booking/cancelBooking/2
+				</a>
+			</li>
+			<li>
+				3.查看所有預訂<br/>
+				<a href="./mvc/booking/viewBookings">
+					booking/viewBookings
+				</a>
+			</li>
+		</ul>	
 	</body>
 </html>

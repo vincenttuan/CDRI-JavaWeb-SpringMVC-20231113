@@ -68,12 +68,22 @@ public class HelloController {
 	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/age?age=17&age=21&age=20
 	 * 計算平均年齡
 	 * */
-	@GetMapping("/age")
+	@GetMapping(value = "/age", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String getAverageAge(@RequestParam("age") List<Integer> ages) {
 		double avg = ages.stream().mapToInt(Integer::intValue).average().getAsDouble();
 		return String.format("平均年齡 = %.1f", avg);
 	}
+	
+	/*
+	 * 5. Lab 練習: 得到多筆 score 資料
+	 * 路徑: "/exam?score=80&score=100&score=50&score=70&score=30"
+	 * 全網址: http://localhost:8080/SpringMVC/mvc/hello/exam?score=80&score=100&score=50&score=70&score=30
+	 * 請自行設計一個方法，此方法可以
+	 * 印出: 最高分=?、最低分=?、平均=?、總分=? 
+	 *      及格分數=?、不及格=?
+	 * (支援中文字印出)     
+	 * */
 	
 	
 	

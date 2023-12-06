@@ -85,21 +85,23 @@ public class BookingController {
 								   .anyMatch(booking -> booking.get("roomId").equals(roomId) && 
 										   				booking.get("date").equals(date));
 		if(isBooked) {
-			// 預約號碼
-			int bookingId = bookingIdCount.incrementAndGet();
-			// 預約資訊
-			Map<String, Object> bookRoom = new LinkedHashMap<>();
-			bookRoom.put("bookingId", bookingId);
-			bookRoom.put("roomId", roomId);
-			bookRoom.put("name", name);
-			bookRoom.put("date", date);
-			//bookRoom.put("date", new SimpleDateFormat("yyyy-MM-dd").parse(date));
-			// 放到預約集合
-			bookings.add(bookRoom);
-			
-			return String.format("預訂成功 (預約號碼 = %d)", bookingId);
+			return String.format("預訂失敗 (roomId = %d date = %s 已被預約)", roomId, date);
 		}
-		return String.format("預訂失敗 (roomId = %d date = %s 已被預約)", roomId, date);
+		
+		// 預約號碼
+		int bookingId = bookingIdCount.incrementAndGet();
+		// 預約資訊
+		Map<String, Object> bookRoom = new LinkedHashMap<>();
+		bookRoom.put("bookingId", bookingId);
+		bookRoom.put("roomId", roomId);
+		bookRoom.put("name", name);
+		bookRoom.put("date", date);
+		//bookRoom.put("date", new SimpleDateFormat("yyyy-MM-dd").parse(date));
+		// 放到預約集合
+		bookings.add(bookRoom);
+		
+		return String.format("預訂成功 (預約號碼 = %d)", bookingId);
+		
 	}
 	
 	/** 2.取消預訂：

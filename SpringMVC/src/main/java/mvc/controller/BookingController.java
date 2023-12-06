@@ -1,5 +1,7 @@
 package mvc.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,25 +72,34 @@ public class BookingController {
 	 * 參數：會議室ID (roomId), 使用者名稱 (name), 預訂日期 (date)
 	 * 返回：預訂成功(會得到預約號碼 bookingId)或失敗的消息
 	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
+	 * @throws ParseException 
 	*/
 	@GetMapping(value = "/bookRoom", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
 								  @RequestParam(name = "name") String name,
-								  @RequestParam(name = "date") String date) {
+								  @RequestParam(name = "date") String date) throws ParseException {
 		
-		// 預約號碼
-		int bookingId = bookingIdCount.incrementAndGet();
-		// 預約資訊
-		Map<String, Object> bookRoom = new LinkedHashMap<>();
-		bookRoom.put("bookingId", bookingId);
-		bookRoom.put("roomId", roomId);
-		bookRoom.put("name", name);
-		bookRoom.put("date", date);
-		// 放到預約集合
-		bookings.add(bookRoom);
-		
-		return String.format("預訂成功 (預約號碼 = %d)", bookingId);
+		// 判斷是否該會議室當日已被預約
+		boolean isBooked = bookings.stream()
+								   .anyMatch(booking -> booking.get("roomId").equals(roomId) && 
+										   				booking.get("date").equals(date));
+		if(isBooked) {
+			// 預約號碼
+			int bookingId = bookingIdCount.incrementAndGet();
+			// 預約資訊
+			Map<String, Object> bookRoom = new LinkedHashMap<>();
+			bookRoom.put("bookingId", bookingId);
+			bookRoom.put("roomId", roomId);
+			bookRoom.put("name", name);
+			bookRoom.put("date", date);
+			//bookRoom.put("date", new SimpleDateFormat("yyyy-MM-dd").parse(date));
+			// 放到預約集合
+			bookings.add(bookRoom);
+			
+			return String.format("預訂成功 (預約號碼 = %d)", bookingId);
+		}
+		return String.format("預訂失敗 (roomId = %d date = %s 已被預約)", roomId, date);
 	}
 	
 	/** 2.取消預訂：

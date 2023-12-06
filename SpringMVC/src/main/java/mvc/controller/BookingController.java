@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 會議室預訂系統(Web API)
@@ -67,7 +68,8 @@ public class BookingController {
 	 * 返回：預訂成功(會得到預約號碼 bookingId)或失敗的消息
 	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
 	*/
-	@GetMapping(value = "/bookRoom")
+	@GetMapping(value = "/bookRoom", produces = "text/plain;charset=utf-8")
+	@ResponseBody
 	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
 								  @RequestParam(name = "name") String name,
 								  @RequestParam(name = "date") String date) {
@@ -86,6 +88,19 @@ public class BookingController {
 		return String.format("預訂成功 (預約號碼 = %d)", bookingId);
 	}
 	
+	/** 3.查看所有預訂：
+	 * 路徑：/booking/viewBookings
+	 * 返回：當前所有預訂的列表（可以簡單地返回字符串格式的預訂詳情）
+	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/viewBookings
+	 */
+	
+	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String bookingViewBookings() {
+		StringBuilder sb = new StringBuilder("預約紀錄:\n");
+		bookings.forEach(booking -> sb.append(booking).append("\n"));
+		return sb.toString();
+	}
 }
 
 

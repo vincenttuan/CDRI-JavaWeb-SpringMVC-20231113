@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
 	</head>
 	<body>
-		${ bookings }<p />
 		Booking List
 		<table class="pure-table pure-table-bordered">
 			<thead>

@@ -76,7 +76,7 @@ public class BookingController {
 	 * @throws ParseException 
 	*/
 	//@GetMapping(value = "/bookRoom", produces = "text/plain;charset=utf-8")
-	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/bookRoom", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
 								  @RequestParam(name = "name") String name,

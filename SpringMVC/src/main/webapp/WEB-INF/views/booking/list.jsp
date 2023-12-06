@@ -12,11 +12,16 @@
 		Booking List
 		<table class="pure-table pure-table-bordered">
 			<thead>
-				<tr><th>bookingId</th><th>roomId</th><th>name</th><th>date</th></tr>
+				<tr><th>cancel</th><th>bookingId</th><th>roomId</th><th>name</th><th>date</th></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="booking" items="${ bookings }">
 					<tr>
+						<td>
+							<a href="javascript:void(0)" title="按我一下可以取消">
+								Cancel
+							</a>
+						</td>
 						<td>${ booking.bookingId }</td>
 						<td>${ booking.roomId }</td>
 						<td>${ booking.name }</td>

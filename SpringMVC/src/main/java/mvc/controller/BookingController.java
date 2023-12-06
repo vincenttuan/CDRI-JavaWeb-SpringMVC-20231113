@@ -149,12 +149,12 @@ public class BookingController {
 	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
 	//@ResponseBody
 	public ModelAndView bookingViewBookings() {
-		StringBuilder sb = new StringBuilder("預約紀錄:\n");
-		bookings.forEach(booking -> sb.append(booking).append("\n"));
-		
+		//StringBuilder sb = new StringBuilder("預約紀錄:\n");
+		//bookings.forEach(booking -> sb.append(booking).append("\n"));
 		ModelAndView mv = new ModelAndView();
 		// jsp + model 資料配置好
-		//mv.setViewName(null)
+		mv.addObject("bookings", bookings);
+		mv.setViewName("/WEB-INF/views/booking/list.jsp");
 		return mv;
 	}
 }

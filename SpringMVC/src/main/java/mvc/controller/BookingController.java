@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -74,7 +75,8 @@ public class BookingController {
 	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
 	 * @throws ParseException 
 	*/
-	@GetMapping(value = "/bookRoom", produces = "text/plain;charset=utf-8")
+	//@GetMapping(value = "/bookRoom", produces = "text/plain;charset=utf-8")
+	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
 								  @RequestParam(name = "name") String name,

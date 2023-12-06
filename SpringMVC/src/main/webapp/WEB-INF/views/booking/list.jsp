@@ -28,7 +28,10 @@
 						<td>${ booking.roomId }</td>
 						<td>
 							<input type="text" id="name" name="name" value="${ booking.name }" size="10">
-							<button type="button">更名</button>
+							<button type="button"
+									onClick="location.href='/SpringMVC/mvc/booking/1/updateName?name=Tomcat'">
+								更名
+							</button>
 						</td>
 						<td>${ booking.date }</td>
 					</tr>

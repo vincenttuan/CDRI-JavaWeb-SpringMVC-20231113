@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,6 +89,25 @@ public class BookingController {
 		
 		return String.format("預訂成功 (預約號碼 = %d)", bookingId);
 	}
+	
+	/** 2.取消預訂：
+	 * 路徑：/booking/cancelBooking/{bookingId}
+	 * 參數：預訂ID (bookingId)
+	 * 返回：取消成功或失敗的消息
+	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/cancelBooking/1
+	*/
+	public String cancelBooking(@PathVariable("bookingId") Integer bookingId) {
+		// 根據 bookingId 透過 bookings 集合找到該筆 booking 紀錄
+		Optional<Map<String, Object>> mapOpt = bookings.stream()
+													   .filter(booking -> booking.get("bookingId").equals(bookingId))
+													   .findFirst();
+		if(mapOpt.isPresent()) {
+			Map<String, Object> booking = mapOpt.get(); 
+			bookings.remove(booking);
+			return String.format("取消成功 (預約號碼 = %d)", bookingId);
+		}
+		return String.format("取消失敗 (預約號碼 = %d)", bookingId);
+	} 
 	
 	/** 3.查看所有預訂：
 	 * 路徑：/booking/viewBookings

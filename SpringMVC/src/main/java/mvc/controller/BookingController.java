@@ -109,7 +109,17 @@ public class BookingController {
 			return String.format("取消成功 (預約號碼 = %d)", bookingId);
 		}
 		return String.format("取消失敗 (預約號碼 = %d)", bookingId);
-	} 
+	}
+	
+	@GetMapping(value = "/autoCancelFirstBooking", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String autoCancelFirstBooking() {
+		if(!bookings.isEmpty()) {
+			bookings.remove(0);
+			return "自動取消第一筆成功";
+		}
+		return "自動取消第一筆失敗";
+	}
 	
 	/** 3.查看所有預訂：
 	 * 路徑：/booking/viewBookings

@@ -96,6 +96,8 @@ public class BookingController {
 	 * 返回：取消成功或失敗的消息
 	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/cancelBooking/1
 	*/
+	@GetMapping(value = "/cancelBooking/{bookingId}", produces = "text/plain;charset=utf-8")
+	@ResponseBody
 	public String cancelBooking(@PathVariable("bookingId") Integer bookingId) {
 		// 根據 bookingId 透過 bookings 集合找到該筆 booking 紀錄
 		Optional<Map<String, Object>> mapOpt = bookings.stream()

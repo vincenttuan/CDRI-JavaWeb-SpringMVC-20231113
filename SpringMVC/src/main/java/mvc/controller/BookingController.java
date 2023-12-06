@@ -173,7 +173,7 @@ public class BookingController {
 	 * -----------------------------------------------------------------------------------------------
 	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/1/updateName?name=Tom
 	 */
-	@RequestMapping(value = "/booking/{bookingId}/updateName", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/{bookingId}/updateName", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String updateName(@PathVariable("bookingId") Integer bookingId, @RequestParam("name") String newName) {
 		Optional<Map<String, Object>> mapOpt = bookings.stream()

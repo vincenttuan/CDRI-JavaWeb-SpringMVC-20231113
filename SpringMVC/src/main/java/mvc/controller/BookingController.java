@@ -1,9 +1,16 @@
 package mvc.controller;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 會議室預訂系統(Web API)
@@ -36,7 +43,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * -----------------------------------------------------------------------------------------------
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/viewBookings
  * */
-
+@Controller
+@RequestMapping("/booking")
 public class BookingController {
 	/**
 	 * 預約紀錄
@@ -52,4 +60,39 @@ public class BookingController {
 	// 預約號碼: 每次可用 bookingIdCount.incrementAndGet() 來取得
 	private AtomicInteger bookingIdCount = new AtomicInteger(0);
 	
+	
+	/** 1.預訂會議室：
+	 * 路徑：/booking/bookRoom
+	 * 參數：會議室ID (roomId), 使用者名稱 (name), 預訂日期 (date)
+	 * 返回：預訂成功(會得到預約號碼 bookingId)或失敗的消息
+	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
+	*/
+	@GetMapping(value = "/bookRoom")
+	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
+								  @RequestParam(name = "name") String name,
+								  @RequestParam(name = "date") String date) {
+		
+		// 預約號碼
+		int bookingId = bookingIdCount.incrementAndGet();
+		// 預約資訊
+		Map<String, Object> bookRoom = new LinkedHashMap<>();
+		bookRoom.put("bookingId", bookingId);
+		bookRoom.put("roomId", roomId);
+		bookRoom.put("name", name);
+		bookRoom.put("date", date);
+		// 放到預約集合
+		bookings.add(bookRoom);
+		
+		return String.format("預訂成功 (預約號碼 = %d)", bookingId);
+	}
+	
 }
+
+
+
+
+
+
+
+
+

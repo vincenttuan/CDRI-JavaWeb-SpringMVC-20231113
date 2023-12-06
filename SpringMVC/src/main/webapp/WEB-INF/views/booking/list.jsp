@@ -18,7 +18,9 @@
 				<c:forEach var="booking" items="${ bookings }">
 					<tr>
 						<td>
-							<a href="javascript:void(0)" title="按我一下可以取消">
+							<a href="javascript:void(0)" 
+							   onClick="location.href='/SpringMVC/mvc/booking/cancelBooking/${ booking.bookingId }'"	
+							   title="按我一下可以取消">
 								Cancel
 							</a>
 						</td>

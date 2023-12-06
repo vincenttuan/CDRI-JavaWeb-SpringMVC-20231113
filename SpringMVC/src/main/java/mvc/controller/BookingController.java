@@ -51,6 +51,15 @@ import org.springframework.web.servlet.ModelAndView;
  * 返回：當前所有預訂的列表（可以簡單地返回字符串格式的預訂詳情）
  * -----------------------------------------------------------------------------------------------
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/viewBookings
+ * 
+ * CR
+ * 4.修改預約人
+ * 路徑：/booking/{bookingId}/updateName
+ * 返回：是否變更成功
+ * -----------------------------------------------------------------------------------------------
+ * 範例：http://localhost:8080/SpringMVC/mvc/booking/1/updateName?name=Tom
+ * 範例：http://localhost:8080/SpringMVC/mvc/booking/2/updateName?name=Helen
+ * 
  * */
 @Controller
 //@RestController
@@ -156,6 +165,26 @@ public class BookingController {
 		mv.addObject("bookings", bookings);
 		mv.setViewName("/WEB-INF/views/booking/list.jsp");
 		return mv;
+	}
+	
+	/* 4.修改預約人
+	 * 路徑：/booking/{bookingId}/updateName
+	 * 返回：是否變更成功
+	 * -----------------------------------------------------------------------------------------------
+	 * 範例：http://localhost:8080/SpringMVC/mvc/booking/1/updateName?name=Tom
+	 */
+	@RequestMapping(value = "/booking/{bookingId}/updateName", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String updateName(@PathVariable("bookingId") Integer bookingId, @RequestParam("name") String newName) {
+		Optional<Map<String, Object>> mapOpt = bookings.stream()
+													   .filter(booking -> booking.get("bookingId").equals(bookingId))
+													   .findFirst();
+		if(mapOpt.isEmpty()) {
+			return "預約人修改失敗! 無此預約";
+		}
+		Map<String, Object> booking = mapOpt.get();
+		booking.put("name", newName);
+		return "預約人修改成功";
 	}
 }
 

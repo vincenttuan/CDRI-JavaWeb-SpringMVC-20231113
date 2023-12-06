@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 會議室預訂系統(Web API)
@@ -51,6 +53,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/viewBookings
  * */
 @Controller
+//@RestController
 @RequestMapping("/booking")
 public class BookingController {
 	/**
@@ -144,11 +147,15 @@ public class BookingController {
 	 */
 	
 	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
-	@ResponseBody
-	public String bookingViewBookings() {
+	//@ResponseBody
+	public ModelAndView bookingViewBookings() {
 		StringBuilder sb = new StringBuilder("預約紀錄:\n");
 		bookings.forEach(booking -> sb.append(booking).append("\n"));
-		return sb.toString();
+		
+		ModelAndView mv = new ModelAndView();
+		// jsp + model 資料配置好
+		//mv.setViewName(null)
+		return mv;
 	}
 }
 

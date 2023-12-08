@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +19,7 @@ public class LoggerAspect {
 	@Pointcut(value = "execution(* mvc.controller.BookingController.cancelBooking(..))")
 	public void ptCancelBooking() {}
 	
-	@Before(value = "ptBookingBookRoom() && ptCancelBooking()")
+	@Before(value = "ptBookingBookRoom() || ptCancelBooking()")
 	public void beforeAdvice(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();
 		Object[] args = joinPoint.getArgs();

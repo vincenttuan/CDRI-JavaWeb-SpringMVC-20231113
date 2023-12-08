@@ -19,7 +19,6 @@ public class LoggerAspect {
 	@Pointcut(value = "execution(* mvc.controller.BookingController.cancelBooking(..))")
 	public void ptCancelBooking() {}
 	
-	
 	@Before(value = "ptBookingBookRoom() || ptCancelBooking()")
 	public void beforeAdvice(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();

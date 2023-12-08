@@ -1,8 +1,10 @@
 package session04.aop;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -24,7 +26,7 @@ public class MyLoggerAspect {
 	@Pointcut(value = "execution(* session04.aop.CalcImpl.add(Integer, Integer))")
 	public void pt3() {};
 
-	@Pointcut(value = "execution(* session04.aop.*(..))")
+	@Pointcut(value = "execution(* session04.aop.*.*(..))")
 	public void pt4() {};
 
 	@Pointcut(value = "execution(* *(..))")
@@ -40,5 +42,14 @@ public class MyLoggerAspect {
 		Object[] args = joinPoint.getArgs(); // 方法參數
 		System.out.printf("前置通知 Log: %s, %s%n", methodName, Arrays.toString(args));
 	}
+	
+	// 後置通知(不論是否發生異常都會執行)
+	@After(value = "pt1()")
+	public void afterAdvice(JoinPoint joinPoint) { // joinPoint 連接點 
+		String methodName = joinPoint.getSignature().getName(); // 方法名稱
+		System.out.printf("後置通知 Log: %s %s%n", methodName, new Date());
+	}
+	
+	
 	
 }

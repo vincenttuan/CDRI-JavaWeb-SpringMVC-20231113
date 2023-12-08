@@ -26,7 +26,7 @@ public class DynProxy {
 			Object result = null;
 			
 			// 公用邏輯 1 begin
-			System.out.printf("實體類別: %s, 方法名稱: %s 方法參數: %s%n", object.getClass().getSimpleName(), method.getName(), Arrays.toString(args));
+			
 			// 公用邏輯 2 begin
 			System.out.printf("寫入到檔案中...%n");
 			// 公用邏輯 n begin

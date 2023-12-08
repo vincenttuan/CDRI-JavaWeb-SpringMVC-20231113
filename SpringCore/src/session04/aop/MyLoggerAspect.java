@@ -20,12 +20,21 @@ public class MyLoggerAspect {
 	
 	@Pointcut(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer))")
 	public void pt2() {};
-	
+
+	@Pointcut(value = "execution(* session04.aop.CalcImpl.add(Integer, Integer))")
+	public void pt3() {};
+
+	@Pointcut(value = "execution(* session04.aop.*(..))")
+	public void pt4() {};
+
+	@Pointcut(value = "execution(* *(..))")
+	public void pt5() {};
 	
 	//前置通知 value = Pointcut(語法: Spring EL)
 	//@Before(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer))") // 指定切點
 	//@Before(value = "execution(public Integer session04.aop.CalcImpl.*(..))") // 指定切點
-	@Before(value = "pt1()")
+	//@Before(value = "pt1()")
+	@Before(value = "pt1() && !pt2()") // &&, ||, !
 	public void beforeAdvice(JoinPoint joinPoint) { // joinPoint 連接點
 		String methodName = joinPoint.getSignature().getName(); // 方法名稱
 		Object[] args = joinPoint.getArgs(); // 方法參數

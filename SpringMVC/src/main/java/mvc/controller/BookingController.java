@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 路徑：/booking/bookRoom
  * 參數：會議室ID (roomId), 使用者名稱 (name), 預訂日期 (date)
  * 返回：預訂成功(會得到預約號碼 bookingId)或失敗的消息
+ * 透過AOP: 預訂會議室:會議室ID (roomId), 使用者名稱 (name), 預訂日期 (date)
  * -----------------------------------------------------------------------------------------------
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=101&name=Tom&date=2023-12-04
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/bookRoom?roomId=102&name=Mary&date=2023-12-05
@@ -42,6 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 路徑：/booking/cancelBooking/{bookingId}
  * 參數：預訂ID (bookingId)
  * 返回：取消成功或失敗的消息
+ * 透過AOP: 取消預訂:預約 bookingId
  * -----------------------------------------------------------------------------------------------
  * 範例：http://localhost:8080/SpringMVC/mvc/booking/cancelBooking/1
  * 
@@ -127,6 +129,7 @@ public class BookingController {
 	@GetMapping(value = "/cancelBooking/{bookingId}", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String cancelBooking(@PathVariable("bookingId") Integer bookingId) {
+		
 		// 根據 bookingId 透過 bookings 集合找到該筆 booking 紀錄
 		Optional<Map<String, Object>> mapOpt = bookings.stream()
 													   .filter(booking -> booking.get("bookingId").equals(bookingId))

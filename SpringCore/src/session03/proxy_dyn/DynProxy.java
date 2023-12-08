@@ -3,6 +3,7 @@ package session03.proxy_dyn;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 
 // 動態代理
 public class DynProxy {
@@ -24,9 +25,23 @@ public class DynProxy {
 		InvocationHandler handler = (Object proxy, Method method, Object[] args) -> {
 			Object result = null;
 			
+			// 公用邏輯 1 begin
+			System.out.printf("實體類別: %s, 方法名稱: %s 方法參數: %s%n", object.getClass().getSimpleName(), method.getName(), Arrays.toString(args));
+			// 公用邏輯 2 begin
+			System.out.printf("寫入到檔案中...%n");
+			// 公用邏輯 n begin
+			
 			// 調用被代理物件的業務方法
 			result = method.invoke(object, args);
 			
+			// 公用邏輯 1 end
+			
+			// 公用邏輯 2 end
+			
+			// 公用邏輯 n end
+			
+			
+			//System.out.println("方法執行後的邏輯...");
 			return result;
 		};
 		

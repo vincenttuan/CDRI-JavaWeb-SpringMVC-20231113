@@ -11,6 +11,7 @@ public class Test {
 		Calc calc = (Calc)new DynProxy(new CalcImpl()).getProxy();
 		System.out.println(calc.add(20, 10));
 		System.out.println(calc.div(20, 10));
+		//System.out.println(calc.div(20, 0));
 		
 		Person woman = (Person)new DynProxy(new Woman()).getProxy();
 		woman.work();

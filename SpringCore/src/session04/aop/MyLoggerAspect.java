@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -49,6 +50,13 @@ public class MyLoggerAspect {
 		String methodName = joinPoint.getSignature().getName(); // 方法名稱
 		System.out.printf("後置通知 Log: %s %s%n", methodName, new Date());
 	}
+	
+	// 返回通知(可以設定 returing 的方法回傳值, 但是若有例外發生則不會通知)
+	@AfterReturning(value = "pt1()", returning = "result")
+	public void afterReturningAdvice(Object result) {
+		System.out.printf("返回通知 Log: %s %n", result);
+	}
+	
 	
 	
 	

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,18 @@ import org.springframework.stereotype.Component;
 @Aspect    // 告訴 Spring 此為切面程式
 @Order(1)  // 執行順序(愈小愈先被執行)
 public class MyLoggerAspect {
+	// 切點方法
+	@Pointcut(value = "execution(public Integer session04.aop.CalcImpl.*(..))")
+	public void pt1() {};
+	
+	@Pointcut(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer))")
+	public void pt2() {};
+	
 	
 	//前置通知 value = Pointcut(語法: Spring EL)
 	//@Before(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer))") // 指定切點
-	@Before(value = "execution(public Integer session04.aop.CalcImpl.*(..))") // 指定切點
+	//@Before(value = "execution(public Integer session04.aop.CalcImpl.*(..))") // 指定切點
+	@Before(value = "pt1()")
 	public void beforeAdvice(JoinPoint joinPoint) { // joinPoint 連接點
 		String methodName = joinPoint.getSignature().getName(); // 方法名稱
 		Object[] args = joinPoint.getArgs(); // 方法參數

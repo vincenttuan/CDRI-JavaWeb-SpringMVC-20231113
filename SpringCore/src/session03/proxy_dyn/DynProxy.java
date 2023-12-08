@@ -25,23 +25,20 @@ public class DynProxy {
 		InvocationHandler handler = (Object proxy, Method method, Object[] args) -> {
 			Object result = null;
 			
-			// 公用邏輯 1 begin
-			
-			// 公用邏輯 2 begin
-			System.out.printf("寫入到檔案中...%n");
-			// 公用邏輯 n begin
+			// 呼叫前置通知
+			MyPrintArgsAspect.before(interfaces, method, args);
 			
 			// 調用被代理物件的業務方法
-			result = method.invoke(object, args);
+			try {
+				result = method.invoke(object, args);
+			} catch (Exception e) {
+				// 呼叫例外通知 
+				MyPrintArgsAspect.throwing(e);
+			}
 			
-			// 公用邏輯 1 end
+			// 呼叫後置通知
+			MyPrintArgsAspect.end();
 			
-			// 公用邏輯 2 end
-			
-			// 公用邏輯 n end
-			
-			
-			//System.out.println("方法執行後的邏輯...");
 			return result;
 		};
 		

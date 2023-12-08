@@ -29,7 +29,7 @@ public class DynProxy {
 			MyPrintArgsAspect.before(object, method, args);
 			
 			// 將 x, y 存起來 log.txt
-			if(method.getName().equals("add") || method.getName().equals("div")) {
+			if(method.getName().equals("add") || method.getName().equals("div")) { // Pointcut
 				MyLoggerAspect.before(object, method, args);
 			}
 			

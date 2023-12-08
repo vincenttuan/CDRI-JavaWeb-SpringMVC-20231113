@@ -29,11 +29,11 @@ public class MyLogger2Aspect {
 			result = proceedingJoinPoint.proceed();
 			
 			// 3. 返回通知
-			System.out.println("環繞通知-返回通知");
+			System.out.println("環繞通知-返回通知, result: " + result);
 			
 		} catch (Throwable e) {
 			// 4. 例外通知
-			System.out.println("環繞通知-例外通知");
+			System.out.println("環繞通知-例外通知, " + e);
 		} finally {
 			// 5. 後置通知
 			System.out.println("環繞通知-後置通知");

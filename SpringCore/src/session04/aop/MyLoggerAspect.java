@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 public class MyLoggerAspect {
 	
 	//前置通知 value = Pointcut(語法: Spring EL)
-	@Before(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer))") // 指定切點
+	//@Before(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer))") // 指定切點
+	@Before(value = "execution(public Integer session04.aop.CalcImpl.*(..))") // 指定切點
 	public void beforeAdvice(JoinPoint joinPoint) { // joinPoint 連接點
 		String methodName = joinPoint.getSignature().getName(); // 方法名稱
 		Object[] args = joinPoint.getArgs(); // 方法參數

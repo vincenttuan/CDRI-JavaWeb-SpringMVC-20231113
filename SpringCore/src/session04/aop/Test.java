@@ -11,7 +11,9 @@ public class Test {
 	public static void main(String[] args) {
 		
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans-aop.xml");
-		
+		Calc calc = ctx.getBean("calcImpl", CalcImpl.class);
+		System.out.println(calc.add(20, 10));
+		System.out.println(calc.div(50, 20));
 		
 	}
 

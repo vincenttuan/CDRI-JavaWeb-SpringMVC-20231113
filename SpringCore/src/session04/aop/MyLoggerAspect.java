@@ -6,6 +6,7 @@ import java.util.Date;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -57,7 +58,10 @@ public class MyLoggerAspect {
 		System.out.printf("返回通知 Log: %s %n", result);
 	}
 	
-	
+	@AfterThrowing(value = "pt1()", throwing = "ex")
+	public void afterThrowingAdvice(JoinPoint joinPoint, Exception ex) {
+		System.out.printf("異常通知 Log: %s %n", ex);
+	}
 	
 	
 }

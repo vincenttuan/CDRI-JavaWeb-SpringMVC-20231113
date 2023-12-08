@@ -26,7 +26,7 @@ public class DynProxy {
 			Object result = null;
 			
 			// 呼叫前置通知
-			MyPrintArgsAspect.before(interfaces, method, args);
+			MyPrintArgsAspect.before(object, method, args);
 			
 			// 調用被代理物件的業務方法
 			try {

@@ -32,7 +32,7 @@ public class MyLogger2Aspect {
 			System.out.println("環繞通知-返回通知(變更前), result: " + result);
 			// 變更返回內容, 若結果小於 0 則以 0 回傳
 			if(Integer.parseInt(result+"") < 0) {
-				result = "0";
+				result = Integer.valueOf(0);
 			}
 			System.out.println("環繞通知-返回通知(變更前), result: " + result);
 			

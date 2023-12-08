@@ -58,6 +58,7 @@ public class MyLoggerAspect {
 		System.out.printf("返回通知 Log: %s %n", result);
 	}
 	
+	// 異常通知(可以設定 throwing 來得到異常的錯誤資訊)
 	@AfterThrowing(value = "pt1()", throwing = "ex")
 	public void afterThrowingAdvice(JoinPoint joinPoint, Exception ex) {
 		System.out.printf("異常通知 Log: %s %n", ex);

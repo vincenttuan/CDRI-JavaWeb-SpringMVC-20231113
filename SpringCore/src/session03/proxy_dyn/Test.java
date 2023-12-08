@@ -9,8 +9,8 @@ public class Test {
 	public static void main(String[] args) {
 		// 透過動態代理來執行
 		Calc calc = (Calc)new DynProxy(new CalcImpl()).getProxy();
-		System.out.println(calc.add(20, 10));
-		System.out.println(calc.div(20, 10));
+		System.out.println(calc.div(5, 8));
+		System.out.println(calc.div(54, 6));
 		//System.out.println(calc.div(20, 0));
 		
 		Person woman = (Person)new DynProxy(new Woman()).getProxy();

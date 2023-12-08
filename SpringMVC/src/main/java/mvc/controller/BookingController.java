@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -159,15 +160,17 @@ public class BookingController {
 	 */
 	
 	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
-	//@ResponseBody
-	public ModelAndView bookingViewBookings() {
+	public String bookingViewBookings(Model model) {
 		//StringBuilder sb = new StringBuilder("預約紀錄:\n");
 		//bookings.forEach(booking -> sb.append(booking).append("\n"));
-		ModelAndView mv = new ModelAndView();
+		//ModelAndView mv = new ModelAndView();
 		// jsp + model 資料配置好
-		mv.addObject("bookings", bookings);
-		mv.setViewName("/WEB-INF/views/booking/list.jsp");
-		return mv;
+		//mv.addObject("bookings", bookings);
+		//mv.setViewName("/WEB-INF/views/booking/list.jsp");
+		//return mv;
+		
+		model.addAttribute("bookings", bookings);
+		return "booking/list";
 	}
 	
 	/* 4.修改預約人

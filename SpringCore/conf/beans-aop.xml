@@ -16,7 +16,8 @@
 		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"> 
-		
+	
+	<!-- 在 base-package 路徑下有設定 @ 的都可以被 Spring 掃描並管理 -->	
 	<context:component-scan base-package="session04" />
 	
 	<!-- 設定 Spring AOP 切面程式自動實現代理 -->

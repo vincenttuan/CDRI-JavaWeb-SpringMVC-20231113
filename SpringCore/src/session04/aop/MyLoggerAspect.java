@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 @Order(1)  // 執行順序(愈小愈先被執行)
 public class MyLoggerAspect {
 	
-	@Before(value = "") // value = Pointcut
+	//前置通知 value = Pointcut(語法: Spring EL)
+	@Before(value = "execution(public Integer session04.aop.CalcImpl.add(Integer, Integer)") // 指定切點
 	public void beforeAdvice(JoinPoint joinPoint) { // joinPoint 連接點
 		String methodName = joinPoint.getSignature().getName(); // 方法名稱
 		Object[] args = joinPoint.getArgs(); // 方法參數

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import mvc.bean.BookingRoom;
 import mvc.dao.BookingDao;
 
 /**
@@ -108,7 +109,19 @@ public class BookingMySQLController {
 	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
 								  @RequestParam(name = "name") String name,
 								  @RequestParam(name = "date") String date) throws ParseException {
-		return String.format("預訂成功 (預約號碼 = %d)");
+		
+		// 將表單參數逐一注入到 BookingRoom 物件中
+		BookingRoom bookingRoom = new BookingRoom();
+		bookingRoom.setRoomId(roomId);
+		bookingRoom.setUsername(name);
+		bookingRoom.setBookingDate(date);
+		// 新增預約資料紀錄 (rowcount 資料表異動筆數)
+		int rowcount = bookingDao.addBookRoom(bookingRoom);
+		if(rowcount == 1) {
+			return "預訂成功!";
+		} else {
+			return "預訂失敗";
+		}
 	}
 	
 	/** 2.取消預訂：

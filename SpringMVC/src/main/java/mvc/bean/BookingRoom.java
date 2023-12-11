@@ -13,7 +13,7 @@ public class BookingRoom {
 	private String bookingDate;
 	private Timestamp createDate;
 	
-	// 關聯欄位
+	// 關聯欄位(多對一 ManyToOne)
 	private Room room;
 	
 	public BookingRoom() {

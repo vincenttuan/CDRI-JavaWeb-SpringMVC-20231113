@@ -83,6 +83,7 @@ public class BookingController {
 	 +-----------+--------+----------+-------------+
 	 |     1     |  101   |  Tom     | 2023-12-04  |
 	 |     2     |  102   |  Mary    | 2023-12-05  |
+	 |     3     |  102   |  Jack    | 2023-12-06  |
 	 +-----------+--------+----------+-------------+
 	*/
 	private static List<Map<String, Object>> bookings = new CopyOnWriteArrayList<>();

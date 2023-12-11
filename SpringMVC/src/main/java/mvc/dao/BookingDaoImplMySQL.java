@@ -54,6 +54,8 @@ public class BookingDaoImplMySQL implements BookingDao {
 				bookingRoom.setUsername(username);
 				bookingRoom.setBookingDate(bookingDate);
 				bookingRoom.setCreateDate(createDate);
+				// 注入 Room 物件 ??
+				
 				return bookingRoom;
 			}
 		};

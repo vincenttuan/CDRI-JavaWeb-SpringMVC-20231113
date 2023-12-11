@@ -6,22 +6,28 @@ import com.google.gson.Gson;
 
 // Entity
 public class BookingRoom {
+	// 一般欄位
 	private Integer bookingId;
 	private Integer roomId;
 	private String username;
 	private String bookingDate;
 	private Timestamp createDate;
 	
+	// 關聯欄位
+	private Room room;
+	
 	public BookingRoom() {
 		
 	}
-	
-	public BookingRoom(Integer bookingId, Integer roomId, String username, String bookingDate, Timestamp createDate) {
+
+	public BookingRoom(Integer bookingId, Integer roomId, String username, String bookingDate, Timestamp createDate,
+			Room room) {
 		this.bookingId = bookingId;
 		this.roomId = roomId;
 		this.username = username;
 		this.bookingDate = bookingDate;
 		this.createDate = createDate;
+		this.room = room;
 	}
 
 	public Integer getBookingId() {
@@ -64,10 +70,19 @@ public class BookingRoom {
 		this.createDate = createDate;
 	}
 
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
 	@Override
 	public String toString() {
 		return new Gson().toJson(this);
 	}
+	
 	
 	
 	

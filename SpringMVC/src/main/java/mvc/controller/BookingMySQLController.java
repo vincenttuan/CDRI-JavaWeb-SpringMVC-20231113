@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mvc.bean.BookingRoom;
 import mvc.bean.Room;
 import mvc.dao.BookingDao;
+import mvc.dao.RoomDao;
 
 /**
  * 會議室預訂系統(Web API)
@@ -79,6 +80,9 @@ public class BookingMySQLController {
 	@Qualifier("bookingDaoMySQL") // 指定綁定的實作物件
 	private BookingDao bookingDao;
 	
+	@Autowired
+	private RoomDao roomDao;
+	
 	/**
 	 * 會議室資訊(Room)
 	 +--------+-----------+------------+
@@ -101,7 +105,7 @@ public class BookingMySQLController {
 	// 首頁: http://localhost:8080/SpringMVC/mvc/bookingMySQL/
 	@GetMapping("/")
 	public String index(Model model) {
-		List<Room> rooms = null;
+		List<Room> rooms = roomDao.findAllRooms();
 		model.addAttribute("rooms", rooms);
 		return "booking/bookingMySQL";
 	}

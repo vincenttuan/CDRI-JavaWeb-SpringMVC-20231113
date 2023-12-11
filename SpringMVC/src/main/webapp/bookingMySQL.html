@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+	+-------+-------------+
+	| 預約表單 |
+	| xxxxx |
+	+-------+    回應結果
+	| 取消預約 |
+	| xxxxx |
+	+-------+
+	| 查詢預約 |
+	+-------+-------------+
+ -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Booking MySQL</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
+	</head>
+	<body style="padding: 15px;">
+		
+		<table>
+			<tr>
+				<!-- 預約表單 -->
+				<td valign="top">
+					<form class="pure-form" method="post" action="/SpringMVC/mvc/bookingMySQL/bookRoom" target="resultFrame">
+						會議室: <select name="roomId">
+								<option value="101">101室</option>
+								<option value="201">201室</option>
+								<option value="301">301室</option>
+								<option value="401">401室</option>
+							  </select><p />
+						預約人: <input type="text" name="name" placeholder="請輸入訂閱人姓名" required /><p />
+						預約日: <input type="date" name="date" required /><p />
+						<button type="submit" class="pure-button pure-button-primary">訂閱</button>	  
+					</form>
+				</td>
+				<!-- 回應 -->
+				<td rowspan="3" valign="top" style="padding-left: 15px;">
+					<iframe name="resultFrame" style="border: 0px solid #cccccc" width="800px" height="500px"></iframe>
+				</td>
+			</tr>
+			<tr>
+				<!-- 取消預約 -->
+				<!-- http://localhost:8080/SpringMVC/mvc/bookingMySQL/cancelBooking/1 -->
+				<!-- http://localhost:8080/SpringMVC/mvc/bookingMySQL/cancelBooking/2 -->
+				<td valign="top">
+					<form class="pure-form">
+						<input type="number" name="bookingId" id="bookingId" value="1" required />
+						<a href="javascript:void(0);" 
+						   onClick="window.top.resultFrame.location.href='/SpringMVC/mvc/bookingMySQL/cancelBooking/' + document.getElementById('bookingId').value"	
+						   class="pure-button pure-button-primary">
+							取消預約
+						</a>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<!-- 查詢預約 -->
+				<td valign="top">
+					<a href="/SpringMVC/mvc/bookingMySQL/viewBookings" 
+					   class="pure-button pure-button-primary" 
+					   target="resultFrame">查詢預約</a>
+				</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

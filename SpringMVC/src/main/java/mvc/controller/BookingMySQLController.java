@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import mvc.bean.BookingRoom;
+import mvc.bean.Room;
 import mvc.dao.BookingDao;
 
 /**
@@ -100,7 +101,7 @@ public class BookingMySQLController {
 	// 首頁: http://localhost:8080/SpringMVC/mvc/bookingMySQL/
 	@GetMapping("/")
 	public String index(Model model) {
-		
+		List<Room> rooms = null;
 		model.addAttribute("rooms", rooms);
 		return "booking/bookingMySQL";
 	}

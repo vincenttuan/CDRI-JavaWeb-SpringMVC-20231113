@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import mvc.dao.BookingDao;
 
 /**
  * 會議室預訂系統(Web API)
@@ -68,6 +72,11 @@ import org.springframework.web.servlet.ModelAndView;
 //@RestController
 @RequestMapping("/bookingMySQL")
 public class BookingMySQLController {
+	
+	@Autowired
+	@Qualifier("bookingDaoMySQL") // 指定綁定的實作物件
+	private BookingDao bookingDao;
+	
 	/**
 	 * 會議室資訊(Room)
 	 +--------+-----------+------------+

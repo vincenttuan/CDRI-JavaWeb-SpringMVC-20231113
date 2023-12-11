@@ -97,6 +97,14 @@ public class BookingMySQLController {
 	 +-----------+--------+----------+-------------+
 	*/
 	
+	// 首頁: http://localhost:8080/SpringMVC/mvc/bookingMySQL/
+	@GetMapping("/")
+	public String index(Model model) {
+		
+		model.addAttribute("rooms", rooms);
+		return "booking/bookingMySQL";
+	}
+	
 	/** 1.預訂會議室：
 	 * 路徑：/bookingMySQL/bookRoom
 	 * 參數：會議室ID (roomId), 使用者名稱 (name), 預訂日期 (date)

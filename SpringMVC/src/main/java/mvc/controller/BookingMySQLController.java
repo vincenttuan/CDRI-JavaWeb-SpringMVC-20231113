@@ -99,10 +99,6 @@ public class BookingMySQLController {
 	public String bookingBookRoom(@RequestParam(name = "roomId") Integer roomId,
 								  @RequestParam(name = "name") String name,
 								  @RequestParam(name = "date") String date) throws ParseException {
-		
-		// 判斷是否該會議室當日已被預約
-		// 預約號碼
-		// 放到預約集合
 		return String.format("預訂成功 (預約號碼 = %d)");
 	}
 	
@@ -133,8 +129,9 @@ public class BookingMySQLController {
 	 */
 	
 	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
+	@ResponseBody
 	public String bookingViewBookings(Model model) {
-		return "booking/list";
+		return "";
 	}
 	
 	/* 4.修改預約人

@@ -27,10 +27,9 @@
 				<td valign="top">
 					<form class="pure-form" method="post" action="/SpringMVC/mvc/bookingMySQL/bookRoom" target="resultFrame">
 						會議室: <select name="roomId">
-								<option value="101">101室</option>
-								<option value="201">201室</option>
-								<option value="301">301室</option>
-								<option value="401">401室</option>
+								<c:forEach items="${ rooms }" var="room">
+									<option value="${ room.roomId }">${ room.roomName } (${ room.roomSize }人)</option>
+								</c:forEach>
 							  </select><p />
 						預約人: <input type="text" name="name" placeholder="請輸入訂閱人姓名" required /><p />
 						預約日: <input type="date" name="date" required /><p />

@@ -186,6 +186,17 @@ public class BookingMySQLController {
 		int rowcount = bookingDao.updateBookingUsername(bookingId, newName);
 		return rowcount == 0 ? "預約人修改失敗" : "預約人修改成功";
 	}
+	
+	@RequestMapping(value = "/room", method = {RequestMethod.POST}, produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String addRoom(@RequestParam("roomId") Integer roomId, 
+			@RequestParam("roomName") String roomName, 
+			@RequestParam("roomSize") Integer roomSize) {
+		
+		Room room = new Room(roomId, roomName, roomSize);
+		roomDao.addRoom(room);
+		return "新增會議室成功";
+	}
 }
 
 

@@ -27,12 +27,21 @@ public class RoomDaoImplMySQL implements RoomDao {
 	@Override
 	public Room getRoom(Integer roomId) {
 		String sql = "select roomId, roomName, roomSize from room where roomId = :roomId";
-		System.out.println(sql);
 		Map<String, Object> params = new HashMap<>();
 		params.put("roomId", roomId);
 		
 		Room room = namedParameterJdbcTemplate.queryForObject(sql, params, new BeanPropertyRowMapper<>(Room.class));
 		return room;
+	}
+	
+	@Override
+	public int addRoom(Room room) {
+		String sql = "insert Room(roomId, roomName, roomSize) values(:roomId, :roomName, :roomSize)";
+		Map<String, Object> params = new HashMap<>();
+		params.put("roomId", room.getRoomId());
+		params.put("roomName", room.getRoomName());
+		params.put("roomSize", room.getRoomSize());
+		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
 }

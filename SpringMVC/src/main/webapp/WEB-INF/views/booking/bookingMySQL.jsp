@@ -75,7 +75,7 @@
 			<tr>
 				<!-- 新增會議室 -->
 				<td valign="top">
-					<form method="POST" action="" class="pure-form">
+					<form method="POST" action="/SpringMVC/mvc/bookingMySQL/room" class="pure-form" target="resultFrame">
 						<fieldset>
 							<legend>新增會議室</legend>
 							會議室Id: <input type="number" id="roomId" name="roomId"><p />

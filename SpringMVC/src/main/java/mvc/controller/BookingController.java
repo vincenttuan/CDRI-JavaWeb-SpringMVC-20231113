@@ -201,6 +201,8 @@ public class BookingController {
 		booking.put("name", newName);
 		return "預約人修改成功";
 	}
+	
+	
 }
 
 

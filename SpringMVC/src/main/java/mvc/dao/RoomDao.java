@@ -8,5 +8,5 @@ public interface RoomDao {
 	
 	List<Room> findAllRooms();
 	Room getRoom(Integer roomId);
-	
+	int addRoom(Room room);
 }

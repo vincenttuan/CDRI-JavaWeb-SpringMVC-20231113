@@ -30,7 +30,7 @@
 							<td>
 								<input type="text" id="name${ booking.bookingId }" name="name" value="${ booking.username }" size="10">
 								<button type="button"
-										onClick="location.href='/SpringMVC/mvc/booking/${ booking.bookingId }/updateName?name=' + document.getElementById('name${ booking.bookingId }').value">
+										onClick="location.href='/SpringMVC/mvc/bookingMySQL/${ booking.bookingId }/updateName?name=' + document.getElementById('name${ booking.bookingId }').value">
 									更名 1
 								</button>
 								<button type="submit">更名 2</button>

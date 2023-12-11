@@ -116,12 +116,17 @@ public class BookingMySQLController {
 		bookingRoom.setUsername(name);
 		bookingRoom.setBookingDate(date);
 		// 新增預約資料紀錄 (rowcount 資料表異動筆數)
-		int rowcount = bookingDao.addBookRoom(bookingRoom);
-		if(rowcount == 0) {
-			return "預訂失敗";
-		} else {
-			return "預訂成功";
+		try {
+			int rowcount = bookingDao.addBookRoom(bookingRoom);
+			if(rowcount == 0) {
+				return "預訂失敗";
+			} else {
+				return "預訂成功";
+			}
+		} catch (Exception e) {
+			return "預訂失敗: " + (e.getMessage().contains("Duplicate entry") ? "已經有人預約" : e.getMessage());
 		}
+		
 	}
 	
 	/** 2.取消預訂：

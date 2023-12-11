@@ -27,7 +27,7 @@ public class RoomDaoImplMySQL implements RoomDao {
 	@Override
 	public Room getRoom(Integer roomId) {
 		String sql = "select roomId, roomName, roomSize from room where roomId = :roomId";
-		
+		System.out.println(sql);
 		Map<String, Object> params = new HashMap<>();
 		params.put("roomId", roomId);
 		

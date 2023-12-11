@@ -41,6 +41,7 @@ public class BookingDaoImplMySQL implements BookingDao {
 	@Override
 	public List<BookingRoom> findAllBookingRooms() {
 		String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom order by bookingId";
+		System.out.println(sql);
 		// 定義對應邏輯/規則
 		RowMapper<BookingRoom> mapper = new RowMapper<BookingRoom>() {
 			@Override

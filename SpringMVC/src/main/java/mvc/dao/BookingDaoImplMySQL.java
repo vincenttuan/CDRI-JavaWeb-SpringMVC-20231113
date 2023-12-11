@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import mvc.bean.BookingRoom;
+import mvc.bean.Room;
 
 @Repository("bookingDaoMySQL") // 自行定義名稱
 // 預設的 name = "bookingDaoImplMySQL"
@@ -19,6 +20,9 @@ public class BookingDaoImplMySQL implements BookingDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private RoomDao roomDao;
 	
 	@Override
 	public int addBookRoom(BookingRoom bookingRoom) {
@@ -55,6 +59,8 @@ public class BookingDaoImplMySQL implements BookingDao {
 				bookingRoom.setBookingDate(bookingDate);
 				bookingRoom.setCreateDate(createDate);
 				// 注入 Room 物件 ??
+				Room room = roomDao.getRoom(roomId);
+				bookingRoom.setRoom(room);
 				
 				return bookingRoom;
 			}

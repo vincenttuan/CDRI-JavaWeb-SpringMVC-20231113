@@ -154,10 +154,11 @@ public class BookingMySQLController {
 	 */
 	
 	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
-	@ResponseBody
+	//@ResponseBody
 	public String bookingViewBookings(Model model) {
-		List<BookingRoom> bookingRooms = bookingDao.findAllBookingRooms();
-		return bookingRooms.toString();
+		List<BookingRoom> bookings = bookingDao.findAllBookingRooms();
+		model.addAttribute("bookings", bookings);
+		return "booking/listMySQL";
 	}
 	
 	/* 4.修改預約人

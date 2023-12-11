@@ -11,6 +11,8 @@
 	| xxxxx |
 	+-------+
 	| 查詢預約 |
+	+-------+
+	|新增會議室|
 	+-------+-------------+
  -->
 <html>
@@ -40,7 +42,7 @@
 					</form>
 				</td>
 				<!-- 回應 -->
-				<td rowspan="3" valign="top" style="padding-left: 15px;">
+				<td rowspan="4" valign="top" style="padding-left: 15px;">
 					<iframe name="resultFrame" style="border: 0px solid #cccccc" width="1200px" height="500px"></iframe>
 				</td>
 			</tr>
@@ -68,6 +70,20 @@
 					<a href="/SpringMVC/mvc/bookingMySQL/viewBookings" 
 					   class="pure-button pure-button-primary" 
 					   target="resultFrame">查詢預約</a>
+				</td>
+			</tr>
+			<tr>
+				<!-- 新增會議室 -->
+				<td valign="top">
+					<form method="POST" action="" class="pure-form">
+						<fieldset>
+							<legend>新增會議室</legend>
+							會議室Id: <input type="number" id="roomId" name="roomId"><p />
+							會議室名稱: <input type="text" id="roomName" name="roomName"><p />
+							會議室人數: <input type="number" id="roomSize" name="roomSize"><p />
+							<button type="submit" class="pure-button pure-button-primary">新增</button>
+						</fieldset>
+					</form>
 				</td>
 			</tr>
 		</table>

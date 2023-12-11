@@ -117,10 +117,10 @@ public class BookingMySQLController {
 		bookingRoom.setBookingDate(date);
 		// 新增預約資料紀錄 (rowcount 資料表異動筆數)
 		int rowcount = bookingDao.addBookRoom(bookingRoom);
-		if(rowcount == 1) {
-			return "預訂成功!";
-		} else {
+		if(rowcount == 0) {
 			return "預訂失敗";
+		} else {
+			return "預訂成功";
 		}
 	}
 	
@@ -134,14 +134,12 @@ public class BookingMySQLController {
 	@ResponseBody
 	public String cancelBooking(@PathVariable("bookingId") Integer bookingId) {
 		
-		return String.format("取消失敗 (預約號碼 = %d)");
-	}
-	
-	@GetMapping(value = "/autoCancelFirstBooking", produces = "text/plain;charset=utf-8")
-	@ResponseBody
-	public String autoCancelFirstBooking() {
-		
-		return "自動取消第一筆失敗";
+		int rowcount = bookingDao.cancelBooking(bookingId);
+		if(rowcount == 0) {
+			return "取消失敗";
+		} else {
+			return "取消成功";
+		}
 	}
 	
 	/** 3.查看所有預訂：
@@ -153,7 +151,8 @@ public class BookingMySQLController {
 	@GetMapping(value = "/viewBookings", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String bookingViewBookings(Model model) {
-		return "";
+		List<BookingRoom> bookingRooms = bookingDao.findAllBookingRooms();
+		return bookingRooms.toString();
 	}
 	
 	/* 4.修改預約人
@@ -165,7 +164,8 @@ public class BookingMySQLController {
 	@RequestMapping(value = "/{bookingId}/updateName", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String updateName(@PathVariable("bookingId") Integer bookingId, @RequestParam("name") String newName) {
-		return "預約人修改成功";
+		int rowcount = bookingDao.updateBookingUsername(bookingId, newName);
+		return rowcount == 0 ? "預約人修改失敗" : "預約人修改成功";
 	}
 }
 

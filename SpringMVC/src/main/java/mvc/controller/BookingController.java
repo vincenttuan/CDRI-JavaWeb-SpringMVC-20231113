@@ -69,7 +69,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/booking")
 public class BookingController {
 	/**
-	 * 預約紀錄
+	 * 會議室資訊(Room)
+	 +--------+---------+------------+
+	 | roomId |   name  |    size    |
+	 +--------+---------+------------+
+	 |  101   |  101(S) |     10     |
+	 |  102   |  102(M) |     25     |
+	 +--------+---------+------------+
+
+	 * 預約紀錄(BookingRoom)
 	 +-----------+--------+-------+------------+
 	 | bookingId | roomId | name  |    date    |
 	 +-----------+--------+-------+------------+

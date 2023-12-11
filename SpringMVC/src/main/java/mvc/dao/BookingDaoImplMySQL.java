@@ -40,7 +40,11 @@ public class BookingDaoImplMySQL implements BookingDao {
 
 	@Override
 	public List<BookingRoom> findAllBookingRooms() {
-		String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom order by bookingId";
+		String sql = "select "
+				+ "b.bookingId, b.roomId, b.username, b.bookingDate, b.createDate, "
+				+ "r.roomName, r.roomSize "
+				+ "from BookingRoom b "
+				+ "left join Room r on b.roomId = r.roomId";
 		System.out.println(sql);
 		// 定義對應邏輯/規則
 		RowMapper<BookingRoom> mapper = new RowMapper<BookingRoom>() {
@@ -52,6 +56,8 @@ public class BookingDaoImplMySQL implements BookingDao {
 				String username = rs.getString("username");
 				String bookingDate = rs.getString("bookingDate");
 				Timestamp createDate = rs.getTimestamp("createDate");
+				String roomName = rs.getString("roomName");
+				Integer roomSize = rs.getInt("roomSize");
 				// 將上述欄位資訊注入到 bookingRoom 物件中
 				BookingRoom bookingRoom = new BookingRoom();
 				bookingRoom.setBookingId(bookingId);
@@ -60,7 +66,7 @@ public class BookingDaoImplMySQL implements BookingDao {
 				bookingRoom.setBookingDate(bookingDate);
 				bookingRoom.setCreateDate(createDate);
 				// 注入 Room 物件 ??
-				Room room = roomDao.getRoom(roomId);
+				Room room = new Room(roomId, roomName, roomSize);
 				bookingRoom.setRoom(room);
 				
 				return bookingRoom;

@@ -14,6 +14,7 @@
 			<thead>
 				<tr>
 					<th nowrap>cancel</th><th nowrap>bookingId</th><th nowrap>roomId</th>
+					<th nowrap>roomName</th><th nowrap>roomSize</th>
 					<th nowrap>username</th><th nowrap>booking date</th><th nowrap>create date</th>
 				</tr>
 			</thead>
@@ -30,6 +31,8 @@
 							</td>
 							<td nowrap>${ booking.bookingId }</td>
 							<td nowrap>${ booking.roomId }</td>
+							<td nowrap>${ booking.room.roomName }</td>
+							<td nowrap>${ booking.room.roomSize }</td>
 							<td nowrap>
 								<input type="text" id="name${ booking.bookingId }" name="name" value="${ booking.username }" size="10">
 								<button type="button"

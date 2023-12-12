@@ -51,8 +51,7 @@ public class DataDaoImplInMemory implements DataDao {
 
 	@Override
 	public Optional<InterestData> getInterestDataById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return finAllInterestDatas().stream().filter(interest -> interest.getId().equals(id)).findFirst();
 	}
 	
 }

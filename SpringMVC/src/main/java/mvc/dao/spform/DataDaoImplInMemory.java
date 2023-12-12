@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import mvc.bean.spform.EducationData;
+import mvc.bean.spform.SexData;
 
 @Repository
 public class DataDaoImplInMemory implements DataDao {
@@ -27,6 +28,16 @@ public class DataDaoImplInMemory implements DataDao {
 	public Optional<EducationData> getEducationDataById(Integer id) {
 		List<EducationData> educationDatas = findAllEducationDatas();
 		return educationDatas.stream().filter(edu -> edu.getId().equals(id)).findFirst();
+	}
+
+	@Override
+	public List<SexData> findAllSexDatas() {
+		return Arrays.asList(new SexData(1, "男"), new SexData(2, "女"));
+	}
+
+	@Override
+	public Optional<SexData> getSexDataById(Integer id) {
+		return findAllSexDatas().stream().filter(sex -> sex.getId().equals(id)).findFirst();
 	}
 	
 }

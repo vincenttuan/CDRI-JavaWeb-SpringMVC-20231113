@@ -30,8 +30,9 @@ id: 序號(input hidden)
 				生日: <sp:input path="birth" type="date" /><p />
 				學歷: <sp:select path="educationId" 
 								items="${ educations }"
-								itemLabel="display"
+								itemLabel="name"
 								itemValue="id" /><p />
+				性別: <sp:radiobuttons path="sexId" items="${ sexs }" />				
 			</fieldset>
 		</sp:form>
 	</body>

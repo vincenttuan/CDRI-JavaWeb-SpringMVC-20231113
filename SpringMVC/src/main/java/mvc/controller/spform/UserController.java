@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mvc.bean.spform.EducationData;
+import mvc.bean.spform.InterestData;
 import mvc.bean.spform.SexData;
 import mvc.bean.spform.User;
 import mvc.dao.spform.DataDao;
@@ -27,8 +28,11 @@ public class UserController {
 	public String index(@ModelAttribute User user, Model model) {
 		List<EducationData> educations = dataDao.findAllEducationDatas();
 		List<SexData> sexs = dataDao.findAllSexDatas();
+		List<InterestData> interests = dataDao.finAllInterestDatas();
+		
 		model.addAttribute("educations", educations); // 將教育程度資料傳給 jsp
 		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
+		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
 		
 		return "spform/user";
 	}

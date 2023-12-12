@@ -29,8 +29,8 @@ id: 序號(input hidden)
 				年齡: <sp:input path="age" type="number" /><p />
 				生日: <sp:input path="birth" type="date" /><p />
 				學歷: <sp:select path="educationId" 
-								items="educations"
-								itemLabel="name"
+								items="${ educations }"
+								itemLabel="display"
 								itemValue="id" /><p />
 			</fieldset>
 		</sp:form>

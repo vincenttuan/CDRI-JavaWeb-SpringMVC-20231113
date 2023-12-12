@@ -31,7 +31,11 @@ public class EducationData {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	public String getDisplay() {
+		return name + "(" + id + ")";
+	}
+	
 	@Override
 	public String toString() {
 		return new Gson().toJson(this);

@@ -7,6 +7,6 @@ import mvc.bean.spform.EducationData;
 
 public interface DataDao {
 	List<EducationData> findAllEducationDatas();
-	Optional<EducationData> getEducationData();
+	Optional<EducationData> getEducationDataById(Integer id);
 	
 }

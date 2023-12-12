@@ -20,14 +20,14 @@ public class User {
 	
 	private String resume; // 履歷
 	
-	private Integer educationId; // 教育程度Id
-	private EducationData education; // 教育程度
+	private Integer educationId; // 教育程度Id(給表單用)
+	private EducationData education; // 教育程度(給List呈現用)
 	
-	private Integer sexId; // 性別Id
-	private SexData sex; // 性別
+	private Integer sexId; // 性別Id(給表單用)
+	private SexData sex; // 性別(給List呈現用)
 	
-	private Integer[] interestIds; // 興趣Ids
-	private List<InterestData> interests; // 興趣
+	private Integer[] interestIds; // 興趣Ids(給表單用)
+	private List<InterestData> interests; // 興趣(給List呈現用)
 	
 	// ---------------------------------------------------------
 	

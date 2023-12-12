@@ -35,7 +35,11 @@ id: 序號(input hidden)
 				性別: <sp:radiobuttons path="sexId" 
 								items="${ sexs }"
 								itemLabel="name"
-								itemValue="id" /><p />		
+								itemValue="id" /><p />	
+				興趣: <sp:checkboxes path="interestIds" 
+									items="${ interests }"
+									itemLabel="name"
+									itemValue="id" /><p />					
 			</fieldset>
 		</sp:form>
 	</body>

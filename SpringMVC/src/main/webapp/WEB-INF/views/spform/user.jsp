@@ -39,7 +39,8 @@ id: 序號(input hidden)
 				興趣: <sp:checkboxes path="interestIds" 
 									items="${ interests }"
 									itemLabel="name"
-									itemValue="id" /><p />					
+									itemValue="id" /><p />	
+				履歷: <sp:textarea path="resume" /><p />									
 			</fieldset>
 		</sp:form>
 	</body>

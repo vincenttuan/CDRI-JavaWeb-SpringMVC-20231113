@@ -1,5 +1,7 @@
 package mvc.bean.spform;
 
+import com.google.gson.Gson;
+
 // 教育程度資料
 public class EducationData {
 	private Integer id;
@@ -32,7 +34,7 @@ public class EducationData {
 
 	@Override
 	public String toString() {
-		return "EducationData [id=" + id + ", name=" + name + "]";
+		return new Gson().toJson(this);
 	}
 	
 }

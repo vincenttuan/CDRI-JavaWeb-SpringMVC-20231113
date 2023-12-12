@@ -1,5 +1,7 @@
 package mvc.bean.spform;
 
+import com.google.gson.Gson;
+
 // 興趣資料
 public class InterestData {
 	private Integer id;
@@ -32,6 +34,6 @@ public class InterestData {
 
 	@Override
 	public String toString() {
-		return "InterestData [id=" + id + ", name=" + name + "]";
+		return new Gson().toJson(this);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.gson.Gson;
 
 // 對應 spring form 的表單資訊
 public class User {
@@ -25,7 +26,7 @@ public class User {
 	private Integer sexId; // 性別Id
 	private SexData sex; // 性別
 	
-	private Integer interestId; // 興趣Id
+	private Integer[] interestIds; // 興趣Ids
 	private List<InterestData> interests; // 興趣
 	
 	// ---------------------------------------------------------
@@ -84,11 +85,11 @@ public class User {
 	public void setSex(SexData sex) {
 		this.sex = sex;
 	}
-	public Integer getInterestId() {
-		return interestId;
+	public Integer[] getInterestIds() {
+		return interestIds;
 	}
-	public void setInterestId(Integer interestId) {
-		this.interestId = interestId;
+	public void setInterestIds(Integer[] interestIds) {
+		this.interestIds = interestIds;
 	}
 	public List<InterestData> getInterests() {
 		return interests;
@@ -98,9 +99,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age + ", birth=" + birth + ", resume=" + resume
-				+ ", educationId=" + educationId + ", education=" + education + ", sexId=" + sexId + ", sex=" + sex
-				+ ", interestId=" + interestId + ", interests=" + interests + "]";
+		return new Gson().toJson(this);
 	}
 	
 	

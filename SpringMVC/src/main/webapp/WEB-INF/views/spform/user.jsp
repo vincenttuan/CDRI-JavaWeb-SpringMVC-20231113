@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sp" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <!-- 
 設計一個表單
@@ -14,10 +16,19 @@ id: 序號(input hidden)
  -->
 <html>
 	<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
+		<meta charset="UTF-8">
+		<title>User Spring From</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
 	</head>
-	<body>
-		
+	<body style="padding: 15px">
+		<sp:form modelAttribute="user" method="post" action="">
+			<fieldset>
+				<legend>User Spring Form</legend>
+				<!-- 表單元素 -->
+				姓名: <sp:input path="name" type="text" /><p />
+				年齡: <sp:input path="age" type="number" /><p />
+				生日: <sp:input path="birth" type="date" /><p />
+			</fieldset>
+		</sp:form>
 	</body>
 </html>

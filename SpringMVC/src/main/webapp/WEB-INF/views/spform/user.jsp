@@ -32,7 +32,10 @@ id: 序號(input hidden)
 								items="${ educations }"
 								itemLabel="name"
 								itemValue="id" /><p />
-				性別: <sp:radiobuttons path="sexId" items="${ sexs }" />				
+				性別: <sp:radiobuttons path="sexId" 
+								items="${ sexs }"
+								itemLabel="name"
+								itemValue="id" /><p />		
 			</fieldset>
 		</sp:form>
 	</body>

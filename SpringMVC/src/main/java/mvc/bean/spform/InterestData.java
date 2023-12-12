@@ -1,5 +1,6 @@
 package mvc.bean.spform;
 
+// 興趣資料
 public class InterestData {
 	private Integer id;
 	private String name;

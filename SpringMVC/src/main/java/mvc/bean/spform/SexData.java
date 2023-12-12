@@ -1,5 +1,6 @@
 package mvc.bean.spform;
 
+// 性別資料
 public class SexData {
 	private Integer id;
 	private String name;

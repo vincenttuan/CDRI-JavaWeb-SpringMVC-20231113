@@ -14,7 +14,8 @@ public class UserController {
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute User user) {
-		
+		user.setName("John");
+		user.setAge(18);
 		return "spform/user";
 	}
 	

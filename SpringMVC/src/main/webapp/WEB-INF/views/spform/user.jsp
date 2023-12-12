@@ -21,13 +21,14 @@ id: 序號(input hidden)
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
 	</head>
 	<body style="padding: 15px">
-		<sp:form modelAttribute="user" method="post" action="">
+		<sp:form modelAttribute="user" method="post" action="" class="pure-form">
 			<fieldset>
 				<legend>User Spring Form</legend>
 				<!-- 表單元素 -->
 				姓名: <sp:input path="name" type="text" /><p />
 				年齡: <sp:input path="age" type="number" /><p />
 				生日: <sp:input path="birth" type="date" /><p />
+				學歷: <sp:select path="educationId"></sp:select><p />
 			</fieldset>
 		</sp:form>
 	</body>

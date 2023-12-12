@@ -44,9 +44,9 @@ public class DataDaoImplInMemory implements DataDao {
 	@Override
 	public List<InterestData> finAllInterestDatas() {
 		return Arrays.asList(
-				new InterestData(1, "爬山"), new InterestData(2, "看電影"),
+				new InterestData(1, "爬山 🏕"), new InterestData(2, "音樂 🎶"),
 				new InterestData(3, "看書"), new InterestData(4, "刺繡"),
-				new InterestData(5, "國畫"), new InterestData(6, "FPV"));
+				new InterestData(5, "國畫"), new InterestData(6, "FPV ✈"));
 	}
 
 	@Override

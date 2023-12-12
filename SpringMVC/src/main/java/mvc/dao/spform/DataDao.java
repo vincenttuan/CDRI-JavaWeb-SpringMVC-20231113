@@ -1,5 +1,12 @@
 package mvc.dao.spform;
 
-public class DataDao {
+import java.util.List;
+import java.util.Optional;
+
+import mvc.bean.spform.EducationData;
+
+public interface DataDao {
+	List<EducationData> findAllEducationDatas();
+	Optional<EducationData> getEducationData();
 	
 }

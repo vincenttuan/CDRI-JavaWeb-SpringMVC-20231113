@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <!-- 
 設計一個表單
+id: 序號(input hidden)
 姓名: name (input text)
 年齡: age (input number)
 生日: birth (input date)

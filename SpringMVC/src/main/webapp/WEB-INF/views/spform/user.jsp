@@ -19,6 +19,12 @@ id: 序號(input hidden)
 		<meta charset="UTF-8">
 		<title>User Spring From</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
+		<style type="text/css">
+			.element-margin {
+				margin-right:2px;
+				margin-left:5px;
+			}
+		</style>
 	</head>
 	<body style="padding: 15px">
 		<sp:form modelAttribute="user" method="post" action="" class="pure-form">
@@ -35,11 +41,13 @@ id: 序號(input hidden)
 				性別: <sp:radiobuttons path="sexId" 
 								items="${ sexs }"
 								itemLabel="name"
-								itemValue="id" /><p />	
+								itemValue="id" 
+								cssClass="element-margin" /><p />	
 				興趣: <sp:checkboxes path="interestIds" 
 									items="${ interests }"
 									itemLabel="name"
-									itemValue="id" /><p />	
+									itemValue="id" 
+									cssClass="element-margin" /><p />	
 				履歷: <sp:textarea path="resume" /><p />									
 			</fieldset>
 		</sp:form>

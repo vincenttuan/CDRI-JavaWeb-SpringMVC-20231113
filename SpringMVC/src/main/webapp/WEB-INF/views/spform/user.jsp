@@ -31,7 +31,7 @@ id: 序號(input hidden)
 		<table>
 			<tr>
 				<!-- User Spring Form -->
-				<td valign="top" style="padding: 5px">
+				<td valign="top" style="padding: 5px;width: 30%">
 					<%@ include file="userform.jspf" %>
 				</td>
 				<!-- User Spring List -->

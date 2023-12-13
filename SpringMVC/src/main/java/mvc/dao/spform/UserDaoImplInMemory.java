@@ -29,7 +29,22 @@ public class UserDaoImplInMemory implements UserDao {
 
 	@Override
 	public int updateUserById(Integer id, User user) {
-		// TODO Auto-generated method stub
+		Optional<User> userOpt = getUserById(id);
+		if(userOpt.isPresent()) {
+			User curUser = userOpt.get(); // 目前在集合中的 user 物件
+			// 將 curUser 的屬性資料"逐一"修改
+			curUser.setName(user.getName());
+			curUser.setAge(user.getAge());
+			curUser.setBirth(user.getBirth());
+			curUser.setEducationId(user.getEducationId());
+			curUser.setEducation(user.getEducation());
+			curUser.setSexId(user.getSexId());
+			curUser.setSex(user.getSex());
+			curUser.setInterestIds(user.getInterestIds());
+			curUser.setInterests(user.getInterests());
+			curUser.setResume(user.getResume());
+			return 1;
+		}
 		return 0;
 	}
 

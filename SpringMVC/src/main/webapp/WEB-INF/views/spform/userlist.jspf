@@ -16,18 +16,20 @@ ${ users }
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${ users }" var="user">
 				<tr>
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td><td></td>
+					<td>${ user.id }</td>
+					<td>${ user.name }</td>
+					<td>${ user.sexId }</td>
+					<td>${ user.age }</td>
+					<td>${ user.birth }</td>
+					<td>${ user.educationId }</td>
+					<td>${ user.interestIds }</td>
+					<td>${ user.resume }</td>
+					<td></td>
+					<td></td>
 				</tr>
-				<tr>
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td><td></td>
-				</tr>
-				<tr>
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td><td></td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 			

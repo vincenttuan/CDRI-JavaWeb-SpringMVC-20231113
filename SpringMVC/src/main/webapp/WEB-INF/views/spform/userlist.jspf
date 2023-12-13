@@ -20,7 +20,7 @@ ${ users }
 				<tr>
 					<td>${ user.id }</td>
 					<td>${ user.name }</td>
-					<td>${ user.sexId }</td>
+					<td>${ user.sex.name }</td>
 					<td>${ user.age }</td>
 					<td>${ user.birth }</td>
 					<td>${ user.educationId }</td>

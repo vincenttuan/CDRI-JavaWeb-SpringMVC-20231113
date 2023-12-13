@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- 
 ${ users }
-
+-->
+<div class="pure-form">
 	<fieldset>
 		<legend>User Spring List</legend>
 		<!-- 表單元素 -->
@@ -57,4 +59,4 @@ ${ users }
 		</table>
 			
 	</fieldset>
-
+</div>

@@ -2,7 +2,6 @@ package mvc.controller.spform;
 
 import java.util.List;
 
-import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,7 @@ public class UserController {
 		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
 		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
 		model.addAttribute("submitBtnName", "新增");
-		//model.addAttribute("_method", "POST"); // 可省略不寫
+		//model.addAttribute("_method", "POST"); // 
 		return "spform/user";
 	}
 	
@@ -69,9 +68,16 @@ public class UserController {
 		return "spform/user";
 	}
 	
-	@DeleteMapping("/{id}")
-	@ResponseBody
+	@GetMapping("/delete/{id}") // Get method 刪除
 	public String deleteUser(@PathVariable("id") Integer id) {
+		int rowcount = userDao.deleteUserById(id);
+		System.out.println("delete User rowcount = " + rowcount);
+		return "redirect:/mvc/user/"; // 重導到 user 首頁
+	}
+	
+	@DeleteMapping("/{id}") // Delete method 刪除
+	@ResponseBody
+	public String deleteUser2(@PathVariable("id") Integer id) {
 		int rowcount = userDao.deleteUserById(id);
 		System.out.println("delete User rowcount = " + rowcount);
 		return "rowcount = " + rowcount;

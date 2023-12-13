@@ -8,6 +8,7 @@
 		<legend>User Spring Form</legend>
 		<!-- 表單元素 -->
 		<sp:input path="id" type="hidden" />
+		<input name="_method" type="hidden" value="${ _method }" />
 		姓名: <sp:input path="name" type="text" /><p />
 		年齡: <sp:input path="age" type="number" /><p />
 		生日: <sp:input path="birth" type="date" /><p />

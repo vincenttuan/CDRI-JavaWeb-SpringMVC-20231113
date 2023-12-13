@@ -45,6 +45,7 @@ public class UserController {
 		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
 		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
 		model.addAttribute("submitBtnName", "新增");
+		//model.addAttribute("_method", "POST"); // 可省略不寫
 		return "spform/user";
 	}
 	
@@ -61,7 +62,7 @@ public class UserController {
 		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
 		model.addAttribute("user", user);
 		model.addAttribute("submitBtnName", "修改");
-		
+		model.addAttribute("_method", "PUT");
 		return "spform/user";
 	}
 	

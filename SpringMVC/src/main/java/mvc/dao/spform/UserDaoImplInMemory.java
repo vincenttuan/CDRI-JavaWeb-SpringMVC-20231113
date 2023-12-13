@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mchange.v2.codegen.bean.BeangenUtils;
 
+import mvc.bean.spform.SexData;
 import mvc.bean.spform.User;
 
 @Repository
@@ -88,7 +89,22 @@ public class UserDaoImplInMemory implements UserDao {
 
 	@Override
 	public List<User> findAllUsers() {
+		users.forEach(user -> {
+			// 注入 sexData 物件到 user 物件中
+			Integer sexId = user.getSexId();
+			Optional<SexData> sexDataOpt = dataDao.getSexDataById(sexId);
+			/*
+			if(sexDataOpt.isPresent()) {
+				user.setSex(sexDataOpt.get());
+			}
+			*/
+			sexDataOpt.ifPresent(sexData -> user.setSex(sexData));
+			
+			//user.setSex(dataDao.getSexDataById(user.getSexId()).get());
+		});
+		
 		return users;
+		
 	}
 	
 }

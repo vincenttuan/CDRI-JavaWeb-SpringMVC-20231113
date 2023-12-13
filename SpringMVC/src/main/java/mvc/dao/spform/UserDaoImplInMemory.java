@@ -5,8 +5,11 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.mchange.v2.codegen.bean.BeangenUtils;
 
 import mvc.bean.spform.User;
 
@@ -33,6 +36,7 @@ public class UserDaoImplInMemory implements UserDao {
 		if(userOpt.isPresent()) {
 			User curUser = userOpt.get(); // 目前在集合中的 user 物件
 			// 將 curUser 的屬性資料"逐一"修改
+			/*
 			curUser.setName(user.getName());
 			curUser.setAge(user.getAge());
 			curUser.setBirth(user.getBirth());
@@ -43,6 +47,9 @@ public class UserDaoImplInMemory implements UserDao {
 			curUser.setInterestIds(user.getInterestIds());
 			curUser.setInterests(user.getInterests());
 			curUser.setResume(user.getResume());
+			*/
+			// 將 curUser 的屬性資料"逐一"修改 (使用 Spring BeanUtils)
+			BeanUtils.copyProperties(user, curUser);
 			return 1;
 		}
 		return 0;

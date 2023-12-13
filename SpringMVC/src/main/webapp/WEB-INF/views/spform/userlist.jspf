@@ -39,8 +39,12 @@ ${ users }
 						<a href="${pageContext.request.contextPath}/mvc/user/${ user.id }">修改</a>
 					</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/mvc/user/delete/${ user.id }">刪除(Get method)</a>
-						<a href="javascript:void(0);" onClick="deleteUser(${ user.id })">刪除(Delete method)</a>
+						<!-- 刪除(Get method) -->
+						<a class="pure-button" href="${pageContext.request.contextPath}/mvc/user/delete/${ user.id }">刪除</a>
+						
+						<!-- 刪除(Delete method) + Javascript -->
+						<a class="pure-button" href="javascript:void(0);" onClick="deleteUser(${ user.id })">刪除</a>
+					
 					</td>
 				</tr>
 				</c:forEach>

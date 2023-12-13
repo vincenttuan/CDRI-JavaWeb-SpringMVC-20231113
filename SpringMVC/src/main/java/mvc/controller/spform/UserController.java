@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import mvc.bean.spform.EducationData;
 import mvc.bean.spform.InterestData;
@@ -69,10 +70,11 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
+	@ResponseBody
 	public String deleteUser(@PathVariable("id") Integer id) {
 		int rowcount = userDao.deleteUserById(id);
 		System.out.println("delete User rowcount = " + rowcount);
-		return "redirect:/mvc/user/"; // 重導到 user 首頁
+		return "rowcount = " + rowcount;
 	}
 	
 	@PostMapping("/") // 新增 User

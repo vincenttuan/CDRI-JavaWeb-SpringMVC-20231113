@@ -14,7 +14,21 @@
 					<th>修改</th><th>刪除</th>
 				</tr>
 			</thead>
+			<tbody>
+				<tr>
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td><td></td>
+				</tr>
+			</tbody>
 		</table>
-		
+			
 	</fieldset>
 </form>

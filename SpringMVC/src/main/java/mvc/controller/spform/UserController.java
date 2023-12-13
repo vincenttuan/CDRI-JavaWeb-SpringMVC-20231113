@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import mvc.bean.spform.EducationData;
 import mvc.bean.spform.InterestData;
@@ -41,6 +43,22 @@ public class UserController {
 		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
 		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
 		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
+		
+		return "spform/user";
+	}
+	
+	@GetMapping("/{id}")
+	public String getUser(@PathVariable("id") Integer id, Model model) {
+		User user = userDao.getUserById(id).get();
+		List<EducationData> educations = dataDao.findAllEducationDatas();
+		List<SexData> sexs = dataDao.findAllSexDatas();
+		List<InterestData> interests = dataDao.finAllInterestDatas();
+		
+		model.addAttribute("educations", educations); // 將教育程度資料傳給 jsp
+		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
+		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
+		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
+		model.addAttribute("user", user);
 		
 		return "spform/user";
 	}

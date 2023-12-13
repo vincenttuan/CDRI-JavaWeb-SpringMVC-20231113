@@ -23,7 +23,7 @@ ${ users }
 					<td>${ user.sex.name }</td>
 					<td>${ user.age }</td>
 					<td>
-						<fmt:formatDate value="${ user.birth }" pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${ user.birth }" pattern="yyyy-MM-dd E" />
 					</td>
 					<td>${ user.education.name }</td>
 					<td>

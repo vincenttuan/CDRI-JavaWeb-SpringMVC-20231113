@@ -100,6 +100,7 @@ public class User {
 		this.interests = interests;
 	}
 	
+	// 顯示所有興趣名稱(給 jstl 使用, 使用名稱: interestNames)
 	public String getInterestNames() {
 		if(interestIds != null && interests != null) {
 			return interests.stream()

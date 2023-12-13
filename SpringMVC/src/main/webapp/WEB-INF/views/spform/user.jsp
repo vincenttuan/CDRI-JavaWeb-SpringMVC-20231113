@@ -31,14 +31,15 @@ id: 序號(input hidden)
 				if(confirm('是否要刪除 ?')) {
 					fetch(url, {method: 'DELETE'})
 					.then(response => {
-						if(response.ok) {
+						//console.log(response);
+						//console.log(response.redirected);
+						if(response.ok || response.redirected) {
 							console.log(response);
-							//location.href = '${pageContext.request.contextPath}/mvc/user/';
+							// 刪除成功, 更新網頁
+							location.href = '${pageContext.request.contextPath}/mvc/user/';
 						} else {
 							console.log('delete fail');
 						}
-						// 刪除成功, 更新網頁
-						location.href = '${pageContext.request.contextPath}/mvc/user/';
 					})
 					.catch(error => {
 						console.log('delete error: ', error);

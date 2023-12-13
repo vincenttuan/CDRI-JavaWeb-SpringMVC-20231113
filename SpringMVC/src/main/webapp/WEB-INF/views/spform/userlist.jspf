@@ -23,7 +23,7 @@ ${ users }
 					<td>${ user.sex.name }</td>
 					<td>${ user.age }</td>
 					<td>${ user.birth }</td>
-					<td>${ user.educationId }</td>
+					<td>${ user.education.name }</td>
 					<td>${ user.interestIds }</td>
 					<td>${ user.resume }</td>
 					<td></td>

@@ -90,17 +90,16 @@ public class UserDaoImplInMemory implements UserDao {
 	@Override
 	public List<User> findAllUsers() {
 		users.forEach(user -> {
-			// 注入 sexData 物件到 user 物件中
+			// 1.注入 sexData 物件到 user 物件中
 			Integer sexId = user.getSexId();
 			Optional<SexData> sexDataOpt = dataDao.getSexDataById(sexId);
-			/*
-			if(sexDataOpt.isPresent()) {
-				user.setSex(sexDataOpt.get());
-			}
-			*/
 			sexDataOpt.ifPresent(sexData -> user.setSex(sexData));
-			
 			//user.setSex(dataDao.getSexDataById(user.getSexId()).get());
+			
+			// 2.注入 educationData 物件到 user 物件中
+			Integer eduId = user.getEducationId();
+			user.setEducation(dataDao.getEducationDataById(eduId).get());
+			
 		});
 		
 		return users;

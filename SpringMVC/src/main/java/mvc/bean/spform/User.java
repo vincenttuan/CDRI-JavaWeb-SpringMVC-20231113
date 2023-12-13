@@ -1,5 +1,6 @@
 package mvc.bean.spform;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -97,11 +98,13 @@ public class User {
 	public void setInterests(List<InterestData> interests) {
 		this.interests = interests;
 	}
+	
 	@Override
 	public String toString() {
-		return new Gson().toJson(this);
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", birth=" + birth + ", resume=" + resume
+				+ ", educationId=" + educationId + ", education=" + education + ", sexId=" + sexId + ", sex=" + sex
+				+ ", interestIds=" + Arrays.toString(interestIds) + ", interests=" + interests + "]";
 	}
-	
 	
 	
 }

@@ -1,5 +1,6 @@
 package mvc.dao.spform;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mchange.v2.codegen.bean.BeangenUtils;
 
+import mvc.bean.spform.InterestData;
 import mvc.bean.spform.SexData;
 import mvc.bean.spform.User;
 
@@ -100,6 +102,12 @@ public class UserDaoImplInMemory implements UserDao {
 			Integer eduId = user.getEducationId();
 			user.setEducation(dataDao.getEducationDataById(eduId).get());
 			
+			// 3.注入 interestData 物件到 user 物件中
+			List<InterestData> interests = new ArrayList<>();
+			for(Integer interestId : user.getInterestIds()) {
+				interests.add(dataDao.getInterestDataById(interestId).get());
+			}
+			user.setInterests(interests);
 		});
 		
 		return users;

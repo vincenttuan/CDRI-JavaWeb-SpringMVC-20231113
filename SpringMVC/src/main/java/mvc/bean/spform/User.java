@@ -3,7 +3,7 @@ package mvc.bean.spform;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.joining;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -105,7 +105,7 @@ public class User {
 		if(interestIds != null && interests != null) {
 			return interests.stream()
 							.map(InterestData::getName)
-							.collect(Collectors.joining(" "));
+							.collect(joining(" "));
 		}
 		return "";
 	}

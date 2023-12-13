@@ -35,8 +35,12 @@ ${ users }
 						${ user.interestNames }
 					</td>
 					<td>${ user.resume }</td>
-					<td></td>
-					<td></td>
+					<td>
+						<a href="/SpringMVC/mvc/user/${ user.id }">修改</a>
+					</td>
+					<td>
+						<a href="">刪除</a>
+					</td>
 				</tr>
 				</c:forEach>
 			</tbody>

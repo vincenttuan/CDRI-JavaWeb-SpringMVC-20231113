@@ -32,6 +32,7 @@ id: 序號(input hidden)
 					fetch(url, {method: 'DELETE'})
 					.then(response => {
 						if(response.ok) {
+							alert(response);
 							// 刪除成功, 更新網頁
 							location.href = '${pageContext.request.contextPath}/mvc/user/';
 						} else {

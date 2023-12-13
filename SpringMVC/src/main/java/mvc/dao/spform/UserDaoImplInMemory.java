@@ -102,7 +102,7 @@ public class UserDaoImplInMemory implements UserDao {
 			Integer eduId = user.getEducationId();
 			user.setEducation(dataDao.getEducationDataById(eduId).get());
 			
-			// 3.注入 interestData 物件到 user 物件中
+			// 3.注入 interests 集合到 user 物件中
 			List<InterestData> interests = new ArrayList<>();
 			for(Integer interestId : user.getInterestIds()) {
 				interests.add(dataDao.getInterestDataById(interestId).get());

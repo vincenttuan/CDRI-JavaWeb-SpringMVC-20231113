@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -71,18 +72,17 @@ public class UserController {
 		return "redirect:/mvc/user/"; // 重導到 user 首頁
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/") // 新增 User
 	public String addUser(User user) {
-		// 判斷是否有 id
-		// 沒有 id 表示是新增, 有 id 表示要進行修改
-		if(user.getId() == null) {
-			int rowcount = userDao.addUser(user);
-			System.out.println("add User rowcount = " + rowcount);
-		} else {
-			int rowcount = userDao.updateUserById(user.getId(), user);
-			System.out.println("update User rowcount = " + rowcount);
-		}
-		
+		int rowcount = userDao.addUser(user);
+		System.out.println("add User rowcount = " + rowcount);
+		return "redirect:/mvc/user/"; // 重導到 user 首頁
+	}
+	
+	@PutMapping("/") // 修改 User
+	public String updateUser(User user) {
+		int rowcount = userDao.updateUserById(user.getId(), user);
+		System.out.println("update User rowcount = " + rowcount);
 		return "redirect:/mvc/user/"; // 重導到 user 首頁
 	}
 	

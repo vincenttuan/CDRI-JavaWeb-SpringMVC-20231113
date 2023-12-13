@@ -24,7 +24,11 @@ ${ users }
 					<td>${ user.age }</td>
 					<td>${ user.birth }</td>
 					<td>${ user.education.name }</td>
-					<td>${ user.interestIds }</td>
+					<td>
+						<c:forEach items="${ user.interests }" var="${ interest }">
+							${ interest.name }&nbsp;
+						</c:forEach>
+					</td>
 					<td>${ user.resume }</td>
 					<td></td>
 					<td></td>

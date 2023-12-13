@@ -64,6 +64,13 @@ public class UserController {
 		return "spform/user";
 	}
 	
+	@GetMapping("/delete/${ id }")
+	public String deleteUser(@PathVariable("id") Integer id) {
+		int rowcount = userDao.deleteUserById(id);
+		System.out.println("delete User rowcount = " + rowcount);
+		return "redirect:/mvc/user/"; // 重導到 user 首頁
+	}
+	
 	@PostMapping("/")
 	public String addUser(User user) {
 		// 判斷是否有 id

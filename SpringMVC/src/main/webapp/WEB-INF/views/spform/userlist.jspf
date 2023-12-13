@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+${ users }
 <form class="pure-form">
 	<fieldset>
 		<legend>User Spring List</legend>

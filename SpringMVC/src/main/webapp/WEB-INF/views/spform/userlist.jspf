@@ -38,7 +38,7 @@ ${ users }
 					<td>
 						<a href="${pageContext.request.contextPath}/mvc/user/${ user.id }">修改</a>
 					</td>
-					<td>
+					<td nowrap>
 						<!-- 刪除(Get method) -->
 						<a class="pure-button" href="${pageContext.request.contextPath}/mvc/user/delete/${ user.id }">刪除</a>
 						

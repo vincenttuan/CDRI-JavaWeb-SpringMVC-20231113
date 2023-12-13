@@ -27,29 +27,20 @@ id: 序號(input hidden)
 		</style>
 	</head>
 	<body style="padding: 15px">
-		<sp:form modelAttribute="user" method="post" action="" class="pure-form">
-			<fieldset>
-				<legend>User Spring Form</legend>
-				<!-- 表單元素 -->
-				姓名: <sp:input path="name" type="text" /><p />
-				年齡: <sp:input path="age" type="number" /><p />
-				生日: <sp:input path="birth" type="date" /><p />
-				學歷: <sp:select path="educationId" 
-								items="${ educations }"
-								itemLabel="name"
-								itemValue="id" /><p />
-				性別: <sp:radiobuttons path="sexId" 
-								items="${ sexs }"
-								itemLabel="name"
-								itemValue="id" 
-								cssClass="element-margin" /><p />	
-				興趣: <sp:checkboxes path="interestIds" 
-									items="${ interests }"
-									itemLabel="name"
-									itemValue="id" 
-									cssClass="element-margin" /><p />	
-				履歷: <sp:textarea path="resume" /><p />									
-			</fieldset>
-		</sp:form>
+		
+		<table>
+			<tr>
+				<!-- User Spring Form -->
+				<td>
+					<%@ include file="userform.jspf" %>
+				</td>
+				<!-- User Spring List -->
+				<td>
+					
+				</td>
+			</tr>
+		</table>
+	
+		
 	</body>
 </html>

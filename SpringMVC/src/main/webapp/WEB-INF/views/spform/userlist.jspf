@@ -44,7 +44,12 @@ ${ users }
 						
 						<!-- 刪除(Delete method) + Javascript -->
 						<a class="pure-button" href="javascript:void(0);" onClick="deleteUser(${ user.id })">刪除</a>
-					
+						
+						<!-- 刪除(Delete method) + Form + _method="DELETE" -->
+						<form method="POST" action="${pageContext.request.contextPath}/mvc/user/${ user.id }">
+							<input name="_method" type="hidden" value="DELETE" />
+							<button class="pure-button" type="submit">刪除</button>
+						</form>
 					</td>
 				</tr>
 				</c:forEach>

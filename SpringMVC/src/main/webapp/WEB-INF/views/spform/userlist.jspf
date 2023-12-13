@@ -36,10 +36,10 @@ ${ users }
 					</td>
 					<td>${ user.resume }</td>
 					<td>
-						<a href="/SpringMVC/mvc/user/${ user.id }">修改</a>
+						<a href="${pageContext.request.contextPath}/mvc/user/${ user.id }">修改</a>
 					</td>
 					<td>
-						<a href="/SpringMVC/mvc/user/delete/${ user.id }">刪除</a>
+						<a href="${pageContext.request.contextPath}/mvc/user/delete/${ user.id }">刪除</a>
 					</td>
 				</tr>
 				</c:forEach>

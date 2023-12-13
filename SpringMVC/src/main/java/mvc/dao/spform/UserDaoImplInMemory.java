@@ -35,7 +35,11 @@ public class UserDaoImplInMemory implements UserDao {
 
 	@Override
 	public int deleteUserById(Integer id) {
-		// TODO Auto-generated method stub
+		Optional<User> userOpt = getUserById(id);
+		if(userOpt.isPresent()) {
+			users.remove(userOpt.get());
+			return 1;
+		}
 		return 0;
 	}
 

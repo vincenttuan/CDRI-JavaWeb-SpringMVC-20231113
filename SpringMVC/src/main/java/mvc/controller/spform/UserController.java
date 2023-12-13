@@ -66,8 +66,16 @@ public class UserController {
 	
 	@PostMapping("/")
 	public String addUser(User user) {
-		int rowcount = userDao.addUser(user);
-		System.out.println("add User rowcount = " + rowcount);
+		// 判斷是否有 id
+		// 沒有 id 表示是新增, 有 id 表示要進行修改
+		if(user.getId() == null) {
+			int rowcount = userDao.addUser(user);
+			System.out.println("add User rowcount = " + rowcount);
+		} else {
+			int rowcount = userDao.updateUserById(user.getId(), user);
+			System.out.println("update User rowcount = " + rowcount);
+		}
+		
 		return "redirect:/mvc/user/"; // 重導到 user 首頁
 	}
 	

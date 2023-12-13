@@ -25,7 +25,7 @@ ${ users }
 					<td>${ user.birth }</td>
 					<td>${ user.education.name }</td>
 					<td>
-						<c:forEach items="${ user.interests }" var="${ interest }">
+						<c:forEach items="${ user.interests }" var="interest">
 							${ interest.name }&nbsp;
 						</c:forEach>
 					</td>

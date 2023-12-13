@@ -80,7 +80,8 @@ public class UserController {
 	public String deleteUser2(@PathVariable("id") Integer id) {
 		int rowcount = userDao.deleteUserById(id);
 		System.out.println("delete User rowcount = " + rowcount);
-		return "rowcount = " + rowcount;
+		//return "rowcount = " + rowcount;
+		return "redirect:/mvc/user/"; // 重導到 user 首頁
 	}
 	
 	@PostMapping("/") // 新增 User

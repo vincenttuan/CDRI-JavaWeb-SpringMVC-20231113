@@ -64,7 +64,7 @@ public class UserController {
 		return "spform/user";
 	}
 	
-	@GetMapping("/delete/{ id }")
+	@GetMapping("/delete/{id}")
 	public String deleteUser(@PathVariable("id") Integer id) {
 		int rowcount = userDao.deleteUserById(id);
 		System.out.println("delete User rowcount = " + rowcount);

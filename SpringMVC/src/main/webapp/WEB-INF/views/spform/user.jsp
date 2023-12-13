@@ -36,7 +36,8 @@ id: 序號(input hidden)
 						if(response.ok || response.redirected) {
 							console.log(response);
 							// 刪除成功, 更新網頁
-							location.href = '${pageContext.request.contextPath}/mvc/user/';
+							//location.href = '${pageContext.request.contextPath}/mvc/user/';
+							location.href = response.url;
 						} else {
 							console.log('delete fail');
 						}

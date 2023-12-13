@@ -76,7 +76,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}") // Delete method 刪除
-	@ResponseBody
+	//@ResponseBody
 	public String deleteUser2(@PathVariable("id") Integer id) {
 		int rowcount = userDao.deleteUserById(id);
 		System.out.println("delete User rowcount = " + rowcount);

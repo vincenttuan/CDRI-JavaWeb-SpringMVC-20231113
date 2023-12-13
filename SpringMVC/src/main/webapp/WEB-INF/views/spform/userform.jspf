@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags/form" %>
 
-<sp:form modelAttribute="user" method="post" action="" class="pure-form">
+<sp:form modelAttribute="user" method="post" action="/SpringMVC/mvc/user/" class="pure-form">
 	<fieldset>
 		<legend>User Spring Form</legend>
 		<!-- 表單元素 -->
@@ -24,6 +24,7 @@
 							itemLabel="name"
 							itemValue="id" 
 							cssClass="element-margin" /><p />	
-		履歷: <sp:textarea path="resume" /><p />									
+		履歷: <sp:textarea path="resume" /><p />
+		<button type="submit" class="pure-button pure-button-primary" >新增</button>									
 	</fieldset>
 </sp:form>

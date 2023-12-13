@@ -48,6 +48,21 @@ public class UserDaoImplInMemory implements UserDao {
 			curUser.setInterests(user.getInterests());
 			curUser.setResume(user.getResume());
 			*/
+			/*
+			使用反射 (不過效率慢)
+			Field[] fields = curUser.getClass().getDeclaredFields(); // 獲取所有欄位
+	        for (Field field : fields) {
+	            field.setAccessible(true); // 允許訪問私有欄位
+	            try {
+	                Object value = field.get(user); // 從 user 取得新值
+	                if (value != null) {
+	                    field.set(curUser, value); // 將新值設置到 curUser
+	                }
+	            } catch (IllegalAccessException e) {
+	                e.printStackTrace();
+	            }
+	        }
+			*/
 			// 將 curUser 的屬性資料"逐一"修改 (使用 Spring BeanUtils)
 			BeanUtils.copyProperties(user, curUser);
 			return 1;

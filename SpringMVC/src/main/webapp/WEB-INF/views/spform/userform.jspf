@@ -30,6 +30,6 @@
 		<button type="submit" class="pure-button pure-button-primary" >${ submitBtnName }</button>
 		<button type="button" style="display: ${ submitBtnName == '新增'?'none':'' }"
 				onClick="location.href='${pageContext.request.contextPath}/mvc/user/'"
-				class="pure-button pure-button-primary" >重置</button>									
+				class="pure-button pure-button-primary" >重置</button>											
 	</fieldset>
 </sp:form>

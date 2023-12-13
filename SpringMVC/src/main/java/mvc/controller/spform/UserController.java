@@ -2,12 +2,14 @@ package mvc.controller.spform;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,7 +68,7 @@ public class UserController {
 		return "spform/user";
 	}
 	
-	@GetMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public String deleteUser(@PathVariable("id") Integer id) {
 		int rowcount = userDao.deleteUserById(id);
 		System.out.println("delete User rowcount = " + rowcount);

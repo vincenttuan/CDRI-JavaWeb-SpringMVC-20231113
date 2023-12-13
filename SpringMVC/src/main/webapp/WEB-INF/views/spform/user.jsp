@@ -25,6 +25,25 @@ id: 序號(input hidden)
 				margin-left:5px;
 			}
 		</style>
+		<script type="text/javascript">
+			function deleteUser(userId) {
+				const url = '${pageContext.request.contextPath}/mvc/user/' + userId;
+				if(confirm('是否要刪除 ?')) {
+					fetch(url, {method: 'DELETE'})
+					.then(response => {
+						if(response.ok) {
+							// 刪除成功, 更新網頁
+							location.href = '${pageContext.request.contextPath}/mvc/user/';
+						} else {
+							console.log('delete fail');
+						}
+					})
+					.catch(error => {
+						console.log('delete error: ', error);
+					});
+				}
+			}
+		</script>
 	</head>
 	<body style="padding: 10px">
 		

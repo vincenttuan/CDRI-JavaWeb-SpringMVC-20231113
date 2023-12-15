@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.mchange.v2.codegen.bean.BeangenUtils;
@@ -23,6 +24,7 @@ public class UserDaoImplInMemory implements UserDao {
 	private static AtomicInteger atomicId = new AtomicInteger(0); // 序號
 	
 	@Autowired
+	@Qualifier("dataDaoImplMySQL")
 	private DataDao dataDao;
 	
 	@Override

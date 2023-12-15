@@ -32,7 +32,7 @@ import mvc.dao.spform.UserDao;
 public class UserController {
 	
 	@Autowired
-	//@Qualifier("dataDaoImplInMemory")
+	@Qualifier("dataDaoImplMySQL")
 	private DataDao dataDao;
 	
 	@Autowired

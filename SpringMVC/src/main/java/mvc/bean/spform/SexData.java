@@ -4,7 +4,11 @@ import com.google.gson.Gson;
 
 // 性別資料
 public class SexData extends BaseData {
-
+	
+	public SexData() {
+		
+	}
+	
 	public SexData(Integer id, String name) {
 		super(id, name);
 	}

@@ -9,24 +9,24 @@
 		<!-- 表單元素 -->
 		<sp:input path="id" type="hidden" />
 		<input name="_method" type="hidden" value="${ _method }" />
-		姓名: <sp:input path="name" type="text" /> <sp:errors path="name" /><p />
-		年齡: <sp:input path="age" type="number" /> <sp:errors path="age" /><p />
-		生日: <sp:input path="birth" type="date" /> <sp:errors path="birth" /><p />
+		姓名: <sp:input path="name" type="text" /> <sp:errors path="name" cssClass="error" /><p />
+		年齡: <sp:input path="age" type="number" /> <sp:errors path="age" cssClass="error" /><p />
+		生日: <sp:input path="birth" type="date" /> <sp:errors path="birth" cssClass="error" /><p />
 		學歷: <sp:select path="educationId" 
 						items="${ educations }"
 						itemLabel="name"
-						itemValue="id" /> <sp:errors path="educationId" /><p />
+						itemValue="id" /> <sp:errors path="educationId" cssClass="error" /><p />
 		性別: <sp:radiobuttons path="sexId" 
 						items="${ sexs }"
 						itemLabel="name"
 						itemValue="id" 
-						cssClass="element-margin" /> <sp:errors path="sexId" /><p />	
+						cssClass="element-margin" /> <sp:errors path="sexId" cssClass="error" /><p />	
 		興趣: <sp:checkboxes path="interestIds" 
 							items="${ interests }"
 							itemLabel="name"
 							itemValue="id" 
-							cssClass="element-margin" /> <sp:errors path="interestIds" /><p />	
-		履歷: <sp:textarea path="resume" /> <sp:errors path="resume" /><p />
+							cssClass="element-margin" /> <sp:errors path="interestIds" cssClass="error" /><p />	
+		履歷: <sp:textarea path="resume" /> <sp:errors path="resume" cssClass="error" /><p />
 		
 		<button type="submit" class="pure-button pure-button-primary" >${ submitBtnName }</button>
 		<button type="button" style="display: ${ submitBtnName == '新增'?'none':'' }"
@@ -34,6 +34,6 @@
 				class="pure-button pure-button-primary" >重置</button>
 		<p />
 		<!-- 顯示所有錯誤訊息 -->
-		<sp:errors path="*" />													
+		<sp:errors path="*" cssClass="error" />													
 	</fieldset>
 </sp:form>

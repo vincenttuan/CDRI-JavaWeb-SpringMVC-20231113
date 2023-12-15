@@ -24,6 +24,9 @@ id: 序號(input hidden)
 				margin-right:2px;
 				margin-left:5px;
 			}
+			.error {
+				color: red;
+			}
 		</style>
 		<script type="text/javascript">
 			function deleteUser(userId) {

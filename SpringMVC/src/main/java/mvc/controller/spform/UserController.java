@@ -36,6 +36,7 @@ public class UserController {
 	private DataDao dataDao;
 	
 	@Autowired
+	@Qualifier("userDaoImplMySQL")
 	private UserDao userDao;
 	
 	@GetMapping("/")

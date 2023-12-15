@@ -42,16 +42,16 @@ public class UserController {
 	public String index(@ModelAttribute User user, Model model) {
 		addBasicModel(model);
 		model.addAttribute("submitBtnName", "新增");
-		model.addAttribute("_method", "POST"); // 
+		model.addAttribute("_method", "POST"); 
 		return "spform/user";
 	}
 	
 	@GetMapping("/{id}")
 	public String getUser(@PathVariable("id") Integer id, Model model) {
-		User user = userDao.getUserById(id).get();
 		
 		addBasicModel(model);
 		
+		User user = userDao.getUserById(id).get();
 		model.addAttribute("user", user);
 		model.addAttribute("submitBtnName", "修改");
 		model.addAttribute("_method", "PUT");
@@ -78,12 +78,12 @@ public class UserController {
 	public String addUser(@Valid User user, BindingResult result, Model model) { // @Valid 驗證, BindingResult 驗證結果
 		// 判斷驗證是否通過?
 		if(result.hasErrors()) { // 有錯誤發生
+			// 自動會將 errors 的資料放在 model 中
 			
 			addBasicModel(model);
-			
 			model.addAttribute("submitBtnName", "新增");
 			model.addAttribute("_method", "POST"); 
-			model.addAttribute("user", user);
+			model.addAttribute("user", user); // 給 form 表單用的 (ModelAttribute)
 			
 			return "spform/user";
 		}

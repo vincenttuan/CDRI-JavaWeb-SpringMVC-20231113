@@ -94,7 +94,18 @@ public class UserController {
 	}
 	
 	@PutMapping("/") // 修改 User
-	public String updateUser(User user) {
+	public String updateUser(@Valid User user, BindingResult result, Model model) {
+		// 判斷驗證是否通過?
+		if(result.hasErrors()) { // 有錯誤發生
+			// 自動會將 errors 的資料放在 model 中
+			
+			addBasicModel(model);
+			model.addAttribute("submitBtnName", "修改");
+			model.addAttribute("_method", "PUT"); 
+			model.addAttribute("user", user); // 給 form 表單用的 (ModelAttribute)
+			
+			return "spform/user";
+		}
 		int rowcount = userDao.updateUserById(user.getId(), user);
 		System.out.println("update User rowcount = " + rowcount);
 		return "redirect:/mvc/user/"; // 重導到 user 首頁

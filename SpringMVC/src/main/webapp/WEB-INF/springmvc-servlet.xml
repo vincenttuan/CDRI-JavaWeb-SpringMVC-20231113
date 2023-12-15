@@ -61,6 +61,14 @@
     <!-- 開啟註解驅動，對事務相關的註解進行掃描與解析 -->
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 	
+	<!-- 錯誤訊息設定 properites -->
+	<bean id="messageSource"
+			class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	    <property name="basename" value="/WEB-INF/resources/errorMessage" />
+	    <property name="useCodeAsDefaultMessage" value="false"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	
 	<!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
     <bean id="validator"
     		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">

@@ -10,7 +10,7 @@ ${ users }
 		<legend>
 			User Spring List
 		</legend>
-		<form >
+		<form>
 			查詢條件: 年齡大於等於
 			<input type="number" value="0" name="age">
 			<button type="submit">查詢</button>

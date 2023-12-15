@@ -24,7 +24,7 @@ public class UserDaoImplInMemory implements UserDao {
 	private static AtomicInteger atomicId = new AtomicInteger(0); // 序號
 	
 	@Autowired
-	@Qualifier("dataDaoImplMySQL")
+	@Qualifier("dataDaoImplInMemory")
 	private DataDao dataDao;
 	
 	@Override

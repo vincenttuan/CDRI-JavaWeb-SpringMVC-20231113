@@ -9,24 +9,25 @@
 		<!-- 表單元素 -->
 		<sp:input path="id" type="hidden" />
 		<input name="_method" type="hidden" value="${ _method }" />
-		姓名: <sp:input path="name" type="text" /><p />
-		年齡: <sp:input path="age" type="number" /><p />
-		生日: <sp:input path="birth" type="date" /><p />
+		姓名: <sp:input path="name" type="text" /> <sp:errors path="name" /><p />
+		年齡: <sp:input path="age" type="number" /> <sp:errors path="age" /><p />
+		生日: <sp:input path="birth" type="date" /> <sp:errors path="birth" /><p />
 		學歷: <sp:select path="educationId" 
 						items="${ educations }"
 						itemLabel="name"
-						itemValue="id" /><p />
+						itemValue="id" /> <sp:errors path="educationId" /><p />
 		性別: <sp:radiobuttons path="sexId" 
 						items="${ sexs }"
 						itemLabel="name"
 						itemValue="id" 
-						cssClass="element-margin" /><p />	
+						cssClass="element-margin" /> <sp:errors path="sexId" /><p />	
 		興趣: <sp:checkboxes path="interestIds" 
 							items="${ interests }"
 							itemLabel="name"
 							itemValue="id" 
-							cssClass="element-margin" /><p />	
-		履歷: <sp:textarea path="resume" /><p />
+							cssClass="element-margin" /> <sp:errors path="interestIds" /><p />	
+		履歷: <sp:textarea path="resume" /> <sp:errors path="resume" /><p />
+		
 		<button type="submit" class="pure-button pure-button-primary" >${ submitBtnName }</button>
 		<button type="button" style="display: ${ submitBtnName == '新增'?'none':'' }"
 				onClick="location.href='${pageContext.request.contextPath}/mvc/user/'"

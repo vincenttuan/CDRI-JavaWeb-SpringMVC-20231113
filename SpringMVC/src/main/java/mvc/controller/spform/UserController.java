@@ -105,11 +105,12 @@ public class UserController {
 		List<EducationData> educations = dataDao.findAllEducationDatas();
 		List<SexData> sexs = dataDao.findAllSexDatas();
 		List<InterestData> interests = dataDao.finAllInterestDatas();
+		List<User> users = userDao.findAllUsers();
 		
 		model.addAttribute("educations", educations); // 將教育程度資料傳給 jsp
 		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
 		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
-		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
+		model.addAttribute("users", users); // 取得目前最新 users 資料
 	}
 	
 }

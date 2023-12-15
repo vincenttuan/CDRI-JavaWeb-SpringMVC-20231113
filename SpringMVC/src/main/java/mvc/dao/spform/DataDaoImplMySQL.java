@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,40 +19,36 @@ public class DataDaoImplMySQL implements DataDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	private final String sqlAll = "SELECT itemId as id, itemName as name FROM web.basedata where groupName = ?";
+	private final String sqlSingle = "SELECT itemId as id, itemName as name FROM web.basedata where groupName = ? and itemId = ?";
 	@Override
 	public List<EducationData> findAllEducationDatas() {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(sqlAll, new BeanPropertyRowMapper<>(EducationData.class), "Education");
 	}
 
 	@Override
 	public Optional<EducationData> getEducationDataById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return Optional.of(jdbcTemplate.queryForObject(sqlSingle, new BeanPropertyRowMapper<>(EducationData.class), "Education", id));
 	}
 
 	@Override
 	public List<SexData> findAllSexDatas() {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(sqlAll, new BeanPropertyRowMapper<>(SexData.class), "Sex");
 	}
 
 	@Override
 	public Optional<SexData> getSexDataById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return Optional.of(jdbcTemplate.queryForObject(sqlSingle, new BeanPropertyRowMapper<>(SexData.class), "Sex", id));
 	}
 
 	@Override
 	public List<InterestData> finAllInterestDatas() {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(sqlAll, new BeanPropertyRowMapper<>(InterestData.class), "Interest");
 	}
 
 	@Override
 	public Optional<InterestData> getInterestDataById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return Optional.of(jdbcTemplate.queryForObject(sqlSingle, new BeanPropertyRowMapper<>(InterestData.class), "Interest", id));
 	}
 	
 }

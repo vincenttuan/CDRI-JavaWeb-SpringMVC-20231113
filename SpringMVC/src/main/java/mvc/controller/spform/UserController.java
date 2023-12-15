@@ -2,12 +2,14 @@ package mvc.controller.spform;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.POST;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,30 +40,18 @@ public class UserController {
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute User user, Model model) {
-		List<EducationData> educations = dataDao.findAllEducationDatas();
-		List<SexData> sexs = dataDao.findAllSexDatas();
-		List<InterestData> interests = dataDao.finAllInterestDatas();
-		
-		model.addAttribute("educations", educations); // 將教育程度資料傳給 jsp
-		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
-		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
-		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
+		addBasicModel(model);
 		model.addAttribute("submitBtnName", "新增");
-		//model.addAttribute("_method", "POST"); // 
+		model.addAttribute("_method", "POST"); // 
 		return "spform/user";
 	}
 	
 	@GetMapping("/{id}")
 	public String getUser(@PathVariable("id") Integer id, Model model) {
 		User user = userDao.getUserById(id).get();
-		List<EducationData> educations = dataDao.findAllEducationDatas();
-		List<SexData> sexs = dataDao.findAllSexDatas();
-		List<InterestData> interests = dataDao.finAllInterestDatas();
 		
-		model.addAttribute("educations", educations); // 將教育程度資料傳給 jsp
-		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
-		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
-		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
+		addBasicModel(model);
+		
 		model.addAttribute("user", user);
 		model.addAttribute("submitBtnName", "修改");
 		model.addAttribute("_method", "PUT");
@@ -85,7 +75,19 @@ public class UserController {
 	}
 	
 	@PostMapping("/") // 新增 User
-	public String addUser(User user) {
+	public String addUser(@Valid User user, BindingResult result, Model model) { // @Valid 驗證, BindingResult 驗證結果
+		// 判斷驗證是否通過?
+		if(result.hasErrors()) { // 有錯誤發生
+			
+			addBasicModel(model);
+			
+			model.addAttribute("submitBtnName", "新增");
+			model.addAttribute("_method", "POST"); 
+			model.addAttribute("user", user);
+			
+			return "spform/user";
+		}
+		
 		int rowcount = userDao.addUser(user);
 		System.out.println("add User rowcount = " + rowcount);
 		return "redirect:/mvc/user/"; // 重導到 user 首頁
@@ -98,5 +100,16 @@ public class UserController {
 		return "redirect:/mvc/user/"; // 重導到 user 首頁
 	}
 	
+	// 首頁基礎資料
+	private void addBasicModel(Model model) {
+		List<EducationData> educations = dataDao.findAllEducationDatas();
+		List<SexData> sexs = dataDao.findAllSexDatas();
+		List<InterestData> interests = dataDao.finAllInterestDatas();
+		
+		model.addAttribute("educations", educations); // 將教育程度資料傳給 jsp
+		model.addAttribute("sexs", sexs); // 將性別資料傳給 jsp
+		model.addAttribute("interests", interests); // 將興趣資料傳給 jsp
+		model.addAttribute("users", userDao.findAllUsers()); // 取得目前最新 users 資料
+	}
 	
 }

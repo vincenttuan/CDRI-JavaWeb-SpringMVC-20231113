@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -29,34 +30,38 @@ public class UserDaoImplMySQL implements UserDao {
 	private DataDao dataDao;
 
 	@Override
-	public int addUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public int addUser(User user) {
+        String sql = "INSERT INTO user (name, age, birth, resume, educationId, sexId) VALUES (?, ?, ?, ?, ?, ?)";
+        
+        return jdbcTemplate.update(sql, user.getName(), user.getAge(), user.getBirth(), user.getResume(),
+                user.getEducationId(), user.getSexId());
+    }
 
-	@Override
-	public int updateUserById(Integer id, User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int updateUserById(Integer id, User user) {
+        String sql = "UPDATE user SET name=?, age=?, birth=?, resume=?, educationId=?, sexId=? WHERE id=?";
+        return jdbcTemplate.update(sql, user.getName(), user.getAge(), user.getBirth(), user.getResume(),
+                user.getEducationId(), user.getSexId(), id);
+    }
 
-	@Override
-	public int deleteUserById(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int deleteUserById(Integer id) {
+        String sql = "DELETE FROM user WHERE id=?";
+        return jdbcTemplate.update(sql, id);
+    }
 
-	@Override
-	public Optional<User> getUserById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
+    @Override
+    public Optional<User> getUserById(Integer id) {
+        String sql = "SELECT * FROM user WHERE id=?";
+        User user = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+        return Optional.ofNullable(user);
+    }
 
-	@Override
-	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<User> findAllUsers() {
+        String sql = "SELECT * FROM user";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+    }
 	
 	
 	

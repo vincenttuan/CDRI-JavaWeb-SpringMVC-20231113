@@ -7,13 +7,21 @@ ${ users }
 -->
 <div class="pure-form">
 	<fieldset>
-		<legend>User Spring List</legend>
+		<legend>
+			User Spring List
+		</legend>
+		<form >
+			查詢條件: 年齡大於等於
+			<input type="number" value="0" name="age">
+			<button type="submit">查詢</button>
+		</form>
+		<br>
 		<!-- 表單元素 -->
 		<table class="pure-table pure-table-bordered">
 			<thead>
 				<tr>
 					<th>id</th><th>姓名</th><th>性別</th><th>年齡</th><th>生日</th>
-					<th>教育稠度</th><th>興趣</th><th>興趣</th><th>履歷資訊</th>
+					<th>教育程度</th><th>興趣</th><th>興趣</th><th>履歷資訊</th>
 					<th>修改</th><th>刪除</th>
 				</tr>
 			</thead>

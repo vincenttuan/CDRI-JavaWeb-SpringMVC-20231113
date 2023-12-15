@@ -52,14 +52,14 @@ public class UserDaoImplMySQL implements UserDao {
 
     @Override
     public Optional<User> getUserById(Integer id) {
-        String sql = "SELECT * FROM user WHERE id=?";
+        String sql = "SELECT id, name, age, birth, resume, educationId, sexId FROM user WHERE id=?";
         User user = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
         return Optional.ofNullable(user);
     }
 
     @Override
     public List<User> findAllUsers() {
-        String sql = "SELECT * FROM user";
+        String sql = "SELECT id, name, age, birth, resume, educationId, sexId FROM user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
     }
 	

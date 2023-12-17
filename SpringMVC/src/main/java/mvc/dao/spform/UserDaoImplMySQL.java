@@ -66,6 +66,28 @@ public class UserDaoImplMySQL implements UserDao {
         return rowcount;
     }
 
+/*	
+@Override
+@Transactional(isolation = Isolation.REPEATABLE_READ)
+public int addUser(User user) {
+    // 插入用戶
+    final String insertSql = "INSERT INTO user (name, age, birth, resume, educationId, sexId) VALUES (?, ?, ?, ?, ?, ?)";
+    jdbcTemplate.update(insertSql, user.getName(), user.getAge(), new java.sql.Date(user.getBirth().getTime()), 
+                        user.getResume(), user.getEducationId(), user.getSexId());
+
+    // 獲取剛插入的用戶 ID
+    final String lastIdSql = "SELECT LAST_INSERT_ID()";
+    int userId = jdbcTemplate.queryForObject(lastIdSql, Integer.class);
+
+    // 插入用戶興趣記錄
+    String interestInsertSql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
+    for(Integer interestId : user.getInterestIds()) {
+        jdbcTemplate.update(interestInsertSql, userId, interestId);
+    }
+
+    return userId; // 返回用戶 ID
+}
+*/
     @Override
     public int updateUserById(Integer id, User user) {
         String sql = "UPDATE user SET name=?, age=?, birth=?, resume=?, educationId=?, sexId=? WHERE id=?";

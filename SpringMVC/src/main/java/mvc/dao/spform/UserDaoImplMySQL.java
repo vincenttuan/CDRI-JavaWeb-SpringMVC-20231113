@@ -72,20 +72,20 @@ public class UserDaoImplMySQL implements UserDao {
 public int addUser(User user) {
     final String insertSql = "INSERT INTO user (name, age, birth, resume, educationId, sexId) VALUES (:name, :age, :birth, :resume, :educationId, :sexId)";
 
-    // 使用 BeanPropertySqlParameterSource 自动映射字段
+    // 使用 BeanPropertySqlParameterSource 自動映射
     SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
 
-    // 使用 KeyHolder 来捕获自动生成的键
+    // 使用 KeyHolder 來取得自動產生的 ID
     KeyHolder keyHolder = new GeneratedKeyHolder();
 
-    // 使用 NamedParameterJdbcTemplate 执行更新操作
+    // 使用 NamedParameterJdbcTemplate 執行更新操作
     NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     namedParameterJdbcTemplate.update(insertSql, paramSource, keyHolder, new String[] {"ID"});
 
-    // 从 KeyHolder 获取生成的用户 ID
+    // 從 KeyHolder 獲取生成的 user ID
     int userId = keyHolder.getKey().intValue();
 
-    // 插入用户兴趣记录
+    // 插入 user 興趣記錄
     String interestInsertSql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
     for (Integer interestId : user.getInterestIds()) {
         jdbcTemplate.update(interestInsertSql, userId, interestId);

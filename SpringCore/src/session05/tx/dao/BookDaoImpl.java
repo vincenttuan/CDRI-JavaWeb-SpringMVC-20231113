@@ -30,8 +30,14 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Integer reduceBookStock(Integer bookId, Integer amountToReduce) { // 更新書本庫存(減量)
-		// TODO Auto-generated method stub
-		return null;
+		// 1. 檢查庫存
+		Integer bookStock = getBookStock(bookId);
+		if(bookStock < amountToReduce) {
+			throw new RuntimeException(String.format("book_id: %d 庫存不足 (%d < %d)%n", bookId, bookStock, amountToReduce));
+		}
+		// 2. 更新庫存(目前存量 - amountToReduce)
+		String sql = "update stock set book_amount = book_amount - ? where book_id = ?";
+		return jdbcTemplate.update(sql, amountToReduce, bookId);
 	}
 
 	@Override

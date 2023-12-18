@@ -91,7 +91,7 @@ public class UserDaoImplMySQL implements UserDao {
 	    // 從 KeyHolder 獲取生成的 user ID
 	    int userId = keyHolder.getKey().intValue();
 	
-	    // 插入 user 興趣記錄
+	    // 插入 user 興趣記錄(可以改用 batch update 批次新增來運行)
 	    String interestInsertSql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
 	    for (Integer interestId : user.getInterestIds()) {
 	        jdbcTemplate.update(interestInsertSql, userId, interestId);

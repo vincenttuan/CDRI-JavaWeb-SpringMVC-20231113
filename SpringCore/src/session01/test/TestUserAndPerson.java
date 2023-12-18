@@ -1,6 +1,6 @@
 package session01.test;
 
-public class TestUser {
+public class TestUserAndPerson {
 
 	public static void main(String[] args) {
 		User user1 = new User("John", 18, "John@gmail.com");
@@ -19,6 +19,7 @@ public class TestUser {
 		User user4 = new User.Builder()
 				.email("John@gmail.com")
 				.build();
+		
 		
 	}
 

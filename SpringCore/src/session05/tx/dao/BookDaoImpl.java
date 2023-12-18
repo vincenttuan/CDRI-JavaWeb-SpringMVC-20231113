@@ -42,8 +42,14 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Integer reduceWalletBalance(String username, Integer bookPrice) { // 更新錢包餘額(減量)
-		// TODO Auto-generated method stub
-		return null;
+		// 1. 檢查客戶餘額
+		Integer balance = getWalletBalance(username);
+		if(balance < bookPrice) {
+			throw new RuntimeException(String.format("username: %d 餘額不足 (%d < %d)%n", username, balance, bookPrice));
+		}
+		// 2. 更新餘額(目前餘額 - bookPrice);
+		String sql = "update wallet set balance = balance - ? where username = ?";
+		return jdbcTemplate.update(sql, bookPrice, username);
 	}
 
 }

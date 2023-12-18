@@ -51,27 +51,22 @@ public class DataDaoImplMySQL implements DataDaoMySQL {
 		return Optional.of(jdbcTemplate.queryForObject(sqlSingle, new BeanPropertyRowMapper<>(InterestData.class), "Interest", id));
 	}
 	
-
-	// "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)"
-	// "delete from user_interest where userId = ?"
-	// "SELECT interestId FROM web.user_interest where userId = ?"
-	
 	@Override
 	public int addInterestData(Integer userId, Integer interestId) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
+		return jdbcTemplate.update(sql, userId, interestId);
 	}
 
 	@Override
 	public int deleteInterestData(Integer userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "delete from user_interest where userId = ?";
+		return jdbcTemplate.update(sql, userId);
 	}
 
 	@Override
 	public List<Integer> findAllInterestDataIds(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT interestId FROM web.user_interest where userId = ?";
+		return jdbcTemplate.queryForList(sql, Integer.class, userId);
 	}
 	
 }

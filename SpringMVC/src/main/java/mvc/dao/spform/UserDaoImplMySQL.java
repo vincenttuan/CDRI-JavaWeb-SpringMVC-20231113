@@ -84,7 +84,7 @@ public class UserDaoImplMySQL implements UserDao {
 	
 	    // 使用 KeyHolder 來取得自動產生的 ID
 	    KeyHolder keyHolder = new GeneratedKeyHolder();
-	
+	    
 	    // 使用 NamedParameterJdbcTemplate 執行更新操作
 	    namedParameterJdbcTemplate.update(insertSql, paramSource, keyHolder, new String[] {"ID"});
 	

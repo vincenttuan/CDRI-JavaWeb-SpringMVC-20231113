@@ -4,10 +4,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,11 +131,16 @@ public class UserDaoImplMySQL implements UserDao {
         
         SexData sex = dataDao.getSexDataById(user.getSexId()).get();
         EducationData edu = dataDao.getEducationDataById(user.getEducationId()).get();
+        /*
         List<InterestData> interests = new ArrayList<InterestData>();
         for(Integer interestId : user.getInterestIds()) {
         	InterestData interest = dataDao.getInterestDataById(interestId).get();
         	interests.add(interest);
         }
+        */
+        List<InterestData> interests = Arrays.stream(user.getInterestIds())
+        						.map(interestId -> dataDao.getInterestDataById(interestId).get())
+        						.collect(Collectors.toList());
         
         user.setSex(sex);
         user.setEducation(edu);

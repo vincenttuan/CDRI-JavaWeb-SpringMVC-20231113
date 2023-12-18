@@ -117,8 +117,12 @@ public class UserDaoImplMySQL implements UserDao {
 
     @Override
     public Optional<User> getUserById(Integer id) {
-        String sql = "SELECT id, name, age, birth, resume, educationId, sexId FROM user WHERE id=?";
-        User user = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+        String sql1 = "SELECT id, name, age, birth, resume, educationId, sexId FROM user WHERE id=?";
+        User user = jdbcTemplate.queryForObject(sql1, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+        
+        String sql2 = "SELECT interestId FROM web.user_interest where userId = ?";
+        List<Integer> interestIds = jdbcTemplate.queryForList(sql2, Integer.class, user.getId());
+        user.setInterestIds((Integer[])interestIds.toArray());
         
         SexData sex = dataDao.getSexDataById(user.getSexId()).get();
         EducationData edu = dataDao.getEducationDataById(user.getEducationId()).get();

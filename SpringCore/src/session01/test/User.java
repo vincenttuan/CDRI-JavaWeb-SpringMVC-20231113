@@ -33,7 +33,7 @@ public class User {
 		}
 		
 		public User build() {
-			return User(this);
+			return new User(this);
 		}
 	}
 	

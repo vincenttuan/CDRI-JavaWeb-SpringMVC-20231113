@@ -106,8 +106,17 @@ public class UserDaoImplMySQL implements UserDao {
 
     @Override
     public int updateUserById(Integer id, User user) {
-        String sql = "UPDATE user SET name=?, age=?, birth=?, resume=?, educationId=?, sexId=? WHERE id=?";
-        return jdbcTemplate.update(sql, user.getName(), user.getAge(), user.getBirth(), user.getResume(),
+    	// 異動 user_interest 資料表
+    	String sql1 = "delete from user_interest where userId = ?"; // 刪除該使用者在 user_interest 的紀錄
+    	jdbcTemplate.update(sql1, id);
+    	
+    	String sql2 = "insert into user_interest(userId, interestId) values (?, ?)"; // 增加該使用者在 user_interest 的紀錄
+    	Arrays.stream(user.getInterestIds())
+    		  .forEach(interestId -> jdbcTemplate.update(sql2, id, interestId)); // 逐筆加入
+    	
+    	// 異動 user 資料表
+        String sql3 = "UPDATE user SET name=?, age=?, birth=?, resume=?, educationId=?, sexId=? WHERE id=?";
+        return jdbcTemplate.update(sql3, user.getName(), user.getAge(), user.getBirth(), user.getResume(),
                 user.getEducationId(), user.getSexId(), id);
     }
 

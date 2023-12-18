@@ -11,7 +11,7 @@ public class User {
 		this.age = age;
 		this.email = email;
 	}
-
+	
 	public User(Builder builder) {
 		this.name = builder.name;
 		this.age = builder.age;

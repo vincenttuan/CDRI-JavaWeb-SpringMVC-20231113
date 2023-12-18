@@ -6,6 +6,12 @@ public class User {
 	private final int age;
 	private final String email;
 	
+	public User(String name, int age, String email) {
+		this.name = name;
+		this.age = age;
+		this.email = email;
+	}
+
 	public User(Builder builder) {
 		this.name = builder.name;
 		this.age = builder.age;

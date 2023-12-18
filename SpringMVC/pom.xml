@@ -29,7 +29,11 @@
 	</properties>
 
 	<dependencies>
-		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+		</dependency>
 		<!-- Hibernate Validator -->
 		<dependency>
 		    <groupId>org.hibernate</groupId>

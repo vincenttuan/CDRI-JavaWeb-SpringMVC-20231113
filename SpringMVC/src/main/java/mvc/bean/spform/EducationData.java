@@ -2,19 +2,15 @@ package mvc.bean.spform;
 
 import com.google.gson.Gson;
 
-// 教育程度資料
-public class EducationData extends BaseData {
-	public EducationData() {
-		
-	}
-	
-	public EducationData(Integer id, String name) {
-		super(id, name);
-	}
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-	public String getDisplay() {
-		return name + "(" + id + ")";
-	}
-	
-	
+// 教育程度資料
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class EducationData {
+	protected Integer id;
+	protected String name;
 }

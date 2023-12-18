@@ -19,7 +19,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.gson.Gson;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 // 對應 spring form 的表單資訊
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 	private Integer id; // 序號
 	
@@ -56,73 +63,6 @@ public class User {
 	
 	// ---------------------------------------------------------
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Integer getAge() {
-		return age;
-	}
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
-	public String getResume() {
-		return resume;
-	}
-	public void setResume(String resume) {
-		this.resume = resume;
-	}
-	public Integer getEducationId() {
-		return educationId;
-	}
-	public void setEducationId(Integer educationId) {
-		this.educationId = educationId;
-	}
-	public EducationData getEducation() {
-		return education;
-	}
-	public void setEducation(EducationData education) {
-		this.education = education;
-	}
-	public Integer getSexId() {
-		return sexId;
-	}
-	public void setSexId(Integer sexId) {
-		this.sexId = sexId;
-	}
-	public SexData getSex() {
-		return sex;
-	}
-	public void setSex(SexData sex) {
-		this.sex = sex;
-	}
-	public Integer[] getInterestIds() {
-		return interestIds;
-	}
-	public void setInterestIds(Integer[] interestIds) {
-		this.interestIds = interestIds;
-	}
-	public List<InterestData> getInterests() {
-		return interests;
-	}
-	public void setInterests(List<InterestData> interests) {
-		this.interests = interests;
-	}
-	
 	// 顯示所有興趣名稱(給 jstl 使用, 使用名稱: interestNames)
 	public String getInterestNames() {
 		if(interestIds != null && interests != null) {
@@ -132,13 +72,5 @@ public class User {
 		}
 		return "";
 	}
-	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age + ", birth=" + birth + ", resume=" + resume
-				+ ", educationId=" + educationId + ", education=" + education + ", sexId=" + sexId + ", sex=" + sex
-				+ ", interestIds=" + Arrays.toString(interestIds) + ", interests=" + interests + "]";
-	}
-	
 	
 }

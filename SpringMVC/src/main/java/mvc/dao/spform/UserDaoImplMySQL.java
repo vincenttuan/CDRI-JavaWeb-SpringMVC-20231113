@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mchange.v2.codegen.bean.BeangenUtils;
 
+import mvc.bean.spform.EducationData;
 import mvc.bean.spform.InterestData;
 import mvc.bean.spform.SexData;
 import mvc.bean.spform.User;
@@ -118,6 +119,19 @@ public class UserDaoImplMySQL implements UserDao {
     public Optional<User> getUserById(Integer id) {
         String sql = "SELECT id, name, age, birth, resume, educationId, sexId FROM user WHERE id=?";
         User user = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+        
+        SexData sex = dataDao.getSexDataById(user.getSexId()).get();
+        EducationData edu = dataDao.getEducationDataById(user.getEducationId()).get();
+        List<InterestData> interests = new ArrayList<InterestData>();
+        for(Integer interestId : user.getInterestIds()) {
+        	InterestData interest = dataDao.getInterestDataById(interestId).get();
+        	interests.add(interest);
+        }
+        
+        user.setSex(sex);
+        user.setEducation(edu);
+        user.setInterests(interests);
+        
         return Optional.ofNullable(user);
     }
 

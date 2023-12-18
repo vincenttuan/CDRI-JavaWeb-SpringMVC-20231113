@@ -45,7 +45,7 @@ public class BookDaoImpl implements BookDao {
 		// 1. 檢查客戶餘額
 		Integer balance = getWalletBalance(username);
 		if(balance < bookPrice) {
-			throw new RuntimeException(String.format("username: %d 餘額不足 (%d < %d)%n", username, balance, bookPrice));
+			throw new RuntimeException(String.format("username: %s 餘額不足 (%d < %d)%n", username, balance, bookPrice));
 		}
 		// 2. 更新餘額(目前餘額 - bookPrice);
 		String sql = "update wallet set balance = balance - ? where username = ?";

@@ -8,6 +8,8 @@ public class Test {
 		food = new Ham(food);
 		food = new Ham(food);
 		food = new Tuna(food);
+		food = new Egg(food);
+		food = new Egg(food);
 		food = new Lettue(food);
 		
 		// 結帳

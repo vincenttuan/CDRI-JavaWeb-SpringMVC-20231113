@@ -122,8 +122,13 @@ public class UserDaoImplMySQL implements UserDao {
 
     @Override
     public int deleteUserById(Integer id) {
-        String sql = "DELETE FROM user WHERE id=?";
-        return jdbcTemplate.update(sql, id);
+    	// 先刪除 user_interest
+    	String sql1 = "delete from user_interest where userId = ?";
+    	jdbcTemplate.update(sql1, id);
+    	
+    	// 再刪除 user
+        String sql2 = "DELETE FROM user WHERE id=?";
+        return jdbcTemplate.update(sql2, id);
     }
 
     @Override

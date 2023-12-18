@@ -128,7 +128,9 @@ public class UserDaoImplMySQL implements UserDao {
     @Override
     public List<User> findAllUsers() {
         String sql = "SELECT id, name, age, birth, resume, educationId, sexId FROM user";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        List<User> users = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        users.forEach(this::enrichUserDetails); // users.forEach(user -> enrichUserDetails(user));
+        return users;
     }
 	
     // 豐富/增強 user 的其他資料

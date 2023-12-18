@@ -123,10 +123,7 @@ public class UserDaoImplMySQL implements UserDao {
         String sql2 = "SELECT interestId FROM web.user_interest where userId = ?";
         List<Integer> interestIds = jdbcTemplate.queryForList(sql2, Integer.class, user.getId());
         
-        Integer[] interestIdArray = new Integer[interestIds.size()];
-        for(int i=0;i<interestIdArray.length;i++) {
-        	interestIdArray[i] = interestIds.get(i); 
-        }
+        Integer[] interestIdArray = interestIds.toArray(new Integer[0]);
         user.setInterestIds(interestIdArray);
         
         SexData sex = dataDao.getSexDataById(user.getSexId()).get();

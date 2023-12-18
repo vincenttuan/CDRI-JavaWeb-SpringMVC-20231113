@@ -14,7 +14,7 @@ import mvc.bean.spform.InterestData;
 import mvc.bean.spform.SexData;
 
 @Repository
-public class DataDaoImplMySQL implements DataDao {
+public class DataDaoImplMySQL implements DataDaoMySQL {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -49,6 +49,29 @@ public class DataDaoImplMySQL implements DataDao {
 	@Override
 	public Optional<InterestData> getInterestDataById(Integer id) {
 		return Optional.of(jdbcTemplate.queryForObject(sqlSingle, new BeanPropertyRowMapper<>(InterestData.class), "Interest", id));
+	}
+	
+
+	// "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)"
+	// "delete from user_interest where userId = ?"
+	// "SELECT interestId FROM web.user_interest where userId = ?"
+	
+	@Override
+	public int addInterestData(Integer userId, Integer interestId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteInterestData(Integer userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Integer> findAllInterestDataIds(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

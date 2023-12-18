@@ -123,8 +123,9 @@ public class UserDaoImplMySQL implements UserDao {
         String sql2 = "SELECT interestId FROM web.user_interest where userId = ?";
         List<Integer> interestIds = jdbcTemplate.queryForList(sql2, Integer.class, user.getId());
         
-        Integer[] interestIdArray = interestIds.toArray(new Integer[0]);
-        user.setInterestIds(interestIdArray);
+        //Integer[] interestIdArray = interestIds.toArray(new Integer[0]); // 將 List<Integer> 轉 Integer[]
+        //user.setInterestIds(interestIdArray);
+        user.setInterestIds(interestIds.toArray(new Integer[0]));
         
         SexData sex = dataDao.getSexDataById(user.getSexId()).get();
         EducationData edu = dataDao.getEducationDataById(user.getEducationId()).get();

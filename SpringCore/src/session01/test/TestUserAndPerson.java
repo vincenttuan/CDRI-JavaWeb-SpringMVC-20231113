@@ -20,6 +20,9 @@ public class TestUserAndPerson {
 				.email("John@gmail.com")
 				.build();
 		
+		Person person = Person.builder()
+				.name("John").age(18).email("John@g,ail.com")
+				.build();
 		
 	}
 

@@ -18,6 +18,10 @@ public class User {
 		this.email = builder.email;
 	}
 	
+	public static Builder builder() {
+		return new Builder();
+	}
+	
 	public static class Builder {
 		private String name; // 內部變數
 		private int age;

@@ -20,6 +20,7 @@ public class BookController {
 	}
 	
 	// 買3本書(套書概念)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void buyThreeBooks(String username, Integer bookId) {
 		bookOneService.buyOne(username, bookId);
 		bookOneService.buyOne(username, bookId);

@@ -41,7 +41,7 @@ public class UserDaoImplMySQL implements UserDao {
 	
 	@Autowired
 	@Qualifier("dataDaoImplMySQL")
-	private DataDao dataDao;
+	private DataDaoMySQL dataDao;
 
 	/*
 	@Override
@@ -95,9 +95,8 @@ public class UserDaoImplMySQL implements UserDao {
 	    int userId = keyHolder.getKey().intValue();
 	
 	    // 插入 user 興趣記錄(可以改用 batch update 批次新增來運行)
-	    String interestInsertSql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
 	    for (Integer interestId : user.getInterestIds()) {
-	        jdbcTemplate.update(interestInsertSql, userId, interestId);
+	    	dataDao.addInterestData(userId, interestId);
 	    }
 	
 	    return userId;
@@ -107,12 +106,10 @@ public class UserDaoImplMySQL implements UserDao {
     @Override
     public int updateUserById(Integer id, User user) {
     	// 異動 user_interest 資料表
-    	String sql1 = "delete from user_interest where userId = ?"; // 刪除該使用者在 user_interest 的紀錄
-    	jdbcTemplate.update(sql1, id);
+    	dataDao.deleteInterestData(id);
     	
-    	String sql2 = "insert into user_interest(userId, interestId) values (?, ?)"; // 增加該使用者在 user_interest 的紀錄
     	Arrays.stream(user.getInterestIds())
-    		  .forEach(interestId -> jdbcTemplate.update(sql2, id, interestId)); // 逐筆加入
+    		  .forEach(interestId -> dataDao.addInterestData(id, interestId)); // 逐筆加入
     	
     	// 異動 user 資料表
         String sql3 = "UPDATE user SET name=?, age=?, birth=?, resume=?, educationId=?, sexId=? WHERE id=?";
@@ -123,8 +120,7 @@ public class UserDaoImplMySQL implements UserDao {
     @Override
     public int deleteUserById(Integer id) {
     	// 先刪除 user_interest
-    	String sql1 = "delete from user_interest where userId = ?";
-    	jdbcTemplate.update(sql1, id);
+    	dataDao.deleteInterestData(id);
     	
     	// 再刪除 user
         String sql2 = "DELETE FROM user WHERE id=?";
@@ -151,8 +147,7 @@ public class UserDaoImplMySQL implements UserDao {
 	
     // 豐富/增強 user 的其他資料
     private void enrichUserDetails(User user) {
-        String sql2 = "SELECT interestId FROM web.user_interest where userId = ?";
-        List<Integer> interestIds = jdbcTemplate.queryForList(sql2, Integer.class, user.getId());
+        List<Integer> interestIds = dataDao.findAllInterestDataIds(user.getId());
         
         //Integer[] interestIdArray = interestIds.toArray(new Integer[0]); // 將 List<Integer> 轉 Integer[]
         //user.setInterestIds(interestIdArray);

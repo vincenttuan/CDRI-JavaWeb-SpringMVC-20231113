@@ -121,6 +121,7 @@ public class UserDaoImplMySQL implements UserDao {
     public Optional<User> getUserById(Integer id) {
         String sql1 = "SELECT id, name, age, birth, resume, educationId, sexId FROM user WHERE id=?";
         User user = jdbcTemplate.queryForObject(sql1, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+        // 豐富/增強 user 的其他資料
         enrichUserDetails(user);
         return Optional.ofNullable(user);
     }
@@ -129,6 +130,7 @@ public class UserDaoImplMySQL implements UserDao {
     public List<User> findAllUsers() {
         String sql = "SELECT id, name, age, birth, resume, educationId, sexId FROM user";
         List<User> users = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        // 豐富/增強 user 的其他資料
         users.forEach(this::enrichUserDetails); // users.forEach(user -> enrichUserDetails(user));
         return users;
     }

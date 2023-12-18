@@ -18,6 +18,7 @@ public class User {
 		this.email = builder.email;
 	}
 	
+	
 	public static Builder builder() {
 		return new Builder();
 	}

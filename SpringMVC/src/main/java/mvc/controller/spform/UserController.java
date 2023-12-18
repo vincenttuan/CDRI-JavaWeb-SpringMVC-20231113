@@ -40,7 +40,7 @@ public class UserController {
 	private UserDao userDao;
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute User user, Model model) {
+	public String index(@ModelAttribute("user") User user, Model model) {
 		addBasicModel(model);
 		model.addAttribute("submitBtnName", "新增");
 		model.addAttribute("_method", "POST"); 

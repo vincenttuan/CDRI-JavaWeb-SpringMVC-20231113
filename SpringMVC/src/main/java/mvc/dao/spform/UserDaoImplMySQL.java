@@ -14,9 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mchange.v2.codegen.bean.BeangenUtils;
 
@@ -31,9 +34,13 @@ public class UserDaoImplMySQL implements UserDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	@Autowired
 	@Qualifier("dataDaoImplMySQL")
 	private DataDao dataDao;
 
+	/*
 	@Override
     public int addUser(User user) {
 		// 新增 user 紀錄
@@ -65,36 +72,35 @@ public class UserDaoImplMySQL implements UserDao {
         
         return rowcount;
     }
+    */
 
-/*	
-@Override
-@Transactional
-public int addUser(User user) {
-    final String insertSql = "INSERT INTO user (name, age, birth, resume, educationId, sexId) VALUES (:name, :age, :birth, :resume, :educationId, :sexId)";
+	@Override
+	@Transactional
+	public int addUser(User user) {
+	    final String insertSql = "INSERT INTO user (name, age, birth, resume, educationId, sexId) VALUES (:name, :age, :birth, :resume, :educationId, :sexId)";
+	
+	    // 使用 BeanPropertySqlParameterSource 自動映射
+	    BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+	
+	    // 使用 KeyHolder 來取得自動產生的 ID
+	    KeyHolder keyHolder = new GeneratedKeyHolder();
+	
+	    // 使用 NamedParameterJdbcTemplate 執行更新操作
+	    namedParameterJdbcTemplate.update(insertSql, paramSource, keyHolder, new String[] {"ID"});
+	
+	    // 從 KeyHolder 獲取生成的 user ID
+	    int userId = keyHolder.getKey().intValue();
+	
+	    // 插入 user 興趣記錄
+	    String interestInsertSql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
+	    for (Integer interestId : user.getInterestIds()) {
+	        jdbcTemplate.update(interestInsertSql, userId, interestId);
+	    }
+	
+	    return userId;
+	}
 
-    // 使用 BeanPropertySqlParameterSource 自動映射
-    SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
 
-    // 使用 KeyHolder 來取得自動產生的 ID
-    KeyHolder keyHolder = new GeneratedKeyHolder();
-
-    // 使用 NamedParameterJdbcTemplate 執行更新操作
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-    namedParameterJdbcTemplate.update(insertSql, paramSource, keyHolder, new String[] {"ID"});
-
-    // 從 KeyHolder 獲取生成的 user ID
-    int userId = keyHolder.getKey().intValue();
-
-    // 插入 user 興趣記錄
-    String interestInsertSql = "INSERT INTO user_interest(userId, interestId) VALUES (?, ?)";
-    for (Integer interestId : user.getInterestIds()) {
-        jdbcTemplate.update(interestInsertSql, userId, interestId);
-    }
-
-    return userId;
-}
-
-*/
     @Override
     public int updateUserById(Integer id, User user) {
         String sql = "UPDATE user SET name=?, age=?, birth=?, resume=?, educationId=?, sexId=? WHERE id=?";

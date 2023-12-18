@@ -12,5 +12,4 @@ public abstract class BaseData {
 	protected Integer id;
 	protected String name;
 	
-	
 }

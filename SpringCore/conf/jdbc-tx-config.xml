@@ -18,7 +18,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">    
   
 	<!-- 利用 component-scan 掃描 base-package 內與子資料夾所有有 @ 標註的程式 -->
-	<context:component-scan base-package="spring.core.session05" />
+	<context:component-scan base-package="session05" />
 	
 	<!-- load db_tx.properties -->
 	<context:property-placeholder location="db_tx.properties" />

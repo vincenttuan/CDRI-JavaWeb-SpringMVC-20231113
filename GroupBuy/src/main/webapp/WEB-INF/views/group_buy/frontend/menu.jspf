@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="pure-menu pure-menu-horizontal" style="background-color:#EBD6D6">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected">
+            <a href="./main" class="pure-menu-link">團購首頁</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./cart" class="pure-menu-link">🛒 購物車</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="../backend/main" class="pure-menu-link">團購後台首頁</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="../logout" class="pure-menu-link">🔞 登出</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="#" class="pure-menu-link">👼 ${ user.username }</a>
+        </li>
+    </ul>
+</div>
+<!-- 公告 -->
+<!-- 
+<marquee direction="right" height="30" scrollamount="10" behavior="alternate">跑馬1 🐴</marquee>
+ -->
+<p />

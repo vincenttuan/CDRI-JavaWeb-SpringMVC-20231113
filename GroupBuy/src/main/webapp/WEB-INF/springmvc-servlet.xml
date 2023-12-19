@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	
+	<!-- 启用 AspectJ 自动代理 -->
+    <aop:aspectj-autoproxy/>
+    
+    <!-- 定义 LoggingAspect 切面 -->
+    <bean id="loggingAspect" class="spring.mvc.group_buy.aop.LoggingAspect"/>
+
+    <!-- 定义切面和通知 -->
+    <aop:config>
+        <aop:aspect id="myAspect" ref="loggingAspect">
+            <aop:pointcut id="logMethod"
+                          expression="execution(* spring.mvc.group_buy.controller.*.*(..))"/>
+            <aop:before pointcut-ref="logMethod" method="logMethodParams"/>
+        </aop:aspect>
+    </aop:config>
+    
+	<mvc:annotation-driven />
+	
+	<context:component-scan base-package="spring.mvc" />
+	
+	<!-- 配置 view 渲染器位置 -->
+	<bean id="internalResourceViewResolver"
+		  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  <property name="prefix" value="/WEB-INF/views/" />
+	  <property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 錯誤訊息設定 properites -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/resource/errorMessage" />
+        <property name="useCodeAsDefaultMessage" value="false"/>  
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+    
+    <!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
+    <bean id="validator"
+    		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    	<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+    	<property name="validationMessageSource" ref="messageSource" />
+    </bean>
+    
+    <!--  解決中文 與 JSR 303 Validator 設定 -->
+	<mvc:annotation-driven validator="validator">
+		<mvc:message-converters
+			register-defaults="true">
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- c3p0 pool -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/group_buy?serverTimezone=Asia/Taipei&amp;characterEncoding=utf-8&amp;useUnicode=true" />
+		<property name="user" value="root" />
+		<property name="password" value="12345678" />
+		<property name="maxConnectionAge" value="300" /> <!-- -1 表示沒有限制 -->
+		<property name="maxIdleTimeExcessConnections" value="50" /> <!-- -1 表示沒有限制 -->
+		<property name="debugUnreturnedConnectionStackTraces" value="true" />
+	</bean>
+	
+	<!-- jdbc template -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- named parameter jdbc template -->
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+    	<constructor-arg ref="dataSource"/>
+	</bean>
+	
+	<!-- 配置事務管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" ></property>
+    </bean>
+    
+    <!-- 開啟註解驅動，對事務相關的註解進行掃描與解析 -->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+    
+    <!-- 定義攔截器 Bean -->
+    <bean id="loginInterceptor" class="spring.mvc.group_buy.interceptor.LoginInterceptor"/>
+
+    <!-- 配置攔截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/group_buy/**"/>
+            <mvc:exclude-mapping path="/group_buy/login"/>
+            <mvc:exclude-mapping path="/group_buy/login/*"/>
+            <bean class="spring.mvc.group_buy.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

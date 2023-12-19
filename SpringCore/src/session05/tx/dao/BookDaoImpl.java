@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import session05.tx.exception.InsufficientAmount;
+import session05.tx.exception.InsufficientStock;
+
 @Repository
 public class BookDaoImpl implements BookDao {
 	
@@ -29,11 +32,11 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public Integer reduceBookStock(Integer bookId, Integer amountToReduce) { // 更新書本庫存(減量)
+	public Integer reduceBookStock(Integer bookId, Integer amountToReduce) throws InsufficientStock { // 更新書本庫存(減量)
 		// 1. 檢查庫存
 		Integer bookStock = getBookStock(bookId);
 		if(bookStock < amountToReduce) {
-			throw new RuntimeException(String.format("book_id: %d 庫存不足 (%d < %d)%n", bookId, bookStock, amountToReduce));
+			throw new InsufficientStock(String.format("book_id: %d 庫存不足 (%d < %d)%n", bookId, bookStock, amountToReduce));
 		}
 		// 2. 更新庫存(目前存量 - amountToReduce)
 		String sql = "update stock set book_amount = book_amount - ? where book_id = ?";
@@ -41,11 +44,11 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public Integer reduceWalletBalance(String username, Integer bookPrice) { // 更新錢包餘額(減量)
+	public Integer reduceWalletBalance(String username, Integer bookPrice) throws InsufficientAmount { // 更新錢包餘額(減量)
 		// 1. 檢查客戶餘額
 		Integer balance = getWalletBalance(username);
 		if(balance < bookPrice) {
-			throw new RuntimeException(String.format("username: %s 餘額不足 (%d < %d)%n", username, balance, bookPrice));
+			throw new InsufficientAmount(String.format("username: %s 餘額不足 (%d < %d)%n", username, balance, bookPrice));
 		}
 		// 2. 更新餘額(目前餘額 - bookPrice);
 		String sql = "update wallet set balance = balance - ? where username = ?";

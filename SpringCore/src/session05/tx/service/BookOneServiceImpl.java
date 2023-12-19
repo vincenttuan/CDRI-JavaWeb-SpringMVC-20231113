@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import session05.tx.dao.BookDao;
+import session05.tx.exception.InsufficientAmount;
+import session05.tx.exception.InsufficientStock;
 
 @Service
 public class BookOneServiceImpl implements BookOneService {

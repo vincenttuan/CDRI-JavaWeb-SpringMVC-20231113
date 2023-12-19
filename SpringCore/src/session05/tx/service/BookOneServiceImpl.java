@@ -17,9 +17,10 @@ public class BookOneServiceImpl implements BookOneService {
 	
 	@Override
 	@Transactional(
-			propagation = Propagation.REQUIRED // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
+			propagation = Propagation.REQUIRED, // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
+			rollbackFor = {InsufficientStock.class, InsufficientAmount.class}
 	)
-	public void buyOne(String username, Integer bookId) {
+	public void buyOne(String username, Integer bookId) throws InsufficientStock, InsufficientAmount {
 		// 1. 查詢書本價格
 		Integer bookPrice = bookDao.getBookPrice(bookId);
 		// 2. 減去庫存

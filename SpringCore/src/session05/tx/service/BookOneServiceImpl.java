@@ -1,5 +1,7 @@
 package session05.tx.service;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,6 +17,7 @@ public class BookOneServiceImpl implements BookOneService {
 	@Autowired
 	private BookDao bookDao;
 	
+	// Spring 默認 Error, RuntimeException 也會進行回滾
 	@Override
 	@Transactional(
 			propagation = Propagation.REQUIRED, // 預設: 若當前有 tx, 則繼續使用, 反之則建立一個 tx
@@ -29,7 +32,7 @@ public class BookOneServiceImpl implements BookOneService {
 		// 3. 修改餘額
 		bookDao.reduceWalletBalance(username, bookPrice);
 		// 拋出一個數學錯誤
-		//int x = 10/0;
+		// int x = 10/0;
 	}
 	
 }

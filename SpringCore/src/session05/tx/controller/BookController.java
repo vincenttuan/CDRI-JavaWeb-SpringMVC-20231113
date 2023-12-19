@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import session05.tx.exception.InsufficientAmount;
+import session05.tx.exception.InsufficientStock;
 import session05.tx.service.BookOneService;
 
 @Controller
@@ -15,17 +17,26 @@ public class BookController {
 	
 	// 買單本書
 	public void buyOneBook(String username, Integer bookId) {
-		bookOneService.buyOne(username, bookId);
-		System.out.println("buyOneBook OK");
+		try {
+			bookOneService.buyOne(username, bookId);
+			System.out.println("buyOneBook OK");
+		} catch (InsufficientAmount | InsufficientStock e) {
+			System.out.println("購買單本書失敗: " + e.getMessage());
+		}
+		
 	}
 	
 	// 買3本書(套書概念)
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void buyThreeBooks(String username, Integer bookId) {
-		bookOneService.buyOne(username, bookId);
-		bookOneService.buyOne(username, bookId);
-		bookOneService.buyOne(username, bookId);
-		System.out.println("buyThreeBooks OK");
+		try {
+			bookOneService.buyOne(username, bookId);
+			bookOneService.buyOne(username, bookId);
+			bookOneService.buyOne(username, bookId);
+			System.out.println("buyThreeBooks OK");
+		} catch (InsufficientAmount | InsufficientStock e) {
+			System.out.println("購買3本書失敗: " + e.getMessage());
+		}
 	}
 	
 }

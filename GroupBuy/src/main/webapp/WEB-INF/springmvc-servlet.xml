@@ -55,7 +55,7 @@
 	
 	<!-- 錯誤訊息設定 properites -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="/WEB-INF/resource/errorMessage" />
+        <property name="basename" value="/WEB-INF/resources/errorMessage" />
         <property name="useCodeAsDefaultMessage" value="false"/>  
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>

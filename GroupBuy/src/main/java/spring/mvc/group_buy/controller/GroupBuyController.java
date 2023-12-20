@@ -147,6 +147,7 @@ public class GroupBuyController {
 							.sum();
 			dao.checkoutCartById(cart.getCartId()); // 結帳
 			model.addAttribute("cart", cart);
+			model.addAttribute("total", total);
 		});
 		return "group_buy/frontend/finish";
 	}

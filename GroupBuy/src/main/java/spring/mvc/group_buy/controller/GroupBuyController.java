@@ -145,7 +145,7 @@ public class GroupBuyController {
 			int total = cart.getCartItems().stream()
 							.mapToInt(item -> item.getQuantity() * item.getProduct().getPrice())
 							.sum();
-			dao.checkoutCartById(cart.getCartId()); // 結帳
+			dao.checkoutCartByUserId(cart.getCartId()); // 結帳
 			model.addAttribute("cart", cart);
 			model.addAttribute("total", total);
 		});

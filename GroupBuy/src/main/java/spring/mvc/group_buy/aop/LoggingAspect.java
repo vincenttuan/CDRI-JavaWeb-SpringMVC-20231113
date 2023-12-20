@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 	@Before("execution(* spring.mvc.group_buy.controller.*.*(..))")
-	public void before(JoinPoint joinPoint) {
+	public void logMethodParams(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();
 		Object[] args = joinPoint.getArgs();
 		System.out.printf("調用方法: %s 參數: %s%n", methodName, Arrays.toString(args));

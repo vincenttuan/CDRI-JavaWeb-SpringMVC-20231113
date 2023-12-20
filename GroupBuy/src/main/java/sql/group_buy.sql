@@ -68,7 +68,7 @@ alter table product auto_increment = 501;
 -- 建立 User
 create table if not exists user(
 	userId int auto_increment primary key,
-    username varchar(50) not null,
+    username varchar(50) unique not null,
     password varchar(50) not null,
     level int
 );

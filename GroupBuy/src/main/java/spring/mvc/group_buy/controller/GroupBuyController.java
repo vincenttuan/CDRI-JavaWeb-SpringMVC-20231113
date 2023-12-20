@@ -152,4 +152,6 @@ public class GroupBuyController {
 		return "group_buy/frontend/finish";
 	}
 	
+	
+	
 }

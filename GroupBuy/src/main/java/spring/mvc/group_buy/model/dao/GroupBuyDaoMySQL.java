@@ -167,23 +167,26 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		String sql = "update cart set isCheckout = true where userId = ? and (isCheckout = false or isCheckout is null)";
 		return jdbcTemplate.update(sql, userId) == 1;
 	}
-
+	
+	//	10. 根據購物車ID將購物車設置為已結帳狀態(後台的事件)
 	@Override
 	public Boolean checkoutCartById(Integer cartId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update cart set isCheckout = true where cartId = ? and (isCheckout = false or isCheckout is null)";
+		return jdbcTemplate.update(sql, cartId) == 1;
 	}
-
+	
+	//	11. 根據購物車項目ID刪除指定的購物車項目
 	@Override
 	public Boolean removeCartItemById(Integer cartItemId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "delete from cartItem where itemId = ?";
+		return jdbcTemplate.update(sql, cartItemId) == 1;
 	}
-
+	
+	//	12. 更新購物車項目的數量
 	@Override
 	public Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update cartItem set quantity = ? where itemId = ?";
+		return jdbcTemplate.update(sql, quantity, cartItemId) == 1;
 	}
 
 	@Override

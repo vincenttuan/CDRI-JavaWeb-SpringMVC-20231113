@@ -69,7 +69,7 @@
 						</tbody>
 					</table>
 					<p />
-					<a href="javascript:void(0);" ${ cart.cartItems == '[]' ? 'disabled' : '' } class="pure-button pure-button-primary" onclick="location.href='./finish.jsp';">結帳</a>	 
+					<a href="javascript:void(0);" ${ cart.cartItems == '[]' ? 'disabled' : '' } class="pure-button pure-button-primary" onclick="location.href='./checkout';">結帳</a>	 
 				</fieldset>
 			</form>
 		</div>

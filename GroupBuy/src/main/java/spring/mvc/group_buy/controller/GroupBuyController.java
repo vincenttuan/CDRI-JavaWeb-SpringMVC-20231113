@@ -133,4 +133,12 @@ public class GroupBuyController {
 		return "group_buy/frontend/cart";
 	}
 	
+	// 購物車結帳
+	@GetMapping("/frontend/checkout")
+	public String checkout(HttpSession session, Model model) {
+		User user = (User)session.getAttribute("user");
+		
+		return "group_buy/frontend/finish";
+	}
+	
 }

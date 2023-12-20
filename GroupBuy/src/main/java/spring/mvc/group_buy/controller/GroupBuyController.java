@@ -157,13 +157,17 @@ public class GroupBuyController {
 	public String updateCartItem(@RequestParam("itemId") Integer itemId,
 								 @RequestParam("quantity") Integer quantity,
 								 HttpSession session) {
+		User user = (User)session.getAttribute("user");
 		// 如何得知 itemId 是屬於該使用者的 ?
-		
-		if(quantity > 0) {
-			dao.updateCartItemQuantity(itemId, quantity);
-		} else {
-			dao.removeCartItemById(itemId);
-		}
+		dao.findCartItemById(itemId).ifPresent(cartItem -> {
+			if(cartItem.getCart().getUserId().equals(user.getUserId())) {
+				if(quantity > 0) {
+					dao.updateCartItemQuantity(itemId, quantity);
+				} else {
+					dao.removeCartItemById(itemId);
+				}
+			}
+		});
 		return "redirect:/mvc/group_buy/frontend/cart";
 	}
 	
@@ -171,9 +175,13 @@ public class GroupBuyController {
 	@GetMapping("/frontend/cart/delete")
 	public String updateCartItem(@RequestParam("itemId") Integer itemId,
 								 HttpSession session) {
+		User user = (User)session.getAttribute("user");
 		// 如何得知 itemId 是屬於該使用者的 ?
-		
-		dao.removeCartItemById(itemId);
+		dao.findCartItemById(itemId).ifPresent(cartItem -> {
+			if(cartItem.getCart().getUserId().equals(user.getUserId())) {
+				dao.removeCartItemById(itemId);
+			}
+		});
 		return "redirect:/mvc/group_buy/frontend/cart";
 	}
 	

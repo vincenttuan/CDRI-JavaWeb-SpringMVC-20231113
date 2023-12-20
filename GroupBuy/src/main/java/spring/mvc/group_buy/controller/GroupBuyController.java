@@ -117,6 +117,17 @@ public class GroupBuyController {
 	// 購物車頁面
 	@GetMapping("/frontend/cart")
 	public String cartPage(HttpSession session, Model model) {
+		// 1. 先找到 user 登入者
+		User user = (User)session.getAttribute("user");
+		// 2. 找到 user 的尚未結帳的購物車
+		Optional<Cart> cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
+		cartOpt.ifPresent(cart -> {
+			int total = cart.getCartItems().stream()
+							.mapToInt(item -> item.getQuantity() * item.getProduct().getPrice())
+							.sum();
+			model.addAttribute("cart", cart);
+			model.addAttribute("total", total);
+		});
 		
 		return "group_buy/frontend/cart";
 	}

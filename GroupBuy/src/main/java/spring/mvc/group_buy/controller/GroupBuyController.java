@@ -152,6 +152,30 @@ public class GroupBuyController {
 		return "group_buy/frontend/finish";
 	}
 	
+	// 修改購物車商品項目數量
+	@GetMapping("/frontend/cart/update")
+	public String updateCartItem(@RequestParam("itemId") Integer itemId,
+								 @RequestParam("quantity") Integer quantity,
+								 HttpSession session) {
+		// 如何得知 itemId 是屬於該使用者的 ?
+		
+		if(quantity > 0) {
+			dao.updateCartItemQuantity(itemId, quantity);
+		} else {
+			dao.removeCartItemById(itemId);
+		}
+		return "redirect:/mvc/group_buy/frontend/cart";
+	}
+	
+	// 刪除購物車項目
+	@GetMapping("/frontend/cart/delete")
+	public String updateCartItem(@RequestParam("itemId") Integer itemId,
+								 HttpSession session) {
+		// 如何得知 itemId 是屬於該使用者的 ?
+		
+		dao.removeCartItemById(itemId);
+		return "redirect:/mvc/group_buy/frontend/cart";
+	}
 	
 	
 }

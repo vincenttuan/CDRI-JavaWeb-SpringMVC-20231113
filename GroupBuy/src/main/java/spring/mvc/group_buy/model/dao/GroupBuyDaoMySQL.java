@@ -103,8 +103,15 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	2. 新增購物車項目資料
 	@Override
 	public void addCartItem(CartItem cartItem) {
-		String sql = "insert into cartItem(cartId, productId, quantity) values(?, ?, ?)";
-		jdbcTemplate.update(sql, cartItem.getCartId(), cartItem.getProductId(), cartItem.getQuantity());
+		String sql1 = "select count(*) as count from cartItem where cartId = ? and productId = ?";
+		int count = jdbcTemplate.queryForObject(sql1, Integer.class, cartItem.getCartId(), cartItem.getProductId());
+		if(count == 0) {
+			String sql2 = "insert into cartItem(cartId, productId, quantity) values(?, ?, ?)";
+			jdbcTemplate.update(sql2, cartItem.getCartId(), cartItem.getProductId(), cartItem.getQuantity());
+		} else {
+			String sql3 = "update cartItem set quantity = quantity + ? where cartId = ? and productId = ?";
+			jdbcTemplate.update(sql3, cartItem.getQuantity(), cartItem.getCartId(), cartItem.getProductId());
+		}
 	}
 
 	@Override

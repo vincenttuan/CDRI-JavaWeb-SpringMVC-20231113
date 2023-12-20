@@ -93,7 +93,8 @@ create table if not exists cartitem(
     productId int not null,
     quantity int default 0,
     foreign key (cartId) references cart(cartId),
-    foreign key (productId) references product(productId)
+    foreign key (productId) references product(productId),
+    UNIQUE(cartId, productId)
 );
 -- 設置 AUTO_INCREMENT = 1
 alter table cartitem auto_increment = 1;

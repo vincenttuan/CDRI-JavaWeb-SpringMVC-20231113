@@ -135,10 +135,14 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//	8. 根據使用者ID來查找其未結帳的購物車資料(單筆)
 	@Override
 	public Optional<Cart> findNoneCheckoutCartByUserId(Integer userId) {
-		// TODO Auto-generated method stub
+		String sql = "select cartId,, userId, isCheckout, checkoutTime from cart "
+				+ "where userId = ? and (isCheckout = false or isCheckout = null)";
+		Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+		
 		return Optional.empty();
 	}
 
@@ -170,6 +174,23 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	public List<Map<String, Object>> calculateTotalAmountPerUser() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	// 為 cart 注入 cartItem
+	// details: 使用者物件(user) 與 購物車明細(cartItems), 以及購物車明細的商品資料
+	private void enrichCartWithDetails(Cart cart) {
+		// 注入 user
+		//findUserById(cart.getUserId()).ifPresent(user -> cart.setUser(user));
+		findUserById(cart.getUserId()).ifPresent(cart::setUser);
+		
+		// 查詢 cartItems 並注入
+		String sqlItems = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
+		List<CartItem> cartItems = jdbcTemplate.query(sqlItems, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
+		// 根據 productId 找到 product 並注入
+		cartItems.forEach(cartItem -> {
+			findProductById(cartItem.getProductId()).ifPresent(cartItem::setProduct);
+		});
+		cart.setCartItems(cartItems);
 	}
 
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.group_buy.model.dao.GroupBuyDao;
+import spring.mvc.group_buy.model.entity.Cart;
+import spring.mvc.group_buy.model.entity.CartItem;
 import spring.mvc.group_buy.model.entity.Product;
 import spring.mvc.group_buy.model.entity.User;
 
@@ -76,9 +78,39 @@ public class GroupBuyController {
 	public String addToCart(@RequestParam("productId") Integer productId,
 							@RequestParam("quantity") Integer quantity,
 							HttpSession session, Model model) {
+		// 1. 先找到 user 登入者
+		User user = (User)session.getAttribute("user");
+		// 2. 找到 user 的尚未結帳的購物車
+		Cart cart = null;
+		Optional<Cart> cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
+		if(cartOpt.isPresent()) {
+			cart = cartOpt.get(); // 取得該 user 的購物車
+		} else { 
+			cart = new Cart(); // 建立新的購物車
+			cart.setUserId(user.getUserId());
+			dao.addCart(cart); // 將購物車存放到資料表
+			
+			// 新增之後馬上又要查詢, 建議可以下達一個 delay
+			try {
+				Thread.sleep(10);
+			} catch (Exception e) {
+				
+			}
+			
+			// 再抓一次該使用者的購物車(目的是要得到剛才新增 cart 的 cartId)
+			cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
+		}
 		
+		// 建立購物項目
+		CartItem cartItem = new CartItem();
+		cartItem.setCartId(cart.getCartId());
+		cartItem.setProductId(productId);
+		cartItem.setQuantity(quantity);
+		// 新增購物車項目
+		dao.addCartItem(cartItem);
 		
-		
+		model.addAttribute("product", dao.findProductById(productId).get()); // 商品物件
+		model.addAttribute("quantity", quantity);
 		return "group_buy/frontend/result";
 	}
 	

@@ -65,7 +65,6 @@ public class GroupBuyController {
 	
 	// 前台團購首頁
 	@RequestMapping("/frontend/main")
-	@ResponseBody
 	public String frontendMain(Model model) {
 		List<Product> products = dao.findAllProducts();
 		model.addAttribute("products", products);

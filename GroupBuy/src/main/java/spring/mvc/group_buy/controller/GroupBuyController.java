@@ -114,5 +114,11 @@ public class GroupBuyController {
 		return "group_buy/frontend/result";
 	}
 	
+	// 購物車頁面
+	@GetMapping("/frontend/cart")
+	public String cartPage(HttpSession session, Model model) {
+		
+		return "group_buy/frontend/cart";
+	}
 	
 }

@@ -14,13 +14,26 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	
-	<!-- 启用 AspectJ 自动代理 -->
+	<!-- 定義 PropertiesFactoryBean 讀取 UTF-8 編碼的 properties 文件 -->
+	<bean id="appProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	    <property name="locations">
+	        <value>/WEB-INF/resources/units.properties</value>
+	    </property>
+	    <property name="fileEncoding" value="UTF-8"/>
+	</bean>
+	
+	<!-- 使用 PropertyPlaceholderConfigurer 引用上面的 PropertiesFactoryBean -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="properties" ref="appProperties"/>
+	</bean>
+	
+	<!-- 啟用 AspectJ 自動代理 -->
     <aop:aspectj-autoproxy/>
     
-    <!-- 定义 LoggingAspect 切面 -->
+    <!-- 定義 LoggingAspect 切面 -->
     <bean id="loggingAspect" class="spring.mvc.group_buy.aop.LoggingAspect"/>
 
-    <!-- 定义切面和通知 -->
+    <!-- 定義切面和通知 -->
     <aop:config>
         <aop:aspect id="myAspect" ref="loggingAspect">
             <aop:pointcut id="logMethod"

@@ -31,9 +31,11 @@
     <aop:aspectj-autoproxy/>
     
     <!-- 定義 LoggingAspect 切面 -->
+    <!-- 
     <bean id="loggingAspect" class="spring.mvc.group_buy.aop.LoggingAspect"/>
-
+ 	-->
     <!-- 定義切面和通知 -->
+    <!-- 
     <aop:config>
         <aop:aspect id="myAspect" ref="loggingAspect">
             <aop:pointcut id="logMethod"
@@ -41,7 +43,8 @@
             <aop:before pointcut-ref="logMethod" method="logMethodParams"/>
         </aop:aspect>
     </aop:config>
-    
+     -->
+     
 	<mvc:annotation-driven />
 	
 	<context:component-scan base-package="spring.mvc" />

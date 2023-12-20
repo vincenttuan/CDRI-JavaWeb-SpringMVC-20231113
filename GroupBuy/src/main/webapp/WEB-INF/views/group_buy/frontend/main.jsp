@@ -12,7 +12,7 @@
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
 		<div style="padding: 15px">
-			<form method="post" action="./result" class="pure-form">
+			<form method="post" action="./addToCart" class="pure-form">
 				<fieldset>
 					<legend>團購網首頁</legend>
 					商品: <select id="productId" name="productId">

@@ -64,11 +64,23 @@ public class GroupBuyController {
 	}
 	
 	// 前台團購首頁
-	@RequestMapping("/frontend/main")
+	@GetMapping("/frontend/main")
 	public String frontendMain(Model model) {
 		List<Product> products = dao.findAllProducts();
 		model.addAttribute("products", products);
 		return "group_buy/frontend/main";
 	}
+	
+	// 前台購物完成頁
+	@PostMapping("/frontend/addToCart")
+	public String addToCart(@RequestParam("productId") Integer productId,
+							@RequestParam("quantity") Integer quantity,
+							HttpSession session, Model model) {
+		
+		
+		
+		return "group_buy/frontend/result";
+	}
+	
 	
 }

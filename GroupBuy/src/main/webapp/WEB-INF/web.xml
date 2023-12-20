@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-	<display-name>SpringMVC</display-name>
+	<display-name>GroupBuy</display-name>
 	<welcome-file-list>
 	    <welcome-file>index.html</welcome-file>
 	    <welcome-file>index.jsp</welcome-file>
@@ -28,7 +28,7 @@
   	-->
   	<!-- 部署 DispatcherServlet - XML 配置版 -->
 	<servlet>
-		<servlet-name>springmvc</servlet-name>
+		<servlet-name>springmvc_dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -39,15 +39,15 @@
   	
   	<!-- 
   		受 spring mvc 管轄的路徑 
-  		http://localhost:8080/SpringMVC/mvc/....
-  		http://localhost:8080/SpringMVC/mvc/foo/bar/...
+  		http://localhost:8080/GroupBuy/mvc/....
+  		http://localhost:8080/GroupBuy/mvc/foo/bar/...
   		
   		不受 spring mvc 管轄
-  		http://localhost:8080/SpringMVC/css/...
-  		http://localhost:8080/SpringMVC/hello/...
+  		http://localhost:8080/GroupBuy/css/...
+  		http://localhost:8080/GroupBuy/hello/...
   	-->
   	<servlet-mapping>
-  		<servlet-name>springmvc</servlet-name>
+  		<servlet-name>springmvc_dispatcher</servlet-name>
   		<url-pattern>/mvc/*</url-pattern>
   	</servlet-mapping>
   	

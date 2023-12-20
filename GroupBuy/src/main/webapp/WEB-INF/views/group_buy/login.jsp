@@ -18,6 +18,7 @@
 					<button type="button" class="pure-button pure-button-primary" onclick="location.href='./backend/main.jsp';" >後台登入</button>
 				</fieldset>
 			</form>
+			<div style="color: red">${ loginMessage }</div>
 		</div>
 	</body>
 </html>

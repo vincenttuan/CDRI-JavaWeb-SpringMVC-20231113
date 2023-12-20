@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -45,7 +46,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		try {
 			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
 			return Optional.ofNullable(user);
-		} catch (Exception e) {
+		} catch (EmptyResultDataAccessException e) {
 			return Optional.empty();
 		}
 	}
@@ -56,7 +57,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		try {
 			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
 			return Optional.ofNullable(user);
-		} catch (Exception e) {
+		} catch (EmptyResultDataAccessException e) {
 			return Optional.empty();
 		}
 	}
@@ -73,7 +74,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		try {
 			Product product = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), productId);
 			return Optional.ofNullable(product);
-		} catch (Exception e) {
+		} catch (EmptyResultDataAccessException e) {
 			return Optional.empty();
 		}
 	}
@@ -139,11 +140,18 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	8. 根據使用者ID來查找其未結帳的購物車資料(單筆)
 	@Override
 	public Optional<Cart> findNoneCheckoutCartByUserId(Integer userId) {
-		String sql = "select cartId,, userId, isCheckout, checkoutTime from cart "
-				+ "where userId = ? and (isCheckout = false or isCheckout = null)";
-		Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+		try {
+			String sql = "select cartId,, userId, isCheckout, checkoutTime from cart "
+					+ "where userId = ? and (isCheckout = false or isCheckout = null)";
+			Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+			if(cart != null) {
+				enrichCartWithDetails(cart);
+			}
+			return Optional.ofNullable(cart);
 		
-		return Optional.empty();
+		} catch (EmptyResultDataAccessException e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override

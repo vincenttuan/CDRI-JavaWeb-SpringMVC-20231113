@@ -122,8 +122,13 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Optional<Cart> findCartById(Integer cartId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		try {
+			String sql = "select cartId, userId, isCheckout, checkoutTime where cartId = ?";
+			Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
+			return Optional.ofNullable(cart);
+		} catch (EmptyResultDataAccessException e) {
+			return Optional.empty();
+		} 
 	}
 
 	@Override

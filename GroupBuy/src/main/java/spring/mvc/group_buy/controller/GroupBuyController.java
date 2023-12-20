@@ -141,6 +141,10 @@ public class GroupBuyController {
 		// 2. 找到 user 的尚未結帳的購物車
 		Optional<Cart> cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
 		cartOpt.ifPresent(cart -> {
+			// 3. 計算購物車總金額
+			int total = cart.getCartItems().stream()
+							.mapToInt(item -> item.getQuantity() * item.getProduct().getPrice())
+							.sum();
 			dao.checkoutCartById(cart.getCartId()); // 結帳
 			model.addAttribute("cart", cart);
 		});

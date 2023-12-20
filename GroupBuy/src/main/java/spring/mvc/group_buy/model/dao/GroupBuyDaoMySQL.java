@@ -164,8 +164,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	9. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)
 	@Override
 	public Boolean checkoutCartByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update cart set isCheckout = true where userId = ? and (isCheckout = false or isCheckout is null)";
+		return jdbcTemplate.update(sql, userId) == 1;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package spring.mvc.group_buy.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.group_buy.model.dao.GroupBuyDao;
+import spring.mvc.group_buy.model.entity.Product;
 import spring.mvc.group_buy.model.entity.User;
 
 @Controller
@@ -57,8 +59,10 @@ public class GroupBuyController {
 	// 前台團購首頁
 	@RequestMapping("/frontend/main")
 	@ResponseBody
-	public String frontendMain() {
-		return "Login OK";
+	public String frontendMain(Model model) {
+		List<Product> products = dao.findAllProducts();
+		model.addAttribute("products", products);
+		return "group_buy/frontend/main";
 	}
 	
 }

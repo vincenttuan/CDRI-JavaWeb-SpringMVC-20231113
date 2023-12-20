@@ -69,32 +69,40 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Optional<Product> findProductById(Integer productId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select productId, productName, price, unit, isLaunch from product where productId = ?";
+		try {
+			Product product = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), productId);
+			return Optional.ofNullable(product);
+		} catch (Exception e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into product(productName, price, unit, isLaunch) values(?, ?, ?, ?)";
+		jdbcTemplate.update(sql, product.getProductName(), product.getPrice(), product.getUnit(), product.getIsLaunch());
 	}
-
+	
+	//	4. 變更商品上架狀態
 	@Override
 	public Boolean updateProductLaunch(Integer productId, Boolean isLaunch) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update product set isLaunch = ? where productId = ?";
+		return jdbcTemplate.update(sql, isLaunch, productId) > 0;
 	}
 
+	//	購物車/購物車項目(Cart/CartItem)
+	//	1. 新增購物車資料
 	@Override
 	public void addCart(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into cart(userId, isCheckOut) values(?, ?)";
+		jdbcTemplate.update(sql, cart.getUserId(), cart.getIsCheckout());
 	}
 
 	@Override
 	public void addCartItem(CartItem cartItem) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into cartItem(cartId, productId, quantity) values(?, ?, ?)";
+		jdbcTemplate.update(sql, cartItem.getCartId(), cartItem.getProductId(), cartItem.getQuantity());
 	}
 
 	@Override

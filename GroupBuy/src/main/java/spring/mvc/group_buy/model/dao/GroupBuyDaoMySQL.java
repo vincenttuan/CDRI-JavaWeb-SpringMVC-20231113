@@ -41,14 +41,24 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Optional<User> findUserByUsername(String username) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select userId, username, password, level from user where username = ?";
+		try {
+			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+			return Optional.ofNullable(user);
+		} catch (Exception e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override
 	public Optional<User> findUserById(Integer userId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select userId, username, password, level from user where userId = ?";
+		try {
+			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
+			return Optional.ofNullable(user);
+		} catch (Exception e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override

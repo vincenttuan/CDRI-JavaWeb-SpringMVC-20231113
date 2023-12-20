@@ -43,10 +43,12 @@ public class GroupBuyController {
 				session.setAttribute("user", user); // 將 user 物件放入到 session 變數中
 				return "redirect:/mvc/group_buy/frontend/main"; // OK, 導向前台首頁
 			} else {
+				session.invalidate(); // session 過期失效
 				model.addAttribute("loginMessage", "密碼錯誤");
 				return "group_buy/login";
 			}
 		} else {
+			session.invalidate(); // session 過期失效
 			model.addAttribute("loginMessage", "無此使用者");
 			return "group_buy/login";
 		}

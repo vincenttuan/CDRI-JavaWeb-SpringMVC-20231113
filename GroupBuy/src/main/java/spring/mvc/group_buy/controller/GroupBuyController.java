@@ -56,6 +56,13 @@ public class GroupBuyController {
 		}
 	}
 	
+	// 登出
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/mvc/group_buy/login";
+	}
+	
 	// 前台團購首頁
 	@RequestMapping("/frontend/main")
 	@ResponseBody

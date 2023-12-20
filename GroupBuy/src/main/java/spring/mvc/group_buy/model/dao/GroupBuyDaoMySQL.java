@@ -63,8 +63,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public List<Product> findAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select productId, productName, price, unit, isLaunch from product";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Product.class));
 	}
 
 	@Override

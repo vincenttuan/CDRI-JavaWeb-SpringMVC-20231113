@@ -141,7 +141,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	@Override
 	public Optional<Cart> findNoneCheckoutCartByUserId(Integer userId) {
 		try {
-			String sql = "select cartId,, userId, isCheckout, checkoutTime from cart "
+			String sql = "select cartId, userId, isCheckout, checkoutTime from cart "
 					+ "where userId = ? and (isCheckout = false or isCheckout = null)";
 			Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
 			if(cart != null) {

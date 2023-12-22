@@ -114,7 +114,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		}
 	}
 	
-	//	3. 查詢所有購物車資料(多筆)
+	//	3. 查詢所有購物車資料(多筆), 無 details 資料
 	@Override
 	public List<Cart> findAllCart() {
 		String sql = "select cartId, userId, isCheckout, checkoutTime from cart";
@@ -151,9 +151,12 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	@Override
 	public List<Cart> findCartsByUserId(Integer userId) {
 		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+		List<Cart> carts = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+		carts.forEach(this::enrichCartWithDetails);
+		return carts;
 	}
-
+	
+	//	7. 根據使用者ID及結帳狀態來查找其所有購物車資料(多筆)
 	@Override
 	public List<Cart> findCartsbyUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout) {
 		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and isCheckout = ?";

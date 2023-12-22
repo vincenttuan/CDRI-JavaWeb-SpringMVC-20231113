@@ -14,7 +14,7 @@
             <a href="../logout" class="pure-menu-link">🔞 登出</a>
         </li>
         <li class="pure-menu-item">
-            <a href="#" class="pure-menu-link">👼 ${ user.username }</a>
+            <a href="../frontend/profile" class="pure-menu-link">👼 ${ user.username }</a>
         </li>
     </ul>
 </div>

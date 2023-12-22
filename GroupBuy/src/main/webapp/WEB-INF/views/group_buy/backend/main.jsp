@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sp" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,24 +23,18 @@
 			<table>
 				<tr>
 					<td valign="top">
-						<form method="post" action="./result" class="pure-form">
+						<sp:form modelAttribute="product" method="post" action="./result" class="pure-form">
 							<fieldset>
 								<legend>團購網-商品新增</legend>
-								品名: <input type="text" id="productName" name="productName" value="水果茶" /><p />
-								價格: <input type="number" id="productPrice" name="productPrice" value="40" /><p />
-								單位: <select id="productUnit" name="productUnit">
-										<option value="捆">捆</option>
-										<option value="包" selected>包</option>
-										<option value="打">打</option>
-										<option value="箱">箱</option>
-										<option value="組">組</option>
-									 </select>
+								品名: <sp:input path="productName" name="productName" value="水果茶" /><p />
+								價格: <sp:input type="number" path="price" value="40" /><p />
+								單位: <sp:select path="unit" items="${ units }" />
 								&nbsp;&nbsp;&nbsp;&nbsp;	 
-								上架: <input type="checkbox" id="isLaunch" name="isLaunch" value="true" checked> 	 
+								上架: <sp:checkbox path="isLaunch" /> 	 
 								<p />
 								<button type="submit" class="pure-button pure-button-primary">新增</button>
 							</fieldset>
-						</form>
+						</sp:form>
 					</td>
 					<td valign="top" style="padding-left: 15px">
 						<form class="pure-form">
@@ -72,9 +67,5 @@
 				</tr>
 			</table>
 		</div>
-		
-		
-		
-		
 	</body>
 </html>

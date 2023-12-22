@@ -283,6 +283,7 @@ public class GroupBuyController {
 	public String report(Model model, @RequestParam(name = "userId", defaultValue = "0") Integer userId) {
 		model.addAttribute("reports", dao.calculateTotalAmountPerUser());
 		if(userId != 0) {
+			model.addAttribute("reportUser", dao.findUserById(userId).get());
 			// 該使用者已結帳的購物車紀錄
 			model.addAttribute("carts", dao.findCartsbyUserIdAndCheckoutStatus(userId, true));
 		}

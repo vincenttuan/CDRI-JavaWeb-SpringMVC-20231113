@@ -53,7 +53,7 @@
 					<td valign="top" style="padding-left: 15px">
 						<form class="pure-form">
 							<fieldset>
-								<legend>團購網- ${ userId } 結帳明細</legend>
+								<legend>團購網- ${ reportUser.userId } ${ reportUser.username } 結帳明細</legend>
 								<table class="pure-table pure-table-bordered">
 									<thead>
 										<tr><th>購物車序號</th><th>購物車日期</th><th>購物項目</th></tr>

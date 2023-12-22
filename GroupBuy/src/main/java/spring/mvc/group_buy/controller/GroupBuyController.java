@@ -267,5 +267,14 @@ public class GroupBuyController {
 		return "group_buy/backend/result";
 	}
 	
+	// 商品上下架處理
+	@GetMapping("/backend/update_product_launch")
+	public String updateProductLaunch(@RequestParam("productId") Integer productId, 
+									  @RequestParam("isLaunch") Boolean isLaunch) {
+		
+		dao.updateProductLaunch(productId, isLaunch);
+		
+		return "redirect:/mvc/group_buy/backend/main";
+	}	
 	
 }

@@ -23,7 +23,7 @@
 			<table>
 				<tr>
 					<td valign="top">
-						<sp:form modelAttribute="product" method="post" action="./result" class="pure-form">
+						<sp:form modelAttribute="product" method="post" action="./addProduct" class="pure-form">
 							<fieldset>
 								<legend>團購網-商品新增</legend>
 								品名: <sp:input path="productName" name="productName" value="水果茶" /><p />

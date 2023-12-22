@@ -85,8 +85,6 @@ public class GroupBuyController {
 		ImageIO.write(img, "PNG", response.getOutputStream());
 	}
 	
-	
-	
 	// 登入首頁
 	@GetMapping(value = {"/login", "/", "/login/"})
 	public String loginPage(HttpSession session) {
@@ -261,5 +259,13 @@ public class GroupBuyController {
 		model.addAttribute("units", units);
 		return "group_buy/backend/main";
 	}
+	
+	// 商品新增
+	@PostMapping("/backend/addProduct")
+	public String addProduct(@ModelAttribute Product product) {
+		dao.addProduct(product);
+		return "group_buy/backend/result";
+	}
+	
 	
 }

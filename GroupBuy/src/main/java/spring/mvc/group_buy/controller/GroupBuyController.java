@@ -28,14 +28,18 @@ public class GroupBuyController {
 	@Autowired
 	private GroupBuyDao dao;
 	
-	// 登入首頁
-	@GetMapping(value = {"/login", "/", "/login/"})
-	public String loginPage(HttpSession session) {
+	private String getCode() {
 		// 產生一個驗證碼 code
 		Random random = new Random();
 		String code = String.format("%04d", random.nextInt(10000)); // 0~9999
+		return code;
+	}
+	
+	// 登入首頁
+	@GetMapping(value = {"/login", "/", "/login/"})
+	public String loginPage(HttpSession session) {
 		// 將 code 存放到 session 變數中
-		session.setAttribute("code", code);
+		session.setAttribute("code", getCode());
 		return "group_buy/login";
 	}
 	
@@ -49,6 +53,8 @@ public class GroupBuyController {
 		if(!code.equals(session.getAttribute("code")+"")) {
 			session.invalidate(); // session 過期失效
 			model.addAttribute("loginMessage", "驗證碼錯誤");
+			// 將 code 存放到 session 變數中
+			session.setAttribute("code", getCode());
 			return "group_buy/login";
 		}
 		// 根據 username 查找 user 物件
@@ -62,11 +68,15 @@ public class GroupBuyController {
 			} else {
 				session.invalidate(); // session 過期失效
 				model.addAttribute("loginMessage", "密碼錯誤");
+				// 將 code 存放到 session 變數中
+				session.setAttribute("code", getCode());
 				return "group_buy/login";
 			}
 		} else {
 			session.invalidate(); // session 過期失效
 			model.addAttribute("loginMessage", "無此使用者");
+			// 將 code 存放到 session 變數中
+			session.setAttribute("code", getCode());
 			return "group_buy/login";
 		}
 	}

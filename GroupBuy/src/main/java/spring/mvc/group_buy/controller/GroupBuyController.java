@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,17 +37,8 @@ public class GroupBuyController {
 	@Autowired
 	private GroupBuyDao dao;
 	
-	/*
-	@GetMapping("/getcode")
-	@ResponseBody
-	private String getCode(HttpSession session) {
-		// 產生一個驗證碼 code
-		Random random = new Random();
-		String code = String.format("%04d", random.nextInt(10000)); // 0~9999
-		session.setAttribute("code", code);
-		return code;
-	}
-	*/
+	@Value("${units}")
+	private String[] units;
 	
 	@GetMapping("/getcode")
 	private void getCodeImage(HttpSession session, HttpServletResponse response) throws IOException {

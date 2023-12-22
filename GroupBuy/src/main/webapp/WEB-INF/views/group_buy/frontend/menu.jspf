@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="pure-menu pure-menu-horizontal" style="background-color:#EBD6D6">
     <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-selected">
@@ -7,9 +8,13 @@
         <li class="pure-menu-item">
             <a href="./cart" class="pure-menu-link">🛒 購物車</a>
         </li>
-        <li class="pure-menu-item">
-            <a href="../backend/main" class="pure-menu-link">團購後台首頁</a>
-        </li>
+        
+        <c:if test="${ user.level == 2 }">
+	        <li class="pure-menu-item">
+	            <a href="../backend/main" class="pure-menu-link">團購後台首頁</a>
+	        </li>
+        </c:if>
+        
         <li class="pure-menu-item">
             <a href="../logout" class="pure-menu-link">🔞 登出</a>
         </li>

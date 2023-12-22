@@ -107,11 +107,11 @@ public class GroupBuyController {
 						 @RequestParam("code") String code,
 						HttpSession session, Model model) {
 		// 比對驗證碼
-		if(!code.equals(session.getAttribute("code")+"")) {
-			session.invalidate(); // session 過期失效
-			model.addAttribute("loginMessage", "驗證碼錯誤");
-			return "group_buy/login";
-		}
+//		if(!code.equals(session.getAttribute("code")+"")) {
+//			session.invalidate(); // session 過期失效
+//			model.addAttribute("loginMessage", "驗證碼錯誤");
+//			return "group_buy/login";
+//		}
 		// 根據 username 查找 user 物件
 		Optional<User> userOpt = dao.findUserByUsername(username);
 		if(userOpt.isPresent()) {

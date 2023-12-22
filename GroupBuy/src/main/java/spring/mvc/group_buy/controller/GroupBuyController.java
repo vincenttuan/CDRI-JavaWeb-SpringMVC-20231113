@@ -1,9 +1,17 @@
 package spring.mvc.group_buy.controller;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +36,7 @@ public class GroupBuyController {
 	@Autowired
 	private GroupBuyDao dao;
 	
+	/*
 	@GetMapping("/getcode")
 	@ResponseBody
 	private String getCode(HttpSession session) {
@@ -37,6 +46,39 @@ public class GroupBuyController {
 		session.setAttribute("code", code);
 		return code;
 	}
+	*/
+	
+	@GetMapping("/getcode")
+	private void getCodeImage(HttpSession session, HttpServletResponse response) throws IOException {
+		// 產生一個驗證碼 code
+		Random random = new Random();
+		String code = String.format("%04d", random.nextInt(10000)); // 0~9999
+		session.setAttribute("code", code);
+		
+		// Java 2D 產生圖檔
+		// 1. 建立圖像暫存區
+		BufferedImage img = new BufferedImage(80, 30, BufferedImage.TYPE_INT_BGR);
+		// 2. 建立畫布
+		Graphics g = img.getGraphics();
+		// 3. 設定顏色
+		g.setColor(Color.YELLOW);
+		// 4. 塗滿背景
+		g.fillRect(0, 0, 80, 30);
+		// 5. 設定顏色
+		g.setColor(Color.BLACK);
+		// 6. 設定自型
+		g.setFont(new Font("新細明體", Font.PLAIN, 30));
+		// 7. 繪字串
+		g.drawString(code, 10, 23); // code, x, y
+		
+		// 設定回應類型
+		response.setContentType("image/png");
+		
+		// 將影像串流回寫給 client
+		ImageIO.write(img, "PNG", response.getOutputStream());
+	}
+	
+	
 	
 	// 登入首頁
 	@GetMapping(value = {"/login", "/", "/login/"})

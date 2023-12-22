@@ -251,6 +251,12 @@ public class GroupBuyController {
 		return "redirect:/mvc/group_buy/frontend/cart";
 	}
 	
+	// 使用者 Profile
+	@GetMapping("/frontend/profile")
+	public String profile() {
+		return "group_buy/frontend/profile";
+	}
+	
 	//------------------------------------------------------------------------------
 	
 	// 後臺首頁

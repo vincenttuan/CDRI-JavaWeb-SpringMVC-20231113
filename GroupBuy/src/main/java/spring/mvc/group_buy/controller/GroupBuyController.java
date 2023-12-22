@@ -133,7 +133,8 @@ public class GroupBuyController {
 	// 前台團購首頁
 	@GetMapping("/frontend/main")
 	public String frontendMain(Model model) {
-		List<Product> products = dao.findAllProducts();
+		// 過濾出只有上架的商品
+		List<Product> products = dao.findAllProducts(true);
 		model.addAttribute("products", products);
 		return "group_buy/frontend/main";
 	}

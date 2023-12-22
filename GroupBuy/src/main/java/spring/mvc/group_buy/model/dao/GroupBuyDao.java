@@ -30,6 +30,9 @@ public interface GroupBuyDao {
 //	1. 查詢所有商品(多筆)
 	List<Product> findAllProducts();
 	
+//	1. 根據 isLaunch 狀態取得商品資料
+	List<Product> findAllProducts(Boolean isLaunch);
+	
 //	2. 根據產品ID來查找商品(單筆)
 	Optional<Product> findProductById(Integer productId);
 	

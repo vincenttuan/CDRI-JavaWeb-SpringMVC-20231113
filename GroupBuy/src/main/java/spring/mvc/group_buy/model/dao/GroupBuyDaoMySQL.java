@@ -213,8 +213,14 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public List<Map<String, Object>> calculateTotalAmountPerUser() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select u.userId, u.username, coalesce(SUM(p.price * ci.quantity), 0) as total "
+				+ "from user u "
+				+ "left join cart c on u.userId = c.userId "
+				+ "left join cartitem ci on c.cartId = ci.cartId "
+				+ "left join product p on ci.productId = p.productId "
+				+ "where c.isCheckout = true "
+				+ "group by u.userId, u.username";
+		return jdbcTemplate.queryForList(sql);
 	}
 	
 	// 為 cart 注入 cartItem

@@ -240,7 +240,7 @@ public class GroupBuyController {
 	// 刪除購物車項目
 	@GetMapping("/frontend/cart/delete")
 	public String updateCartItem(@RequestParam("itemId") Integer itemId,
-								 HttpSession session) {
+								 HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
 		// 如何得知 itemId 是屬於該使用者的 ?
 		dao.findCartItemById(itemId).ifPresent(cartItem -> {
@@ -248,13 +248,37 @@ public class GroupBuyController {
 				dao.removeCartItemById(itemId);
 			}
 		});
+		
 		return "redirect:/mvc/group_buy/frontend/cart";
+		
 	}
 	
 	// 使用者 Profile
 	@GetMapping("/frontend/profile")
 	public String profile() {
 		return "group_buy/frontend/profile";
+	}
+	
+	// 密碼變更
+	@PostMapping("/change_password")
+	public String changePassword(@RequestParam("oldPassword") String oldPassword, 
+								 @RequestParam("newPassword") List<String> newPasswords,
+								 HttpSession session,
+								 Model model) {
+		
+		User user = (User)session.getAttribute("user");
+		if(!user.getPassword().equals(oldPassword)) {
+			model.addAttribute("errorMessage", "密碼錯誤");
+			return "group_buy/frontend/profile";
+		}
+		if(!newPasswords.get(0).equals(newPasswords.get(1))) {
+			model.addAttribute("errorMessage", "二次新密碼不一致");
+			return "group_buy/frontend/profile";
+		}
+		
+		// 進行密碼變更
+		dao.updateUserPassword(user.getUserId(), newPasswords.get(0));
+		return "redirect:/mvc/group_buy/logout";
 	}
 	
 	//------------------------------------------------------------------------------

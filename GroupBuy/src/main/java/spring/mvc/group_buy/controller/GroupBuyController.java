@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -251,5 +252,14 @@ public class GroupBuyController {
 		return "redirect:/mvc/group_buy/frontend/cart";
 	}
 	
+	//------------------------------------------------------------------------------
+	
+	// 後臺首頁
+	@GetMapping("/backend/main")
+	private String backendMain(@ModelAttribute Product product, Model model) {
+		model.addAttribute("products", dao.findAllProducts());
+		model.addAttribute("units", units);
+		return "group_buy/backend/main";
+	}
 	
 }

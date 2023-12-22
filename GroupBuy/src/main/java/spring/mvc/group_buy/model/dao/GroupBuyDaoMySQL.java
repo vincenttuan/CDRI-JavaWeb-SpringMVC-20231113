@@ -229,7 +229,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	// 13. 計算每個使用者所購買的總金額
 	@Override
 	public List<Map<String, Object>> calculateTotalAmountPerUser() {
-		String sql = "select userId, username, total usertotalamountview";
+		String sql = "SELECT userId, username, total FROM group_buy.usertotalamountview;";
 		return jdbcTemplate.queryForList(sql);
 	}
 	

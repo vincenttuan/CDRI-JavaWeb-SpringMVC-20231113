@@ -21,18 +21,21 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	//	1. 查詢所有使用者(多筆)
 	@Override
 	public List<User> findAllUsers() {
 		String sql = "select userId, username, password, level from user";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
 	}
 
+	//	2. 新增使用者
 	@Override
 	public void addUser(User user) {
 		String sql = "insert into user(username, password, level) values(?, ?, ?)";
 		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getLevel());
 	}
 
+	//	3. 修改密碼
 	@Override
 	public Boolean updateUserPassword(Integer userId, String newPassword) {
 		String sql = "update user set password = ? where userId = ?";
@@ -40,6 +43,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		return rowcount > 0;
 	}
 
+	//	4. 根據使用者名稱查找使用者(登入用-單筆)	
 	@Override
 	public Optional<User> findUserByUsername(String username) {
 		String sql = "select userId, username, password, level from user where username = ?";
@@ -51,6 +55,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		}
 	}
 
+	//	5. 根據使用者ID查找使用者(單筆)	
 	@Override
 	public Optional<User> findUserById(Integer userId) {
 		String sql = "select userId, username, password, level from user where userId = ?";
@@ -62,12 +67,14 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		}
 	}
 
+	//	1. 查詢所有商品(多筆)
 	@Override
 	public List<Product> findAllProducts() {
 		String sql = "select productId, productName, price, unit, isLaunch from product";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Product.class));
 	}
 
+	//	2. 根據產品ID來查找商品(單筆)
 	@Override
 	public Optional<Product> findProductById(Integer productId) {
 		String sql = "select productId, productName, price, unit, isLaunch from product where productId = ?";
@@ -79,6 +86,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		}
 	}
 
+	//	3. 新增商品
 	@Override
 	public void addProduct(Product product) {
 		String sql = "insert into product(productName, price, unit, isLaunch) values(?, ?, ?, ?)";
@@ -210,7 +218,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		String sql = "update cartItem set quantity = ? where itemId = ?";
 		return jdbcTemplate.update(sql, quantity, cartItemId) == 1;
 	}
-
+	
+	// 13. 計算每個使用者所購買的總金額
 	@Override
 	public List<Map<String, Object>> calculateTotalAmountPerUser() {
 		String sql = "select u.userId, u.username, coalesce(SUM(p.price * ci.quantity), 0) as total "

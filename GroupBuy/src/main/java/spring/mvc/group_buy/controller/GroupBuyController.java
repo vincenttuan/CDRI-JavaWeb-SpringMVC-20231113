@@ -260,7 +260,7 @@ public class GroupBuyController {
 	}
 	
 	// 密碼變更
-	@PostMapping("/change_password")
+	@PostMapping("/frontend/change_password")
 	public String changePassword(@RequestParam("oldPassword") String oldPassword, 
 								 @RequestParam("newPassword") List<String> newPasswords,
 								 HttpSession session,
@@ -268,7 +268,7 @@ public class GroupBuyController {
 		
 		User user = (User)session.getAttribute("user");
 		if(!user.getPassword().equals(oldPassword)) {
-			model.addAttribute("errorMessage", "密碼錯誤");
+			model.addAttribute("errorMessage", "原密碼錯誤");
 			return "group_buy/frontend/profile";
 		}
 		if(!newPasswords.get(0).equals(newPasswords.get(1))) {

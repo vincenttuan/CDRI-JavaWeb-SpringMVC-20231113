@@ -121,6 +121,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/group_buy/**"/>
+            <mvc:exclude-mapping path="/group_buy/getcode"/>
             <mvc:exclude-mapping path="/group_buy/login"/>
             <mvc:exclude-mapping path="/group_buy/login/*"/>
             <bean class="spring.mvc.group_buy.interceptor.LoginInterceptor"/>

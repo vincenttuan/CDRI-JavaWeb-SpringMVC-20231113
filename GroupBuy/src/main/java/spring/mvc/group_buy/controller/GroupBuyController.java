@@ -256,7 +256,7 @@ public class GroupBuyController {
 	
 	// 後臺首頁
 	@GetMapping("/backend/main")
-	private String backendMain(@ModelAttribute Product product, Model model) {
+	public String backendMain(@ModelAttribute Product product, Model model) {
 		model.addAttribute("products", dao.findAllProducts());
 		model.addAttribute("units", units);
 		return "group_buy/backend/main";

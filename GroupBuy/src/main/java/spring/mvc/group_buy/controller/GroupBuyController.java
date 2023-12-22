@@ -52,7 +52,12 @@ public class GroupBuyController {
 	private void getCodeImage(HttpSession session, HttpServletResponse response) throws IOException {
 		// 產生一個驗證碼 code
 		Random random = new Random();
-		String code = String.format("%04d", random.nextInt(10000)); // 0~9999
+		String code1 = String.format("%c", (char)(random.nextInt(122-65+1) + 65));
+		String code2 = String.format("%c", (char)(random.nextInt(122-65+1) + 65));
+		String code3 = String.format("%c", (char)(random.nextInt(122-65+1) + 65));
+		String code4 = String.format("%c", (char)(random.nextInt(122-65+1) + 65));
+		
+		String code  = code1+code2+code3+code4;
 		session.setAttribute("code", code);
 		
 		// Java 2D 產生圖檔

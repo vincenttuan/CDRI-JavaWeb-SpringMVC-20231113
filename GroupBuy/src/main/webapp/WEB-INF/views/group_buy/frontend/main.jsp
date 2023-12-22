@@ -23,8 +23,10 @@
 								</option>
 							</c:forEach>
 						 </select><p />
-					數量: <input type="number" id="quantity" name="quantity" value="5" /><p />	 
-					<button type="submit" class="pure-button pure-button-primary">新增</button>	 
+					數量: <input type="number" id="quantity" name="quantity" value="5" /><p />
+					<button type="submit"
+							${ (empty products)?'disabled':'' }		 
+							class="pure-button pure-button-primary">新增</button>	 
 				</fieldset>
 			</form>
 		</div>

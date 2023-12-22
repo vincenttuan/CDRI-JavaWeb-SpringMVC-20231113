@@ -63,7 +63,7 @@
 											<tr>
 												<td>${ cart.cartId }</td>
 												<td>
-													<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss E" value="${ cart.checkoutTime }" />
+													<fmt:formatDate pattern="yyyy-MM-dd a hh:mm:ss E" value="${ cart.checkoutTime }" />
 												</td>
 												<td>
 													<table class="pure-table">

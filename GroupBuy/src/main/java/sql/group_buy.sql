@@ -127,3 +127,15 @@ INSERT INTO cartitem (itemId, cartId, productId, quantity) VALUES
 (4, 203, 502, 8),
 (5, 203, 504, 20),
 (6, 205, 505, 15);
+
+-- 每個使用者的總消費金額
+-- 建立 View
+create view UserTotalAmountView as
+select u.userId, u.username, coalesce(SUM(p.price * ci.quantity), 0) as total
+from user u
+left join cart c on u.userId = c.userId
+left join cartitem ci on c.cartId = ci.cartId
+left join product p on ci.productId = p.productId
+where c.isCheckout = true
+group by u.userId, u.username
+

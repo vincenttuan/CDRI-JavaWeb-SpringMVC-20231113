@@ -18,7 +18,7 @@
 					<img src="./getcode" alt="驗證碼" valign="middle">
 					<p />
 					<button type="submit" class="pure-button pure-button-primary">前台登入</button>
-					<button type="button" class="pure-button pure-button-primary" onclick="location.href='./backend/main.jsp';" >後台登入</button>
+					<button type="button" class="pure-button pure-button-primary" onclick="" >後台登入</button>
 				</fieldset>
 				<div style="color: red">${ loginMessage }</div>
 			</form>

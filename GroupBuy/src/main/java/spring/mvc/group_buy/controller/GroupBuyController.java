@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -111,6 +112,44 @@ public class GroupBuyController {
 			if(user.getPassword().equals(password)) {
 				session.setAttribute("user", user); // 將 user 物件放入到 session 變數中
 				return "redirect:/mvc/group_buy/frontend/main"; // OK, 導向前台首頁
+			} else {
+				session.invalidate(); // session 過期失效
+				model.addAttribute("loginMessage", "密碼錯誤");
+				return "group_buy/login";
+			}
+		} else {
+			session.invalidate(); // session 過期失效
+			model.addAttribute("loginMessage", "無此使用者");
+			return "group_buy/login";
+		}
+	}
+	
+	// 後台登入處理
+	@PostMapping("/login_backend")
+	public String loginBackend(@RequestParam("username") String username, 
+						 @RequestParam("password") String password,
+						 @RequestParam("code") String code,
+						HttpSession session, Model model) {
+		// 比對驗證碼
+//		if(!code.equals(session.getAttribute("code")+"")) {
+//			session.invalidate(); // session 過期失效
+//			model.addAttribute("loginMessage", "驗證碼錯誤");
+//			return "group_buy/login";
+//		}
+		// 根據 username 查找 user 物件
+		Optional<User> userOpt = dao.findUserByUsername(username);
+		if(userOpt.isPresent()) {
+			User user = userOpt.get();
+			// 比對 password
+			if(user.getPassword().equals(password)) {
+				// 比對 level = 2 才可以登入後台
+				if(user.getLevel() == 2) {
+					session.setAttribute("user", user); // 將 user 物件放入到 session 變數中
+					return "redirect:/mvc/group_buy/backend/main"; // OK, 導向後台首頁
+				}
+				session.invalidate(); // session 過期失效
+				model.addAttribute("loginMessage", "無權限登入後台");
+				return "group_buy/login";
 			} else {
 				session.invalidate(); // session 過期失效
 				model.addAttribute("loginMessage", "密碼錯誤");
@@ -260,7 +299,8 @@ public class GroupBuyController {
 	}
 	
 	// 密碼變更
-	@PostMapping("/frontend/change_password")
+	//@PostMapping("/frontend/change_password")
+	@RequestMapping(value = "/frontend/change_password", method = RequestMethod.POST)
 	public String changePassword(@RequestParam("oldPassword") String oldPassword, 
 								 @RequestParam("newPassword") List<String> newPasswords,
 								 HttpSession session,

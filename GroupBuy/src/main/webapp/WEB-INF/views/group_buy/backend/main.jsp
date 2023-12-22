@@ -12,7 +12,7 @@
 		<script type="text/javascript">
 			function changeLaunch(productId, isLaunch) {
 				//console.log(productId, isLaunch);
-				location.href = './main/update_product_launch?productId=' + productId + '&isLaunch=' + isLaunch;
+				location.href = './update_product_launch?productId=' + productId + '&isLaunch=' + isLaunch;
 			}
 		</script>
 	</head>

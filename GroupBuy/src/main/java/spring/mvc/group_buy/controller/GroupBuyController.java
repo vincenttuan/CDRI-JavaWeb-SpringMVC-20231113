@@ -280,8 +280,12 @@ public class GroupBuyController {
 	
 	// 後臺報表
 	@GetMapping("/backend/report")
-	public String report(Model model) {
+	public String report(Model model, @RequestParam(name = "userId", defaultValue = "0") Integer userId) {
 		model.addAttribute("reports", dao.calculateTotalAmountPerUser());
+		if(userId != 0) {
+			// 該使用者已結帳的購物車紀錄
+			model.addAttribute("carts", dao.findCartsbyUserIdAndCheckoutStatus(userId, true));
+		}
 		return "/group_buy/backend/report";
 		
 	}

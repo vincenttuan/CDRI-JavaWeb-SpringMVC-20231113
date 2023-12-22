@@ -36,8 +36,15 @@ public class GroupBuyController {
 	// 前台登入處理
 	@PostMapping("/login")
 	public String login(@RequestParam("username") String username, 
-						 @RequestParam("password") String password, 
+						 @RequestParam("password") String password,
+						 @RequestParam("code") String code,
 						HttpSession session, Model model) {
+		// 比對驗證碼
+		if(!code.equals("1234")) {
+			session.invalidate(); // session 過期失效
+			model.addAttribute("loginMessage", "驗證碼錯誤");
+			return "group_buy/login";
+		}
 		// 根據 username 查找 user 物件
 		Optional<User> userOpt = dao.findUserByUsername(username);
 		if(userOpt.isPresent()) {

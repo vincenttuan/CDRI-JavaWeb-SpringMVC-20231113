@@ -278,4 +278,11 @@ public class GroupBuyController {
 		return "redirect:/mvc/group_buy/backend/main";
 	}	
 	
+	// 後臺報表
+	@GetMapping("/backend/report")
+	public String report(Model model) {
+		model.addAttribute("reports", dao.calculateTotalAmountPerUser());
+		return "/group_buy/backend/report";
+		
+	}
 }

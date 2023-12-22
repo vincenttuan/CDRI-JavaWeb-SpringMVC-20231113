@@ -66,7 +66,7 @@
 													<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss E" value="${ cart.checkoutTime }" />
 												</td>
 												<td>
-													<table>
+													<table class="pure-table">
 														<thead>
 															<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>小計</th></tr>
 														</thead>

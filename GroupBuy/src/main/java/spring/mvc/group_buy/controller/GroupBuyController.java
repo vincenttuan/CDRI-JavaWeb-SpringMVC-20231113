@@ -2,6 +2,7 @@ package spring.mvc.group_buy.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +30,12 @@ public class GroupBuyController {
 	
 	// 登入首頁
 	@GetMapping(value = {"/login", "/", "/login/"})
-	public String loginPage() {
+	public String loginPage(HttpSession session) {
+		// 產生一個驗證碼 code
+		Random random = new Random();
+		String code = String.format("%04d", random.nextInt(10000)); // 0~9999
+		// 將 code 存放到 session 變數中
+		session.setAttribute("code", code);
 		return "group_buy/login";
 	}
 	
@@ -40,7 +46,7 @@ public class GroupBuyController {
 						 @RequestParam("code") String code,
 						HttpSession session, Model model) {
 		// 比對驗證碼
-		if(!code.equals("1234")) {
+		if(!code.equals(session.getAttribute("code")+"")) {
 			session.invalidate(); // session 過期失效
 			model.addAttribute("loginMessage", "驗證碼錯誤");
 			return "group_buy/login";

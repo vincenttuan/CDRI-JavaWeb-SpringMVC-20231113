@@ -156,8 +156,11 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public List<Cart> findCartsbyUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and isCheckout = ?";
+		List<Cart> carts = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId, isCheckout);
+		//carts.forEach(cart -> enrichCartWithDetails(cart));
+		carts.forEach(this::enrichCartWithDetails);
+		return carts;
 	}
 	
 	//	8. 根據使用者ID來查找其未結帳的購物車資料(單筆)

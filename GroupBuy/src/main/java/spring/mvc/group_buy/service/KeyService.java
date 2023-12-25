@@ -13,7 +13,7 @@ public class KeyService {
      * 或 web.xml 的 <env-entry> 中取得金鑰。
      *
      * @return 從配置中獲取的金鑰對應的 String
-     * @throws RuntimeException 當無法從上下文中獲取JWT的金鑰時拋出
+     * @throws RuntimeException 當無法從上下文中獲取的金鑰時拋出
      */
     public static String getSecretKeyStringFromContext() {
         try {
@@ -26,11 +26,11 @@ public class KeyService {
             // 3. 取得 context.xml 或 web.xml中名為 "secretKey" 的資源的值。
             // 對應到 web.xml：<env-entry-name>secretKey</env-entry-name>
             //       context.xml：<Environment name="secretKey" ...
-            String secretKeyBase64 = (String) envContext.lookup("secretKey");
+            String secretKey = (String) envContext.lookup("secretKey");
 
-            return secretKeyBase64;
+            return secretKey;
         } catch (NamingException e) {
-            throw new RuntimeException("從上下文中獲取JWT金鑰時出錯", e);
+            throw new RuntimeException("從上下文中獲取金鑰時出錯", e);
         }
     }
 }

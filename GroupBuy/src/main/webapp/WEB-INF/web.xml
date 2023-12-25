@@ -12,7 +12,7 @@
   	
   	<!-- 存放 AES Key -->
   	<env-entry>
-  		<env-entry-name>secreKey</env-entry-name>
+  		<env-entry-name>secretKey</env-entry-name>
   		<env-entry-type>java.lang.String</env-entry-type>
   		<env-entry-value>0123456789abcdef0123456789abcdef</env-entry-value>
   	</env-entry>

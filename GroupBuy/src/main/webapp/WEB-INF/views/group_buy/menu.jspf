@@ -2,25 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="pure-menu pure-menu-horizontal" style="background-color:#EBD6D6">
     <ul class="pure-menu-list">
+		<c:forEach items="${ user.services }" var="service">        
         <li class="pure-menu-item pure-menu-selected">
-            <a href="./main" class="pure-menu-link">團購首頁</a>
+            <a href="${pageContext.request.contextPath}${ service.serviceUrl }" class="pure-menu-link">${ service.serviceName }</a>
         </li>
-        <li class="pure-menu-item">
-            <a href="./cart" class="pure-menu-link">🛒 購物車</a>
-        </li>
-        
-        <c:if test="${ user.level == 2 }">
-	        <li class="pure-menu-item">
-	            <a href="../backend/main" class="pure-menu-link">團購後台首頁</a>
-	        </li>
-        </c:if>
-        
-        <li class="pure-menu-item">
-            <a href="../logout" class="pure-menu-link">🔞 登出</a>
-        </li>
-        <li class="pure-menu-item">
-            <a href="./profile" class="pure-menu-link">👼 ${ user.username }</a>
-        </li>
+        </c:forEach>
     </ul>
 </div>
 <!-- 公告 -->

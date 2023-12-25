@@ -54,7 +54,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 			String sql2 = "select s.serviceId, s.serviceLocation, s.serviceName, s.serviceUrl "
 						+ "from level_ref_service r "
 						+ "left join service s on s.serviceId = r.serviceId "
-						+ "where r.levelId = ?";
+						+ "where r.levelId = ? order by r.sort";
 			List<Service> services = jdbcTemplate.query(sql2, new BeanPropertyRowMapper<>(Service.class), user.getLevel());
 			user.setServices(services);
 			return Optional.ofNullable(user);
@@ -73,7 +73,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 			String sql2 = "select s.serviceId, s.serviceLocation, s.serviceName, s.serviceUrl "
 						+ "from level_ref_service "
 						+ "left join service s on s.serviceId = r.serviceId "
-						+ "where r.levelId = ?";
+						+ "where r.levelId = ? order by r.sort";
 			List<Service> services = jdbcTemplate.query(sql2, new BeanPropertyRowMapper<>(Service.class), user.getLevel());
 			user.setServices(services);
 			return Optional.ofNullable(user);

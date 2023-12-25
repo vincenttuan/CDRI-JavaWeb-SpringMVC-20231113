@@ -62,7 +62,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 			return Optional.empty();
 		}
 	}
-
+	
 	//	5. 根據使用者ID查找使用者(單筆)	
 	@Override
 	public Optional<User> findUserById(Integer userId) {

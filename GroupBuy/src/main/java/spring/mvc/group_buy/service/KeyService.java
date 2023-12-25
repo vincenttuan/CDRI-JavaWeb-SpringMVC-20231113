@@ -1,5 +1,7 @@
 package spring.mvc.group_buy.service;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -32,5 +34,33 @@ public class KeyService {
         } catch (NamingException e) {
             throw new RuntimeException("從上下文中獲取金鑰時出錯", e);
         }
+    }
+    
+    /**
+     * 使用AES密鑰加密訊息。
+     * 
+     * @param aesKey  AES密鑰，用於加密。
+     * @param message 待加密的訊息。
+     * @return 返回加密後的字節數據。
+     * @throws Exception 若加密過程中發生錯誤時拋出。
+     */
+    public static byte[] encryptWithAESKey(SecretKey aesKey, String message) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+        return cipher.doFinal(message.getBytes());
+    }
+    
+    /**
+     * 使用AES密鑰解密訊息。
+     * 
+     * @param aesKey        AES密鑰，用於解密。
+     * @param encryptedData 已加密的訊息。
+     * @return 返回解密後的字符串。
+     * @throws Exception 若解密過程中發生錯誤時拋出。
+     */
+    public static String decryptWithAESKey(SecretKey aesKey, byte[] encryptedData) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, aesKey);
+        return new String(cipher.doFinal(encryptedData));
     }
 }

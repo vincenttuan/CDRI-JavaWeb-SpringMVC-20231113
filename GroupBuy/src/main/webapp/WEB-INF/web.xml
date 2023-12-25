@@ -10,6 +10,13 @@
 	    <welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
   	
+  	<!-- 存放 AES Key -->
+  	<env-entry>
+  		<env-entry-name>secreKey</env-entry-name>
+  		<env-entry-type>java.lang.String</env-entry-type>
+  		<env-entry-value>0123456789abcdef0123456789abcdef</env-entry-value>
+  	</env-entry>
+  	
   	<!-- 設定 session timeout 的時間 -->
   	<session-config>
   		<session-timeout>30</session-timeout>

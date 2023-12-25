@@ -78,6 +78,7 @@ create table if not exists level(
 create table if not exists level_ref_service(
     levelId int not null,
     serviceId int not null,
+    sort int default 1,
     foreign key (levelId) references level(levelId),
     foreign key (serviceId) references service(serviceId),
     constraint unique_sid_and_aid UNIQUE(levelId, serviceId)
@@ -138,15 +139,15 @@ insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values
 insert into level(levelId, levelName) values(1, '一般客戶');
 insert into level(levelId, levelName) values(2, '內部員工');
 
-insert into level_ref_service(levelId, serviceId) values(1, 1);
-insert into level_ref_service(levelId, serviceId) values(1, 2);
-insert into level_ref_service(levelId, serviceId) values(1, 3);
-insert into level_ref_service(levelId, serviceId) values(1, 4);
-insert into level_ref_service(levelId, serviceId) values(2, 1);
-insert into level_ref_service(levelId, serviceId) values(2, 2);
-insert into level_ref_service(levelId, serviceId) values(2, 3);
-insert into level_ref_service(levelId, serviceId) values(2, 4);
-insert into level_ref_service(levelId, serviceId) values(2, 51);
+insert into level_ref_service(levelId, serviceId, sort) values(1, 1, 1);
+insert into level_ref_service(levelId, serviceId, sort) values(1, 2, 2);
+insert into level_ref_service(levelId, serviceId, sort) values(1, 3, 4);
+insert into level_ref_service(levelId, serviceId, sort) values(1, 4, 3);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 1, 1);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 2, 2);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 3, 5);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 4, 4);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 51, 3);
 
 INSERT INTO product (productId, productName, price, unit, isLaunch) VALUES
 (501, 'Coffee', 300.00, 'Pack', true),

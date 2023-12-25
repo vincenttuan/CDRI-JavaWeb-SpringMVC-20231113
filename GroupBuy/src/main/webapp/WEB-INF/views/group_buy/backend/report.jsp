@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<!-- menu -->
-		<%@include file="./menu.jspf" %>
+		<%@include file="../menu.jspf" %>
 		
 		<div style="padding: 15px">
 			<table>

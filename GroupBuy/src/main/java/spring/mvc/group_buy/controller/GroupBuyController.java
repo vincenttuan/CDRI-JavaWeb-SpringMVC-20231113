@@ -138,7 +138,7 @@ public class GroupBuyController {
 	public String loginBackend(@RequestParam("username") String username, 
 						 @RequestParam("password") String password,
 						 @RequestParam("code") String code,
-						HttpSession session, Model model) {
+						HttpSession session, Model model) throws Exception {
 		// 比對驗證碼
 //		if(!code.equals(session.getAttribute("code")+"")) {
 //			session.invalidate(); // session 過期失效
@@ -149,8 +149,13 @@ public class GroupBuyController {
 		Optional<User> userOpt = dao.findUserByUsername(username);
 		if(userOpt.isPresent()) {
 			User user = userOpt.get();
-			// 比對 password
-			if(user.getPassword().equals(password)) {
+			// 將 password 進行 AES 加密 -------------------------------------------------------------------
+			final String KEY = KeyUtil.getSecretKey();
+			SecretKeySpec aesKeySpec = new SecretKeySpec(KEY.getBytes(), "AES");
+			byte[] encryptedPasswordECB = KeyUtil.encryptWithAESKey(aesKeySpec, password);
+			String encryptedPasswordECBBase64 = Base64.getEncoder().encodeToString(encryptedPasswordECB);
+			//-------------------------------------------------------------------------------------------
+			if(user.getPassword().equals(encryptedPasswordECBBase64)) {
 				// 比對 level = 2 才可以登入後台
 				if(user.getLevel() == 2) {
 					session.setAttribute("user", user); // 將 user 物件放入到 session 變數中

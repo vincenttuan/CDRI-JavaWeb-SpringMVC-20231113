@@ -51,9 +51,9 @@ ps: cartItems 一對多關聯
 
  * */
 -- 授權資料表
+drop table if exists level_ref_service;
 drop table if exists service;
 drop table if exists level;
-drop table if exists level_ref_service;
 
 drop table if exists cartitem;
 drop table if exists cart;
@@ -82,6 +82,7 @@ create table if not exists level_ref_service(
     foreign key (serviceId) references service(serviceId),
     constraint unique_sid_and_aid UNIQUE(levelId, serviceId)
 );
+
 
 -- 建立 Product
 create table if not exists product(
@@ -128,6 +129,33 @@ create table if not exists cartitem(
 alter table cartitem auto_increment = 1;
 
 -- 預設資料
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(1, 'frontend', '團購首頁', '/mvc/group_buy/frontend/main');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(2, 'frontend', '🛒 購物車', '/mvc/group_buy/frontend/cart');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(3, 'frontend', '🔞 登出', '/mvc/group_buy/logout');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(4, 'frontend', '👼 Profile', '/mvc/group_buy/frontend/profile');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(51, 'backend', '團購後台首頁', '/mvc/group_buy/backend/main');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(52, 'backend', '後台報告', '/mvc/group_buy/backend/report');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(53, 'backend', '團購前台首頁', '/mvc/group_buy/frontend/main');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(54, 'backend', '🔞 登出', '/mvc/group_buy/logout');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(55, 'backend', '👼 Profile', '/mvc/group_buy/frontend/profile');
+
+insert into level(levelId, levelName) values(1, '一般客戶');
+insert into level(levelId, levelName) values(2, '內部員工');
+
+insert into level_ref_service(levelId, serviceId) values(1, 1);
+insert into level_ref_service(levelId, serviceId) values(1, 2);
+insert into level_ref_service(levelId, serviceId) values(1, 3);
+insert into level_ref_service(levelId, serviceId) values(1, 4);
+insert into level_ref_service(levelId, serviceId) values(2, 1);
+insert into level_ref_service(levelId, serviceId) values(2, 2);
+insert into level_ref_service(levelId, serviceId) values(2, 3);
+insert into level_ref_service(levelId, serviceId) values(2, 4);
+insert into level_ref_service(levelId, serviceId) values(2, 51);
+insert into level_ref_service(levelId, serviceId) values(2, 52);
+insert into level_ref_service(levelId, serviceId) values(2, 53);
+insert into level_ref_service(levelId, serviceId) values(2, 54);
+insert into level_ref_service(levelId, serviceId) values(2, 55);
+
 INSERT INTO product (productId, productName, price, unit, isLaunch) VALUES
 (501, 'Coffee', 300.00, 'Pack', true),
 (502, 'Green Tea', 150.00, 'Box', false),
@@ -158,6 +186,7 @@ INSERT INTO cartitem (itemId, cartId, productId, quantity) VALUES
 
 -- 每個使用者的總消費金額
 -- 建立View
+/*
 create view UserTotalAmountView as
 select u.userId, u.username,coalesce(sum(p.price*ci.quantity),0) as total
 from user u
@@ -166,3 +195,4 @@ left join cartitem ci on c.cartId= ci.cartId
 left join product p on ci.productId = p.productId
 where c.isCheckout = true
 group by u.userId, u.username
+*/

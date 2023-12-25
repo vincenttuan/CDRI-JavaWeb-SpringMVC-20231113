@@ -17,7 +17,7 @@ public class KeyService {
      * @return 從配置中獲取的金鑰對應的 String
      * @throws RuntimeException 當無法從上下文中獲取的金鑰時拋出
      */
-    public static String getSecretKeyStringFromContext() {
+    public static String getSecretKey() {
         try {
             // 1. 建立InitialContext物件，它代表JNDI查找的起始點。
             Context initialContext = new InitialContext();

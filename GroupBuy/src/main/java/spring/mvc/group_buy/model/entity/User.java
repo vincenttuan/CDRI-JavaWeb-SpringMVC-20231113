@@ -1,5 +1,7 @@
 package spring.mvc.group_buy.model.entity;
 
+import java.util.List;
+
 /**
 2. 使用者
 level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商品)
@@ -16,6 +18,8 @@ public class User {
 	private String username; // 使用者名稱
 	private String password; // 使用者密碼
 	private Integer level; // 使用者權限
+	// 服務列表
+	private List<Service> services;
 	
 	public User() {
 		
@@ -60,11 +64,14 @@ public class User {
 		this.level = level;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", level=" + level
-				+ "]";
+	public List<Service> getServices() {
+		return services;
 	}
+
+	public void setServices(List<Service> services) {
+		this.services = services;
+	}
+	
 	
 	
 	

@@ -1,4 +1,4 @@
-package spring.mvc.group_buy.service;
+package spring.mvc.group_buy.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -6,7 +6,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class KeyService {
+public class KeyUtil {
 	
 	/**
      * 提供從 context.xml 或 web.xml 中獲取金鑰的功能。

@@ -71,7 +71,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
 			// 查找使用者可以使用的服務(授權)
 			String sql2 = "select s.serviceId, s.serviceLocation, s.serviceName, s.serviceUrl "
-						+ "from level_ref_service "
+						+ "from level_ref_service r "
 						+ "left join service s on s.serviceId = r.serviceId "
 						+ "where r.levelId = ? order by r.sort";
 			List<Service> services = jdbcTemplate.query(sql2, new BeanPropertyRowMapper<>(Service.class), user.getLevel());

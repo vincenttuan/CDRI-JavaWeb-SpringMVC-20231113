@@ -133,11 +133,7 @@ insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values
 insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(2, 'frontend', '🛒 購物車', '/mvc/group_buy/frontend/cart');
 insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(3, 'frontend', '🔞 登出', '/mvc/group_buy/logout');
 insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(4, 'frontend', '👼 Profile', '/mvc/group_buy/frontend/profile');
-insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(51, 'backend', '團購後台首頁', '/mvc/group_buy/backend/main');
-insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(52, 'backend', '後台報告', '/mvc/group_buy/backend/report');
-insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(53, 'backend', '團購前台首頁', '/mvc/group_buy/frontend/main');
-insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(54, 'backend', '🔞 登出', '/mvc/group_buy/logout');
-insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(55, 'backend', '👼 Profile', '/mvc/group_buy/frontend/profile');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(51, 'backend', '後台報告', '/mvc/group_buy/backend/report');
 
 insert into level(levelId, levelName) values(1, '一般客戶');
 insert into level(levelId, levelName) values(2, '內部員工');
@@ -151,10 +147,6 @@ insert into level_ref_service(levelId, serviceId) values(2, 2);
 insert into level_ref_service(levelId, serviceId) values(2, 3);
 insert into level_ref_service(levelId, serviceId) values(2, 4);
 insert into level_ref_service(levelId, serviceId) values(2, 51);
-insert into level_ref_service(levelId, serviceId) values(2, 52);
-insert into level_ref_service(levelId, serviceId) values(2, 53);
-insert into level_ref_service(levelId, serviceId) values(2, 54);
-insert into level_ref_service(levelId, serviceId) values(2, 55);
 
 INSERT INTO product (productId, productName, price, unit, isLaunch) VALUES
 (501, 'Coffee', 300.00, 'Pack', true),

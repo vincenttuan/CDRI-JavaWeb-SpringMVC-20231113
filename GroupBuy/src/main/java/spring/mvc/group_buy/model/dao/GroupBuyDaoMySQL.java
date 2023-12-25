@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import spring.mvc.group_buy.model.entity.Cart;
 import spring.mvc.group_buy.model.entity.CartItem;
 import spring.mvc.group_buy.model.entity.Product;
+import spring.mvc.group_buy.model.entity.Service;
 import spring.mvc.group_buy.model.entity.User;
 
 @Repository
@@ -49,6 +50,13 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		String sql = "select userId, username, password, level from user where username = ?";
 		try {
 			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+			// 查找使用者可以使用的服務(授權)
+			String sql2 = "select s.serviceId, s.serviceLocation, s.serviceName, s.serviceUrl "
+						+ "from level_ref_service "
+						+ "left join service s on s.serviceId = r.serviceId "
+						+ "where r.levelId = ?";
+			List<Service> services = jdbcTemplate.query(sql2, new BeanPropertyRowMapper<>(Service.class), user.getLevel());
+			user.setServices(services);
 			return Optional.ofNullable(user);
 		} catch (EmptyResultDataAccessException e) {
 			return Optional.empty();

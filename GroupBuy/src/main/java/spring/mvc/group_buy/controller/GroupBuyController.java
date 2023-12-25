@@ -313,10 +313,18 @@ public class GroupBuyController {
 	public String changePassword(@RequestParam("oldPassword") String oldPassword, 
 								 @RequestParam("newPassword") List<String> newPasswords,
 								 HttpSession session,
-								 Model model) {
+								 Model model) throws Exception {
 		
 		User user = (User)session.getAttribute("user");
-		if(!user.getPassword().equals(oldPassword)) {
+		
+		// 將 password 進行 AES 加密 -------------------------------------------------------------------
+		final String KEY = KeyUtil.getSecretKey();
+		SecretKeySpec aesKeySpec = new SecretKeySpec(KEY.getBytes(), "AES");
+		byte[] encryptedOldPasswordECB = KeyUtil.encryptWithAESKey(aesKeySpec, oldPassword);
+		String encryptedOldPasswordECBBase64 = Base64.getEncoder().encodeToString(encryptedOldPasswordECB);
+		//-------------------------------------------------------------------------------------------
+		
+		if(!user.getPassword().equals(encryptedOldPasswordECBBase64)) {
 			model.addAttribute("errorMessage", "原密碼錯誤");
 			return "group_buy/frontend/profile";
 		}
@@ -324,9 +332,11 @@ public class GroupBuyController {
 			model.addAttribute("errorMessage", "二次新密碼不一致");
 			return "group_buy/frontend/profile";
 		}
-		
+		// 將新密碼加密
+		byte[] encryptedNewPasswordECB = KeyUtil.encryptWithAESKey(aesKeySpec, newPasswords.get(0));
+		String encryptedNewPasswordECBBase64 = Base64.getEncoder().encodeToString(encryptedNewPasswordECB);
 		// 進行密碼變更
-		dao.updateUserPassword(user.getUserId(), newPasswords.get(0));
+		dao.updateUserPassword(user.getUserId(), encryptedNewPasswordECBBase64);
 		return "redirect:/mvc/group_buy/logout";
 	}
 	

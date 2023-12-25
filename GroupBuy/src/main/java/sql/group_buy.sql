@@ -1,4 +1,5 @@
 /*
+
 1. 商品
 Pack(盒), Box(箱), Bottle(瓶), Bag(包), Dozen(打)
 +-----------+-------------+-------+--------+----------+
@@ -59,17 +60,18 @@ drop table if exists cart;
 drop table if exists user;
 drop table if exists product;
 
+-- 建立 Service table
+create table if not exists service(
+    serviceId int primary key,
+    serviceLocation varchar(50),
+    serviceName varchar(50),
+    serviceUrl varchar(50)
+);
+
 -- 建立 Level
 create table if not exists level(
     levelId int primary key,
     levelName varchar(50)
-);
-
--- 建立 Service table
-create table if not exists service(
-    serviceId int primary key,
-    serviceName varchar(50),
-    serviceUrl varchar(50)
 );
 
 -- 建立 Service 與 Level 之間的關聯表 table

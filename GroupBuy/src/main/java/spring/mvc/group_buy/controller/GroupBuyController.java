@@ -5,10 +5,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +34,7 @@ import spring.mvc.group_buy.model.entity.Cart;
 import spring.mvc.group_buy.model.entity.CartItem;
 import spring.mvc.group_buy.model.entity.Product;
 import spring.mvc.group_buy.model.entity.User;
+import spring.mvc.group_buy.util.KeyUtil;
 
 @Controller
 @RequestMapping("/group_buy")
@@ -97,7 +101,7 @@ public class GroupBuyController {
 	public String login(@RequestParam("username") String username, 
 						 @RequestParam("password") String password,
 						 @RequestParam("code") String code,
-						HttpSession session, Model model) {
+						HttpSession session, Model model) throws Exception {
 		// 比對驗證碼
 //		if(!code.equals(session.getAttribute("code")+"")) {
 //			session.invalidate(); // session 過期失效
@@ -108,8 +112,13 @@ public class GroupBuyController {
 		Optional<User> userOpt = dao.findUserByUsername(username);
 		if(userOpt.isPresent()) {
 			User user = userOpt.get();
-			// 比對 password
-			if(user.getPassword().equals(password)) {
+			// 將 password 進行 AES 加密 -------------------------------------------------------------------
+			final String KEY = KeyUtil.getSecretKey();
+			SecretKeySpec aesKeySpec = new SecretKeySpec(KEY.getBytes(), "AES");
+			byte[] encryptedPasswordECB = KeyUtil.encryptWithAESKey(aesKeySpec, password);
+			String encryptedPasswordECBBase64 = Base64.getEncoder().encodeToString(encryptedPasswordECB);
+			//-------------------------------------------------------------------------------------------
+			if(user.getPassword().equals(encryptedPasswordECBBase64)) { // 比對加密過後的 password 是否相同
 				session.setAttribute("user", user); // 將 user 物件放入到 session 變數中
 				return "redirect:/mvc/group_buy/frontend/main"; // OK, 導向前台首頁
 			} else {

@@ -156,11 +156,12 @@ INSERT INTO product (productId, productName, price, unit, isLaunch) VALUES
 (504, 'Sugar', 100.00, 'Bag', true),
 (505, 'Milk', 450.00, 'Dozen', true);
 
-
+-- password 已透過 AES 進行加密
+-- KEY = 0123456789abcdef0123456789abcdef
 INSERT INTO user (userId, username, password, level) VALUES
-(101, 'user123', 'pass123', 1),
-(102, 'user456', 'pass456', 2),
-(103, 'user789', 'pass789', 1);
+(101, 'user123', 'JqKLj+4Aw3DnndH0MHUQkg==', 1),
+(102, 'user456', 'ormIciIAHZjZjQYphMuCHQ==', 2),
+(103, 'user789', 'Nj8ZE1H01l0cDeX/GskzXg==', 1);
 
 INSERT INTO cart (cartId, userId, isCheckout, checkoutTime) VALUES
 (201, 101, true, current_timestamp),

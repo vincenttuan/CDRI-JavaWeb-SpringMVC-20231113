@@ -19,7 +19,7 @@ public class AESSample {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("AES-256 加密範例:");
-		String orginalText = "Hello1234"; // 原始明文
+		String orginalText = "Hello1234哈囉"; // 原始明文
 		System.out.println("原始明文: " + orginalText);
 		System.out.println("------------------------------------------------------------");
 		

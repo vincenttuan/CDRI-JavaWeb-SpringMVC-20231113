@@ -1,56 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
 	<display-name>GroupBuy</display-name>
 	<welcome-file-list>
-	    <welcome-file>index.html</welcome-file>
-	    <welcome-file>index.jsp</welcome-file>
-	    <welcome-file>index.htm</welcome-file>
-	    <welcome-file>default.html</welcome-file>
-	    <welcome-file>default.jsp</welcome-file>
-	    <welcome-file>default.htm</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
-  	
-  	<security-constraint>
-    	<display-name>Constraint1</display-name>
-    	<web-resource-collection>
-        	<web-resource-name>secure</web-resource-name>
-        	<url-pattern>/*</url-pattern>
-    	</web-resource-collection>
-    	<user-data-constraint>
-        	<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    	</user-data-constraint>
-  	</security-constraint>
-  	
-  	
-  	<!-- 存放 AES Key -->
-  	<env-entry>
-  		<env-entry-name>secretKey</env-entry-name>
-  		<env-entry-type>java.lang.String</env-entry-type>
-  		<env-entry-value>0123456789abcdef0123456789abcdef</env-entry-value>
-  	</env-entry>
-  	
-  	<!-- 設定 session timeout 的時間 -->
-  	<session-config>
-  		<session-timeout>30</session-timeout>
-  	</session-config>
-  	
-  	<!-- 部署 DispatcherServlet - Java 配置版 -->
-  	<!-- 
-  	<servlet>
-        <servlet-name>springmvc</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextClass</param-name>
-            <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-        </init-param>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>spring.mvc.config.WebConfig</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-  	-->
-  	<!-- 部署 DispatcherServlet - XML 配置版 -->
+
+	<!-- 全網加密 -->
+	<security-constraint>
+		<display-name>Constraint1</display-name>
+		<web-resource-collection>
+			<web-resource-name>secure</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<!-- 存放 AES Key -->
+	<env-entry>
+		<env-entry-name>secretKey</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>0123456789abcdef0123456789abcdef</env-entry-value>
+	</env-entry>
+
+	<!-- 設定 session timeout 的時間 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<!-- 部署 DispatcherServlet - Java 配置版 -->
+	<!-- <servlet> <servlet-name>springmvc</servlet-name> <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
+		<init-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value> 
+		</init-param> <init-param> <param-name>contextConfigLocation</param-name> 
+		<param-value>spring.mvc.config.WebConfig</param-value> </init-param> <load-on-startup>1</load-on-startup> 
+		</servlet> -->
+	<!-- 部署 DispatcherServlet - XML 配置版 -->
 	<servlet>
 		<servlet-name>springmvc_dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -60,22 +53,15 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-  	
-  	<!-- 
-  		受 spring mvc 管轄的路徑 
-  		http://localhost:8080/GroupBuy/mvc/....
-  		http://localhost:8080/GroupBuy/mvc/foo/bar/...
-  		
-  		不受 spring mvc 管轄
-  		http://localhost:8080/GroupBuy/css/...
-  		http://localhost:8080/GroupBuy/hello/...
-  	-->
-  	<servlet-mapping>
-  		<servlet-name>springmvc_dispatcher</servlet-name>
-  		<url-pattern>/mvc/*</url-pattern>
-  	</servlet-mapping>
-  	
-  	<!-- 中文支援 -->
+
+	<!-- 受 spring mvc 管轄的路徑 http://localhost:8080/GroupBuy/mvc/.... http://localhost:8080/GroupBuy/mvc/foo/bar/... 
+		不受 spring mvc 管轄 http://localhost:8080/GroupBuy/css/... http://localhost:8080/GroupBuy/hello/... -->
+	<servlet-mapping>
+		<servlet-name>springmvc_dispatcher</servlet-name>
+		<url-pattern>/mvc/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- 中文支援 -->
 	<filter>
 		<filter-name>springUtf8Encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -88,35 +74,27 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-    
-    <filter-mapping>
-        <filter-name>springUtf8Encoding</filter-name>
-        <url-pattern>/mvc/*</url-pattern>
-    </filter-mapping>
-  	
-  	<!-- HiddenHttpMethodFilter -->
-	<filter>
-        <filter-name>HiddenHttpMethodFilter</filter-name>
-        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>HiddenHttpMethodFilter</filter-name>
-        <url-pattern>/mvc/*</url-pattern>
-    </filter-mapping>
-    
-    <!-- Spring Security -->
-    <!-- 
-    <filter>
-	    <filter-name>springSecurityFilterChain</filter-name>
-	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	
-	<filter-mapping>
-	    <filter-name>springSecurityFilterChain</filter-name>
-	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
-	-->
 
-	  
+	<filter-mapping>
+		<filter-name>springUtf8Encoding</filter-name>
+		<url-pattern>/mvc/*</url-pattern>
+	</filter-mapping>
+
+	<!-- HiddenHttpMethodFilter -->
+	<filter>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<url-pattern>/mvc/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Spring Security -->
+	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+
+
 </web-app>

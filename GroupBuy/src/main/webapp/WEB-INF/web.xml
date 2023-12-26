@@ -10,6 +10,18 @@
 	    <welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
   	
+  	<security-constraint>
+    	<display-name>Constraint1</display-name>
+    	<web-resource-collection>
+        	<web-resource-name>secure</web-resource-name>
+        	<url-pattern>/*</url-pattern>
+    	</web-resource-collection>
+    	<user-data-constraint>
+        	<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    	</user-data-constraint>
+  	</security-constraint>
+  	
+  	
   	<!-- 存放 AES Key -->
   	<env-entry>
   		<env-entry-name>secretKey</env-entry-name>

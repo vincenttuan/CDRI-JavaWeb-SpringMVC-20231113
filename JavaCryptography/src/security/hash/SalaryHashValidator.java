@@ -9,6 +9,7 @@ public class SalaryHashValidator {
 	public static void main(String[] args) {
 		// 先得到已知的 hash
 		Scanner scanner = new Scanner(System.in);
+		// 4d3910e5b62e48b26033dac3af0dbe9f09f8f4e985cbf07c9f72dfb1412b70ee
 		System.out.print("請輸入hash:");
 		String knowHash = scanner.next();
 		

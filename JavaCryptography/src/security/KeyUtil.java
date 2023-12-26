@@ -40,6 +40,7 @@ public class KeyUtil {
 
     private static final int CHUNK_SIZE = 200; // 定義每段訊息的加密大小
 
+    
     /**
      * 生成一個2048位的RSA鑰匙對。
      * 

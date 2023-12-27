@@ -81,6 +81,7 @@ public class HotelKeySystem {
 		System.out.printf("重新再發出一張房間卡: %s%n", signedRoomCard);
 		
 		// 6. 模擬「房間卡產生器」過期後的情況。
+		System.out.println("等待 20 秒... 模擬「房間卡產生器」過期後的情況");
 		Thread.sleep(20_000);
 		
 		// 檢查房間卡產生器是否過期 ?

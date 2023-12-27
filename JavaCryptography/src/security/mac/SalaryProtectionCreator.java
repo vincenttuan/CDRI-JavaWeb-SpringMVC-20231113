@@ -1,5 +1,7 @@
 package security.mac;
 
+import java.io.File;
+
 import javax.crypto.SecretKey;
 
 import security.KeyUtil;
@@ -22,9 +24,14 @@ public class SalaryProtectionCreator {
 		System.out.println("真對薪資檔案位置:src/security/mac/my_salary.txt 生成 macValue(Hex)");
 		
 		// 生成 MAC Key
-		SecretKey macKey = KeyUtil.generateKeyForHmac();
-		// 儲存 MAC Key
-		KeyUtil.saveSecretKeyToFile(macKey, keyPath);
+		SecretKey macKey = null;
+		if(new File(keyPath).exists()) {
+			macKey = KeyUtil.getSecretKeyFromFile("HmacSHA256", keyPath);
+		} else {
+			macKey = KeyUtil.generateKeyForHmac();
+			// 儲存 MAC Key
+			KeyUtil.saveSecretKeyToFile(macKey, keyPath);
+		}
 		
 		// 得到 macValue(Hex)
 		String macValueHex = KeyUtil.generateMac("HmacSHA256", macKey, filePath);

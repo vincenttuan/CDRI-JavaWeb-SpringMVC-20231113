@@ -10,5 +10,15 @@ package security.sign;
  * 如果驗證成功，這意味著文件在傳輸過程中沒有被修改，且確實是由小王簽署的。
  */
 public class DigitalSignatureVerify {
-
+	public static void main(String[] args) {
+		// 小王
+		// 合約檔位置
+		String contractPath = "src/security/sign/my_contract.txt";
+		// 公鑰檔位置
+		String publicKeyPath = "src/security/sign/publicKey.txt";
+		// 私鑰檔位置
+		String privateKeyPath = "src/security/sign/privateKey.txt";
+		// 數位簽章檔位置
+		String signaturePath = "src/security/sign/signature.sig"; 
+	}
 }

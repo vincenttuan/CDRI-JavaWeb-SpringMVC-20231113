@@ -15,7 +15,7 @@ import security.KeyUtil;
  * 這種模式類似於網路安全中的 Access Token 和 Refresh Token。房間卡相當於 Access Token，而房間卡產生器則相當於 Refresh Token。
  * 
  * 程式實作主要流程：
- * 1. 生成主要的機密鑰匙 (masterKey)。
+ * 1. 生成主要的機密鑰匙 (secureKey)。
  * 2. 創建並簽署「房間卡產生器」(Refresh Token)。
  * 3. 創建並簽署「房間卡」(Access Token)。
  * 4. 驗證「房間卡」是否過期。
@@ -23,7 +23,7 @@ import security.KeyUtil;
  * 6. 模擬「房間卡產生器」過期後的情況。
  */
 public class HotelKeySystem {
-	private static String masterKey; // 金鑰
+	private static String secureKey; // 金鑰
 	
 	// 創建並簽署「房間卡」(Access Token)
 	private static String createRoomCard(String guest, String roomNo) throws JOSEException {
@@ -33,7 +33,7 @@ public class HotelKeySystem {
 				.claim("room", roomNo)
 				.expirationTime(new Date(new Date().getTime() + 5000)) // 設定房卡有效時間，例如：5秒(5000ms)
 				.build(); // 建立房卡
-		String signedRoomCard = KeyUtil.signJWT(roomCard, masterKey); // 將房卡簽章
+		String signedRoomCard = KeyUtil.signJWT(roomCard, secureKey); // 將房卡簽章
 		return signedRoomCard;
 	}
 	
@@ -45,12 +45,12 @@ public class HotelKeySystem {
 				.claim("authority", "create room card") // 可以放入一些授權的資訊
 				.expirationTime(new Date(new Date().getTime() + 60_000)) // 設定房卡產生器有效時間，例如：1 分鐘
 				.build(); // 建立房卡產生器
-		String signedRoomCardGenerator = KeyUtil.signJWT(roomCardGenerator, masterKey); // 將房卡產生器簽章
+		String signedRoomCardGenerator = KeyUtil.signJWT(roomCardGenerator, secureKey); // 將房卡產生器簽章
 		return signedRoomCardGenerator;
 	}
 	
 	public static void main(String[] args) {
-		 // 1. 生成主要的機密鑰匙 (masterKey)。
+		 // 1. 生成主要的機密鑰匙 (secureKey)。
 		
 		 // 2. 創建並簽署「房間卡產生器」(Refresh Token)。
 		

@@ -44,7 +44,7 @@ public class HotelKeySystem {
 				.issuer("https://hotel.com") // 飯店發行單位
 				.claim("authority", "create room card") // 可以放入一些授權的資訊
 				.claim("除夕", "要上班但是可以不來")
-				.expirationTime(new Date(new Date().getTime() + 60_000)) // 設定房卡產生器有效時間，例如：1 分鐘
+				.expirationTime(new Date(new Date().getTime() + 20_000)) // 設定房卡產生器有效時間，例如：20 秒
 				.build(); // 建立房卡產生器
 		String signedRoomCardGenerator = KeyUtil.signJWT(roomCardGenerator, secureKey); // 將房卡產生器簽章
 		return signedRoomCardGenerator;
@@ -81,5 +81,15 @@ public class HotelKeySystem {
 		System.out.printf("重新再發出一張房間卡: %s%n", signedRoomCard);
 		
 		// 6. 模擬「房間卡產生器」過期後的情況。
+		Thread.sleep(20_000);
+		
+		// 檢查房間卡產生器是否過期 ?
+		if(KeyUtil.verifyJWTSignature(signedRoomCardGenerator, secureKey)) {
+			System.out.println("房間卡產生器沒有過期");
+		} else {
+			System.out.println("房間卡產生器已過期");
+			// 自行重新生成房間卡產生器...
+		}
+		
 	}
 }

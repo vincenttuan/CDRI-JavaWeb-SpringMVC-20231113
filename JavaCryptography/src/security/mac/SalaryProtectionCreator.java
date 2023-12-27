@@ -21,10 +21,6 @@ public class SalaryProtectionCreator {
 		System.out.println("HR 生成:");
 		System.out.println("真對薪資檔案位置:src/security/mac/my_salary.txt 生成 macValue(Hex)");
 		
-		// 針對 filePath 檔案內容生成雜湊
-		String fileHash = KeyUtil.generateFileHash(filePath);
-		System.out.println("File Hash(my_salary.txt):" + fileHash);
-		
 		// 生成 MAC Key
 		SecretKey macKey = KeyUtil.generateKeyForHmac();
 		// 儲存 MAC Key

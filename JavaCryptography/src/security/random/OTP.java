@@ -1,5 +1,7 @@
 package security.random;
 
+import java.security.SecureRandom;
+
 /**
  * OTP (One-Time Password) 生成器範例
  *
@@ -11,5 +13,15 @@ package security.random;
  * 這個範例展示了如何使用Java的SecureRandom類生成這樣的OTP。
  */
 public class OTP {
-
+	
+	public static void main(String[] args) {
+		System.out.println("您的一次性密碼(OTP):" + generateOTP());
+	}
+	
+	// 生成一個 六位數的 OTP
+	public static String generateOTP() {
+		SecureRandom secureRandom = new SecureRandom();
+		int number = secureRandom.nextInt(1000000);
+		return String.format("%06d", number);
+	}
 }

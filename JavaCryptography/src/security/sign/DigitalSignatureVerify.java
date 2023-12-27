@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.Base64;
 
 import security.KeyUtil;
 
@@ -23,9 +24,9 @@ public class DigitalSignatureVerify {
 		// 合約檔位置
 		String contractPath = "src/security/sign/my_contract.txt";
 		// 公鑰檔位置
-		String publicKeyPath = "src/security/sign/publicKey.txt";
+		String publicKeyPath = "src/security/sign/publicKey.key";
 		// 私鑰檔位置
-		String privateKeyPath = "src/security/sign/privateKey.txt";
+		String privateKeyPath = "src/security/sign/privateKey.key";
 		// 數位簽章檔位置
 		String signaturePath = "src/security/sign/signature.sig";
 		
@@ -54,7 +55,9 @@ public class DigitalSignatureVerify {
 		// 保存數位簽章
 		KeyUtil.saveSignatureToFile(digitalSignature,  signaturePath);
 		
-		
+		System.out.println("小王的公鑰(驗證數位簽章用):" + Base64.getEncoder().encodeToString(publicKey.getEncoded()));
+		System.out.println("小王的數位簽章:" + Base64.getEncoder().encodeToString(digitalSignature));
+		System.out.println("小王的數位簽章位置:" + signaturePath);
 		
 	}
 }

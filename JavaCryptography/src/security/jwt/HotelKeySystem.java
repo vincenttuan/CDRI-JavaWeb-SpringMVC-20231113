@@ -43,23 +43,41 @@ public class HotelKeySystem {
 				.subject("frontDesk") // 前台的身份
 				.issuer("https://hotel.com") // 飯店發行單位
 				.claim("authority", "create room card") // 可以放入一些授權的資訊
+				.claim("除夕", "要上班但是可以不來")
 				.expirationTime(new Date(new Date().getTime() + 60_000)) // 設定房卡產生器有效時間，例如：1 分鐘
 				.build(); // 建立房卡產生器
 		String signedRoomCardGenerator = KeyUtil.signJWT(roomCardGenerator, secureKey); // 將房卡產生器簽章
 		return signedRoomCardGenerator;
 	}
 	
-	public static void main(String[] args) {
-		 // 1. 生成主要的機密鑰匙 (secureKey)。
+	public static void main(String[] args) throws Exception {
+		// 1. 生成主要的機密鑰匙 (secureKey)。
+		secureKey = KeyUtil.generateSecret(32); // 32 bytes 的密鑰長度
 		
-		 // 2. 創建並簽署「房間卡產生器」(Refresh Token)。
+		// 2. 創建並簽署「房間卡產生器」(Refresh Token)。
+		String signedRoomCardGenerator = createRoomCardGenerator();
 		
-		 // 3. 創建並簽署「房間卡」(Access Token)。
+		// 3. 創建並簽署「房間卡」(Access Token)。
+		String signedRoomCard = createRoomCard("John", "101");
 		
-		 // 4. 驗證「房間卡」是否過期。
+		System.out.printf("房卡產生器: %s%n", signedRoomCardGenerator);
+		System.out.printf("房卡: %s%n", signedRoomCard);
 		
-		 // 5. 若「房間卡」過期，使用「房間卡產生器」重新簽署新的「房間卡」。
+		// 4. 驗證「房間卡」是否過期。
+		for(long i=1;i<=10;i++) {
+			// 使用房間卡
+			// 房間卡是否失效?
+			boolean isRoomCardExpired = !KeyUtil.verifyJWTSignature(signedRoomCard, secureKey);
+			if(isRoomCardExpired) {
+				System.out.printf("%d 秒鐘: 房卡無效, 請到前台辦理更新", i);
+				break;
+			}
+			System.out.printf("%d 秒鐘: 房卡有效, 請進門", i);
+			Thread.sleep(1000);
+		}
 		
-		 // 6. 模擬「房間卡產生器」過期後的情況。
+		// 5. 若「房間卡」過期，使用「房間卡產生器」重新簽署新的「房間卡」。
+		
+		// 6. 模擬「房間卡產生器」過期後的情況。
 	}
 }

@@ -20,44 +20,19 @@ import security.KeyUtil;
  */
 public class DigitalSignatureVerify {
 	public static void main(String[] args) throws Exception {
-		// 小王
-		// 合約檔位置
+		// 小李
+		// 小王合約檔位置
 		String contractPath = "src/security/sign/my_contract.txt";
-		// 公鑰檔位置
+		// 小王公鑰檔位置
 		String publicKeyPath = "src/security/sign/publicKey.key";
-		// 私鑰檔位置
-		String privateKeyPath = "src/security/sign/privateKey.key";
-		// 數位簽章檔位置
+		// 小王數位簽章檔位置
 		String signaturePath = "src/security/sign/signature.sig";
 		
-		// 公鑰與私鑰
-		PublicKey publicKey;
-		PrivateKey privateKey;
+		PublicKey publicKey = KeyUtil.getPublicKeyFromFile("RSA", publicKeyPath);
+		byte[] savedSignature = KeyUtil.getSignatureFromFile(signaturePath);
 		
-		// 取得公私鑰/建立私公鑰
-		if(Files.exists(Paths.get(publicKeyPath)) && Files.exists(Paths.get(privateKeyPath))) {
-			// 取得公私鑰
-			publicKey = KeyUtil.getPublicKeyFromFile("RSA", publicKeyPath);
-			privateKey = KeyUtil.getPrivateKeyFromFile("RSA", privateKeyPath);
-		} else {
-			// 建立公私鑰
-			KeyPair keyPair = KeyUtil.generateRSAKeyPair();
-			publicKey = keyPair.getPublic();
-			privateKey = keyPair.getPrivate();
-			// 保存公私鑰檔案
-			KeyUtil.saveKeyToFile(publicKey, publicKeyPath);
-			KeyUtil.saveKeyToFile(privateKey, privateKeyPath);
-		}
-		
-		// 數位簽章: 將私鑰(私人印章) 蓋在合約(my_contract.txt)上
-		byte[] digitalSignature = KeyUtil.signWithPrivateKey(privateKey, contractPath);
-		
-		// 保存數位簽章
-		KeyUtil.saveSignatureToFile(digitalSignature,  signaturePath);
-		
-		System.out.println("小王的公鑰(驗證數位簽章用):" + Base64.getEncoder().encodeToString(publicKey.getEncoded()));
-		System.out.println("小王的數位簽章:" + Base64.getEncoder().encodeToString(digitalSignature));
-		System.out.println("小王的數位簽章位置:" + signaturePath);
-		
+		// 驗證合約是否是小王所簽的
+		boolean isValid = KeyUtil.verifySignatureFromFile(publicKey, contractPath, savedSignature);
+				
 	}
 }

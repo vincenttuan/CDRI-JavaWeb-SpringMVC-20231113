@@ -1,4 +1,14 @@
 package security.sign;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.Base64;
+
+import security.KeyUtil;
+
 /*
  * 情境說明：
  * 小王是一家公司的經理，為了提高工作效率和保證文件的安全性，他決定使用數位簽章技術對公司的合同進行簽署。
@@ -11,13 +21,45 @@ package security.sign;
  * 當其他接收者接收到這個簽署的文件和數位簽章時，他們可以使用小王的公鑰來驗證文件的完整性和簽署者的身份。
  */
 public class DigitalSignatureCreator {
-	public static void main(String[] args) {
-		// 小李
-		// 小王合約檔位置
+	public static void main(String[] args) throws Exception {
+		// 小王
+		// 合約檔位置
 		String contractPath = "src/security/sign/my_contract.txt";
-		// 小王公鑰檔位置
+		// 公鑰檔位置
+		String publicKeyPath = "src/security/sign/publicKey.key";
+		// 私鑰檔位置
 		String privateKeyPath = "src/security/sign/privateKey.key";
-		// 小王數位簽章檔位置
-		String signaturePath = "src/security/sign/signature.sig";	
+		// 數位簽章檔位置
+		String signaturePath = "src/security/sign/signature.sig";
+		
+		// 公鑰與私鑰
+		PublicKey publicKey;
+		PrivateKey privateKey;
+		
+		// 取得公私鑰/建立私公鑰
+		if(Files.exists(Paths.get(publicKeyPath)) && Files.exists(Paths.get(privateKeyPath))) {
+			// 取得公私鑰
+			publicKey = KeyUtil.getPublicKeyFromFile("RSA", publicKeyPath);
+			privateKey = KeyUtil.getPrivateKeyFromFile("RSA", privateKeyPath);
+		} else {
+			// 建立公私鑰
+			KeyPair keyPair = KeyUtil.generateRSAKeyPair();
+			publicKey = keyPair.getPublic();
+			privateKey = keyPair.getPrivate();
+			// 保存公私鑰檔案
+			KeyUtil.saveKeyToFile(publicKey, publicKeyPath);
+			KeyUtil.saveKeyToFile(privateKey, privateKeyPath);
+		}
+		
+		// 數位簽章: 將私鑰(私人印章) 蓋在合約(my_contract.txt)上
+		byte[] digitalSignature = KeyUtil.signWithPrivateKey(privateKey, contractPath);
+		
+		// 保存數位簽章
+		KeyUtil.saveSignatureToFile(digitalSignature,  signaturePath);
+		
+		System.out.println("小王的公鑰(驗證數位簽章用):" + Base64.getEncoder().encodeToString(publicKey.getEncoded()));
+		System.out.println("小王的數位簽章:" + Base64.getEncoder().encodeToString(digitalSignature));
+		System.out.println("小王的數位簽章位置:" + signaturePath);
+		
 	}
 }

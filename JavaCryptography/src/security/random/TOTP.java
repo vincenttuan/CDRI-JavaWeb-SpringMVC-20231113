@@ -1,5 +1,11 @@
 package security.random;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+import security.KeyUtil;
+
 /*
  * 
  * TOTP (Time-based One-Time Password) 是一種一次性密碼（OTP）算法，它的特點是根據當前的時間值生成。
@@ -12,5 +18,11 @@ package security.random;
  * TOTP: 是 OTP 的一種，其特點是根據當前時間生成密碼。
 */
 public class TOTP {
-
+	public static void main(String[] args) throws Exception {
+		String secret = Base64.getEncoder().encodeToString("hello".getBytes()); // 當作金鑰
+		long timeInterval = System.currentTimeMillis() / 1000L / 30L; // 30 秒
+		// 得到 TOPT 密碼 (使用 HMACSHA256 作為加密算法)
+		String totp = KeyUtil.generateTOTP(secret, timeInterval, "HMACSHA256");
+		System.out.println("我的 TOTP 密碼:" + totp);
+	}
 }

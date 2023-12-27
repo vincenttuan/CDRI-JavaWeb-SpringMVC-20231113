@@ -11,5 +11,13 @@ package security.sign;
  * 當其他接收者接收到這個簽署的文件和數位簽章時，他們可以使用小王的公鑰來驗證文件的完整性和簽署者的身份。
  */
 public class DigitalSignatureCreator {
-
+	public static void main(String[] args) {
+		// 小李
+		// 小王合約檔位置
+		String contractPath = "src/security/sign/my_contract.txt";
+		// 小王公鑰檔位置
+		String privateKeyPath = "src/security/sign/privateKey.key";
+		// 小王數位簽章檔位置
+		String signaturePath = "src/security/sign/signature.sig";	
+	}
 }

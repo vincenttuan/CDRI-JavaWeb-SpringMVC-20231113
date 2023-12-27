@@ -20,6 +20,7 @@ public class OTP {
 	
 	// 生成一個 六位數的 OTP
 	public static String generateOTP() {
+		// 在統計學上是不可預測的
 		SecureRandom secureRandom = new SecureRandom();
 		int number = secureRandom.nextInt(1000000);
 		return String.format("%06d", number);

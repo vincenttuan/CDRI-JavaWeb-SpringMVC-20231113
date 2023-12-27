@@ -33,6 +33,12 @@ public class DigitalSignatureVerify {
 		
 		// 驗證合約是否是小王所簽的
 		boolean isValid = KeyUtil.verifySignatureFromFile(publicKey, contractPath, savedSignature);
-				
+		
+		if(isValid) {
+			System.out.println("數位簽章驗證成功");
+			System.out.println(Files.readString(Paths.get(contractPath)));
+		} else {
+			System.out.println("數位簽章驗證失敗");
+		}
 	}
 }

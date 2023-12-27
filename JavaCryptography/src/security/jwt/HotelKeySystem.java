@@ -69,14 +69,16 @@ public class HotelKeySystem {
 			// 房間卡是否失效?
 			boolean isRoomCardExpired = !KeyUtil.verifyJWTSignature(signedRoomCard, secureKey);
 			if(isRoomCardExpired) {
-				System.out.printf("%d 秒鐘: 房卡無效, 請到前台辦理更新", i);
+				System.out.printf("%d 秒鐘: 房卡無效, 請到前台辦理更新%n", i);
 				break;
 			}
-			System.out.printf("%d 秒鐘: 房卡有效, 請進門", i);
+			System.out.printf("%d 秒鐘: 房卡有效, 請進門%n", i);
 			Thread.sleep(1000);
 		}
 		
 		// 5. 若「房間卡」過期，使用「房間卡產生器」重新簽署新的「房間卡」。
+		signedRoomCard = createRoomCard("John", "101");
+		System.out.printf("重新再發出一張房間卡: %s%n", signedRoomCard);
 		
 		// 6. 模擬「房間卡產生器」過期後的情況。
 	}

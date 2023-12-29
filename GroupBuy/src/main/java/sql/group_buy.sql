@@ -135,6 +135,7 @@ insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values
 insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(3, 'frontend', '🔞 登出', '/mvc/group_buy/logout');
 insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(4, 'frontend', '👼 Profile', '/mvc/group_buy/frontend/profile');
 insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(51, 'backend', '後台報告', '/mvc/group_buy/backend/report');
+insert into service (serviceId, serviceLocation, serviceName, serviceUrl) values(52, 'backend', '商品新增', '/mvc/group_buy/backend/main');
 
 insert into level(levelId, levelName) values(1, '一般客戶');
 insert into level(levelId, levelName) values(2, '內部員工');
@@ -145,9 +146,10 @@ insert into level_ref_service(levelId, serviceId, sort) values(1, 3, 4);
 insert into level_ref_service(levelId, serviceId, sort) values(1, 4, 3);
 insert into level_ref_service(levelId, serviceId, sort) values(2, 1, 1);
 insert into level_ref_service(levelId, serviceId, sort) values(2, 2, 2);
-insert into level_ref_service(levelId, serviceId, sort) values(2, 3, 5);
-insert into level_ref_service(levelId, serviceId, sort) values(2, 4, 4);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 3, 6);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 4, 5);
 insert into level_ref_service(levelId, serviceId, sort) values(2, 51, 3);
+insert into level_ref_service(levelId, serviceId, sort) values(2, 52, 4);
 
 INSERT INTO product (productId, productName, price, unit, isLaunch) VALUES
 (501, 'Coffee', 300.00, 'Pack', true),

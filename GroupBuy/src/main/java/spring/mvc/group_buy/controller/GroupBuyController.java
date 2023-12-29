@@ -348,7 +348,7 @@ public class GroupBuyController {
 	}
 	
 	// 得到目前所有 session attribute names
-	@GetMapping("/frontend/findAllSessionNames")
+	@GetMapping("/findAllSessionNames")
 	@ResponseBody
 	public String findAllSessionNames(HttpSession session) {
 		StringBuilder names = new StringBuilder();

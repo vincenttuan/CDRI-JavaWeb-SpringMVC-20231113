@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import servlet.util.OAuth2Util;
 
 @WebServlet(value = "/secure/callback/oauth2")
@@ -36,6 +38,14 @@ public class OAuth2Callback extends HttpServlet {
 		// 3. 得到用戶在 Github 上的公開資料
 		String userInfo = OAuth2Util.getUserInfoFromGitHub(accessToken);
 		resp.getWriter().println("userInfo: " + userInfo);
+		
+		// 4. 利用 JSONObject 來分析資料
+		JSONObject userInfoObject = new JSONObject(userInfo);
+		resp.getWriter().println("login: " + userInfoObject.getString("login"));
+		resp.getWriter().println("id: " + userInfoObject.getInt("id"));
+		resp.getWriter().println("email: " + userInfoObject.getString("email"));
+		resp.getWriter().println("name: " + userInfoObject.getString("name"));
+		resp.getWriter().println("bio: " + userInfoObject.getString("bio"));
 	}
 	
 }

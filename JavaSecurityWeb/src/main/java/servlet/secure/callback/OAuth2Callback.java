@@ -46,6 +46,13 @@ public class OAuth2Callback extends HttpServlet {
 		resp.getWriter().println("email: " + userInfoObject.getString("email"));
 		resp.getWriter().println("name: " + userInfoObject.getString("name"));
 		resp.getWriter().println("bio: " + userInfoObject.getString("bio"));
+		
+		// 5. 檢查會員資料表中是否有此人, 若無則將該會員資料自動新增到資料表
+		
+		// 6. 新增成功就自行自動登入 (例如: 建立 user 物件並存放到 session 中)
+		
+		// 7. 重導到登入成功頁面
+		
 	}
 	
 }

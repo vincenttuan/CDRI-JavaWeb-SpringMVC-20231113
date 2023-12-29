@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -344,6 +345,20 @@ public class GroupBuyController {
 		// 進行密碼變更
 		dao.updateUserPassword(user.getUserId(), encryptedNewPasswordECBBase64);
 		return "redirect:/mvc/group_buy/logout";
+	}
+	
+	// 得到目前所有 session attribute names
+	@GetMapping("/frontend/findAllSessionNames")
+	@ResponseBody
+	public String findAllSessionNames(HttpSession session) {
+		StringBuilder names = new StringBuilder();
+		// 目前系統中在使用的
+		Enumeration<String> sessionAttrNames = session.getAttributeNames();
+		while (sessionAttrNames.hasMoreElements()) {
+			String name = (String) sessionAttrNames.nextElement();
+			names.append(name + "\n");
+		}
+		return names.toString();
 	}
 	
 	//------------------------------------------------------------------------------

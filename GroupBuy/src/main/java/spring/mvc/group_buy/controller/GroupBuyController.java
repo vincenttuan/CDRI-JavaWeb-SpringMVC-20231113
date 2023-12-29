@@ -364,9 +364,17 @@ public class GroupBuyController {
 	
 	// 商品新增
 	@PostMapping("/backend/addProduct")
-	public String addProduct(@ModelAttribute Product product) {
-		dao.addProduct(product);
-		return "group_buy/backend/result";
+	public String addProduct(@ModelAttribute Product product, 
+							 @RequestParam("csrf_token") String csrf_token, 
+							 HttpSession session) {
+		// 比對 csrf_token 與 session 中的 csrf_token
+		if(csrf_token.equals(session.getAttribute("csrf_token").toString())) {
+			// 比對成功進行新增程序
+			dao.addProduct(product); 
+			return "group_buy/backend/result";
+		} else {
+			return "redirect:/mvc/group_buy/logout"; // 強制登出
+		}
 	}
 	
 	// 商品上下架處理

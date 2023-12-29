@@ -13,18 +13,6 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 
-	<!-- 全網加密 -->
-	<security-constraint>
-		<display-name>Constraint1</display-name>
-		<web-resource-collection>
-			<web-resource-name>secure</web-resource-name>
-			<url-pattern>/*</url-pattern>
-		</web-resource-collection>
-		<user-data-constraint>
-			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint>
-	</security-constraint>
-
 	<!-- 存放 AES Key -->
 	<env-entry>
 		<env-entry-name>secretKey</env-entry-name>
@@ -90,8 +78,24 @@
 		<filter-name>HiddenHttpMethodFilter</filter-name>
 		<url-pattern>/mvc/*</url-pattern>
 	</filter-mapping>
-
-	<!-- HSTS -->
+	
+	<!-- 若 GroupBuy 要取消 SSL/TSL 加密 -->
+	<!-- 則必須將 1.全網加密 2.HSTS 加以註解 -->
+	<!-- 全網加密 -->
+	<!-- 
+	<security-constraint>
+		<display-name>Constraint1</display-name>
+		<web-resource-collection>
+			<web-resource-name>secure</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	 -->
+	 
+	<!-- HSTS 讓瀏覽器記住此網域要加密 -->
 	<!-- 
 	<filter>
 		<filter-name>httpHeaderSecurity</filter-name>

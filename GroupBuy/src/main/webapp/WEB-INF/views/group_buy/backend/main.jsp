@@ -31,7 +31,9 @@
 								價格: <sp:input type="number" path="price" value="40" /><p />
 								單位: <sp:select path="unit" items="${ units }" />
 								&nbsp;&nbsp;&nbsp;&nbsp;	 
-								上架: <sp:checkbox path="isLaunch" /> 	 
+								上架: <sp:checkbox path="isLaunch" /> 
+								<p />
+								<input type="text" name="csrf_token" value="${ csrf_token }">	 
 								<p />
 								<button type="submit" class="pure-button pure-button-primary">新增</button>
 							</fieldset>

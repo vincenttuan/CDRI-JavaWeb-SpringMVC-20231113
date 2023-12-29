@@ -10,6 +10,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
@@ -349,9 +350,15 @@ public class GroupBuyController {
 	
 	// 後臺首頁
 	@GetMapping("/backend/main")
-	public String backendMain(@ModelAttribute Product product, Model model) {
+	public String backendMain(@ModelAttribute Product product, Model model, HttpSession session) {
+		// 建立一個 csrf_token 防止 csrf 攻擊
+		String csrf_token = UUID.randomUUID().toString(); // 得到一個隨機的唯一識別碼
+		// 將 csrf_token 存放到 session 物件中
+		session.setAttribute("csrf_token", csrf_token);
+		
 		model.addAttribute("products", dao.findAllProducts());
 		model.addAttribute("units", units);
+		model.addAttribute("csrf_token", csrf_token);
 		return "group_buy/backend/main";
 	}
 	

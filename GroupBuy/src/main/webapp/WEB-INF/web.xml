@@ -91,6 +91,31 @@
 		<url-pattern>/mvc/*</url-pattern>
 	</filter-mapping>
 
+	<!-- HSTS -->
+	<filter>
+		<filter-name>httpHeaderSecurity</filter-name>
+		<filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>hstsEnabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>hstsMaxAgeSeconds</param-name>
+			<param-value>31536000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>hstsIncludeSubDomains</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>httpHeaderSecurity</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
 	<!-- Spring Security -->
 	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
 		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 

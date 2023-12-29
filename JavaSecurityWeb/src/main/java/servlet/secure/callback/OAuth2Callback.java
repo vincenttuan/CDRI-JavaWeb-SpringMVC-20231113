@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.util.OAuth2Util;
+
 @WebServlet(value = "/secure/callback/oauth2")
 public class OAuth2Callback extends HttpServlet {
 
@@ -23,6 +25,17 @@ public class OAuth2Callback extends HttpServlet {
 		// 已有授權碼(code)之後，可以跟 Github 來得到 token (訪問令牌)
 		// 有了 token 就可以得到客戶的公開資訊例如: userInfo
 		
+		// 1. 根據 code 得到 token
+		String token = OAuth2Util.getGitHubAccessToken(code);
+		resp.getWriter().println("token: " + token);
+		
+		// 2. 透過 token 裡面的 access_token 來取的用戶資訊
+		String accessToken = OAuth2Util.parseAccessToken(token);
+		resp.getWriter().println("accessToken: " + accessToken);
+		
+		// 3. 得到用戶在 Github 上的公開資料
+		String userInfo = OAuth2Util.getUserInfoFromGitHub(accessToken);
+		resp.getWriter().println("userInfo: " + userInfo);
 	}
 	
 }

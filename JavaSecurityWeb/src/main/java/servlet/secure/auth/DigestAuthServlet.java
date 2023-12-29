@@ -1,5 +1,13 @@
 package servlet.secure.auth;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /*
  * 
  * 為了實現HTTP摘要驗證，我們需要進一步的邏輯和某些額外的步驟。摘要驗證的主要優勢是它避免明文傳送密碼，而是發送一個摘要。
@@ -10,6 +18,12 @@ package servlet.secure.auth;
  * username = user
  * password = 1234
  * */
-public class DigestAuthServlet {
+@WebServlet(value = "/secure/servlet/auth/digest_auth")
+public class DigestAuthServlet extends HttpServlet {
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	
 }

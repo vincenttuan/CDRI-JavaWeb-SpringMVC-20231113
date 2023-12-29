@@ -19,6 +19,10 @@ public class OAuth2Callback extends HttpServlet {
 		
 		String code = req.getParameter("code");
 		resp.getWriter().println("code: " + code);
+		
+		// 已有授權碼(code)之後，可以跟 Github 來得到 token (訪問令牌)
+		// 有了 token 就可以得到客戶的公開資訊例如: userInfo
+		
 	}
 	
 }

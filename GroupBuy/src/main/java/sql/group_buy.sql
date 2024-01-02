@@ -14,13 +14,14 @@ Pack(盒), Box(箱), Bottle(瓶), Bag(包), Dozen(打)
 
 2. 使用者
 level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商品)
-+--------+----------+----------+-------+
-| userId | username | password | level |
-+--------+----------+----------+-------+
-|  101   | user123  | pass123  |   1   |
-|  102   | user456  | pass456  |   2   |
-|  103   | user789  | pass789  |   1   |
-+--------+----------+----------+-------+
++--------+----------+----------+-------+----------+--------+
+| userId | username | password | level | authType | authId |
++--------+----------+----------+-------+----------+--------+
+|  101   | user123  | pass123  |   1   |          |        | 
+|  102   | user456  | pass456  |   2   |          |        | 
+|  103   | user789  | pass789  |   1   |          |        | 
+|  104   | gitUser  | None     |   1   |  github  | 123456 |
++--------+----------+----------+-------+----------+--------+
 
 3. 購物車主檔(Master)
 +--------+----------+-----------+------------+--------------+
@@ -101,7 +102,9 @@ create table if not exists user(
 	userId int auto_increment primary key,
     username varchar(50) not null,
     password varchar(50) not null,
-    level int
+    level int,
+    authType enum('local', 'github', 'google') default 'local',
+    authId varchar(100)
 );
 -- 設置 AUTO_INCREMENT = 101
 alter table user auto_increment = 101;

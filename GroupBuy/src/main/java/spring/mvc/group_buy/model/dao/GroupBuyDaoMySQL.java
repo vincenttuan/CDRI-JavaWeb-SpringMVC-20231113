@@ -25,7 +25,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	1. 查詢所有使用者(多筆)
 	@Override
 	public List<User> findAllUsers() {
-		String sql = "select userId, username, password, level from user";
+		String sql = "select userId, username, password, level, authType, authId from user";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
 	}
 
@@ -47,7 +47,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	4. 根據使用者名稱查找使用者(登入用-單筆)	
 	@Override
 	public Optional<User> findUserByUsername(String username) {
-		String sql = "select userId, username, password, level from user where username = ?";
+		String sql = "select userId, username, password, level, authType, authId from user where username = ?";
 		try {
 			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
 			// 查找使用者可以使用的服務(授權)
@@ -66,7 +66,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	5. 根據使用者ID查找使用者(單筆)	
 	@Override
 	public Optional<User> findUserById(Integer userId) {
-		String sql = "select userId, username, password, level from user where userId = ?";
+		String sql = "select userId, username, password, level, authType, authId from user where userId = ?";
 		try {
 			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
 			// 查找使用者可以使用的服務(授權)

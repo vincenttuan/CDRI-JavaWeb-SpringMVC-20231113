@@ -7,6 +7,7 @@
             <a href="${pageContext.request.contextPath}${ service.serviceUrl }" class="pure-menu-link">${ service.serviceName }</a>
         </li>
         </c:forEach>
+        <li class="pure-menu-item">${ user.username }</li>
     </ul>
 </div>
 <!-- 公告 -->

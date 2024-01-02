@@ -12,21 +12,20 @@ import spring.mvc.group_buy.util.OAuth2Util;
 @RequestMapping("/secure/oauth2")
 public class SecureCallbackOauth2Controller {
 	
-	@GetMapping("/login/github")
-	@ResponseBody
+	@RequestMapping("/login/github")
 	public String loginGithub() {
 		// 向 Github 驗證授權
 		String auth = OAuth2Util.AUTH_URL;
 		return "redirect:" + auth;
 	}
 	
-	@GetMapping("/callback/github")
+	@RequestMapping("/callback/github")
 	@ResponseBody
 	public String callbackGithub(@RequestParam("code") String code) {
 		return code;
 	}
 	
-	@GetMapping("/callback/google")
+	@RequestMapping("/callback/google")
 	@ResponseBody
 	public String callbackGoogle(@RequestParam("code") String code) {
 		return code;

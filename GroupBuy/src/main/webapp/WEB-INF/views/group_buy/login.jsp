@@ -15,7 +15,7 @@
 			
 			function githubLoginBackend() {
 				var loginForm = document.getElementById('loginForm');
-				loginForm.action = './secure/oauth2/login/github'; // Github 第三方登入路徑
+				loginForm.action = '../secure/oauth2/login/github'; // Github 第三方登入路徑
 				loginForm.submit();
 			}
 		</script>

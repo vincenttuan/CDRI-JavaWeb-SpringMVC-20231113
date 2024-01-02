@@ -34,7 +34,7 @@ public class SecureCallbackOauth2Controller {
 	}
 	
 	@RequestMapping("/callback/github")
-	@ResponseBody
+	//@ResponseBody
 	public String callbackGithub(@RequestParam("code") String code, HttpSession session) throws IOException {
 		// 已有授權碼(code)之後，可以跟 Github 來得到 token (訪問令牌)
 		// 有了 token 就可以得到客戶的公開資訊例如: userInfo
@@ -57,7 +57,7 @@ public class SecureCallbackOauth2Controller {
 				.findFirst();
 		
 		User user = null;
-		if(userOpt.isPresent()) {
+		if(userOpt.isEmpty()) {
 			user = new User(0, githubUser.name, "None", 1, "github", githubUser.id);
 			dao.addUser(user);
 		}
@@ -66,8 +66,9 @@ public class SecureCallbackOauth2Controller {
 		// 6. 新增成功就自行自動登入 (例如: 建立 user 物件並存放到 session 中)
 		session.setAttribute("user", user);
 		
-		// 7. 重導到登入成功頁面
-		return session.getAttribute("user").toString();
+		// 7. 重導到登入成功頁面(前台首頁)
+		//return session.getAttribute("user").toString();
+		return "redirect:/mvc/group_buy/frontend/main";
 	}
 	
 	@RequestMapping("/callback/google")

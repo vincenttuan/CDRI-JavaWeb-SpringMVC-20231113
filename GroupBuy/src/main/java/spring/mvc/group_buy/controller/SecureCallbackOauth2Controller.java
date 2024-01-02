@@ -53,7 +53,7 @@ public class SecureCallbackOauth2Controller {
 		
 		// 5. 檢查會員資料表中是否有此人, 若無則將該會員資料自動新增到資料表
 		Optional<User> userOpt = dao.findAllUsers().stream()
-				.filter(user -> user.getAuthType().equalsIgnoreCase("github") && user.getAuthId().equalsIgnoreCase(githubUser.id))
+				.filter(user -> user.getAuthType() != null && user.getAuthId() != null && user.getAuthType().equalsIgnoreCase("github") && user.getAuthId().equalsIgnoreCase(githubUser.id))
 				.findFirst();
 		
 		User user = null;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import spring.mvc.group_buy.util.OAuth2Util;
@@ -38,7 +39,9 @@ public class SecureCallbackOauth2Controller {
 		// 3. 得到用戶在 Github 上的公開資料
 		String userInfo = OAuth2Util.getUserInfoFromGitHub(accessToken);
 		
-		// 4. 利用 JSONObject 來分析資料
+		// 4. 利用 Gson 來分析資料
+		
+		GithubUser githubUser = new Gson().fromJson(userInfo, GithubUser.class);
 		
 		// 5. 檢查會員資料表中是否有此人, 若無則將該會員資料自動新增到資料表
 		
@@ -46,12 +49,24 @@ public class SecureCallbackOauth2Controller {
 		
 		// 7. 重導到登入成功頁面
 		
-		return userInfo;
+		return githubUser.toString();
 	}
 	
 	@RequestMapping("/callback/google")
 	@ResponseBody
 	public String callbackGoogle(@RequestParam("code") String code) {
 		return code;
+	}
+	
+	class GithubUser {
+		public String login;
+		public String id;
+		public String name;
+		public String email;
+		
+		@Override
+		public String toString() {
+			return "GithubUser [login=" + login + ", id=" + id + ", name=" + name + ", email=" + email + "]";
+		}
 	}
 }

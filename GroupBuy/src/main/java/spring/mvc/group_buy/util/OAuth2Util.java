@@ -1,4 +1,4 @@
-package servlet.util;
+package spring.mvc.group_buy.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,9 +13,8 @@ public class OAuth2Util {
 	
 	public final static String CLIENT_ID = "ca1574714e7ec19fe7bc";
     private final static String CLIENT_SECRET = "198729cc3c202b13f1d8c93598bdb0e72b7c4879";	
-    public final static String REDIRECT_URI = "http://localhost:8080/JavaSecurityWeb/secure/callback/oauth2";
+    public final static String REDIRECT_URI = "http://localhost:8080/GroupBuy/mvc/secure/oauth2/callback/github";
 	
-    
     //  GitHub 的 OAuth 2.0 授權端點 (Authorization Endpoint)
     //  用戶同意，GitHub 會將他們重定向回應用程序指定的 redirect_uri，並附帶一個授權碼（code）作為參數。
     public final static String AUTH_URL = "https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URI;

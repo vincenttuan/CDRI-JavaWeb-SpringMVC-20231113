@@ -44,8 +44,8 @@ import com.nimbusds.jwt.proc.DefaultJWTProcessor;
 //https://console.cloud.google.com/apis/credentials/oauthclient/
 
 public class OIDCUtil {
-	private static final String CLIENT_ID = "你的 google 用戶端編號"; // 用戶端編號
-	private static final String CLIENT_SECRET = "你的 google 用戶端密鑰"; // 用戶端密鑰
+	private static final String CLIENT_ID = "746689111115-sls1mectgkde14td0uhb9caknk5judeg.apps.googleusercontent.com"; // 用戶端編號
+	private static final String CLIENT_SECRET = "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"; // 用戶端密鑰
 	private static final String REDIRECT_URI = "http://localhost:8080/JavaSecurityWeb/secure/callback/oidc"; // 回調的 URI
 	
 	/**

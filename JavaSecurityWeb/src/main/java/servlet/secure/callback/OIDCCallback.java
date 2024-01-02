@@ -41,6 +41,9 @@ public class OIDCCallback extends HttpServlet {
 			// email 是否已驗證
 			Boolean emailVerified = claimsSet.getBooleanClaim("email_verified");
 			resp.getWriter().println("emailVerified: " + emailVerified + "<p>");
+			// 取得 sub(Subject Identifier) 當作 id
+			String id = claimsSet.getStringClaim("sub");
+			resp.getWriter().println("id: " + id + "<p>");
 			
 			resp.getWriter().println("claimsSet: " + claimsSet + "<p>");
 			

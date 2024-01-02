@@ -32,8 +32,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	//	2. 新增使用者
 	@Override
 	public void addUser(User user) {
-		String sql = "insert into user(username, password, level) values(?, ?, ?)";
-		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getLevel());
+		String sql = "insert into user(username, password, level, authType, authId) values(?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getLevel(), user.getAuthType(), user.getAuthId());
 	}
 
 	//	3. 修改密碼

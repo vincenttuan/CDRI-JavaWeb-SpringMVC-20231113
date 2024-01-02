@@ -38,6 +38,11 @@ public class OIDCCallback extends HttpServlet {
 			JWTClaimsSet claimsSet = OIDCUtil.getClaimsSetAndVerifyIdToken(idToken);
 			String email = claimsSet.getStringClaim("email");
 			resp.getWriter().println("email: " + email + "<p>");
+			// email 是否已驗證
+			Boolean emailVerified = claimsSet.getBooleanClaim("email_verified");
+			resp.getWriter().println("emailVerified: " + emailVerified + "<p>");
+			
+			resp.getWriter().println("claimsSet: " + claimsSet + "<p>");
 			
 		} catch (Exception e) {
 			resp.getWriter().println("Exception: " + e);

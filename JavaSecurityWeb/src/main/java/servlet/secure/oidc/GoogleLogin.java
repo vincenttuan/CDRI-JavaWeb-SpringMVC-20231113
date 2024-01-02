@@ -30,7 +30,7 @@ public class GoogleLogin extends HttpServlet {
 	        而 "email" 是要求提供用戶的電子郵件資訊。
 	        測試結果: openid 不加也可以（可能是 google oidc 認證系統預設）
         */
-		String scope = "email openid";
+		String scope = "email openid profile";
 		
 		// 取得 Google 授權 URL
 		String authURL = OIDCUtil.getAuthorizationUrl(responseType, scope);

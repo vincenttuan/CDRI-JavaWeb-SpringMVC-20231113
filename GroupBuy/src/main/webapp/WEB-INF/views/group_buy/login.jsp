@@ -12,6 +12,12 @@
 				loginForm.action = './login_backend'; // 後台登入路徑
 				loginForm.submit();
 			}
+			
+			function githubLoginBackend() {
+				var loginForm = document.getElementById('loginForm');
+				loginForm.action = './secure/oauth2/login/github'; // Github 第三方登入路徑
+				loginForm.submit();
+			}
 		</script>
 	</head>
 	<body style="padding: 15px">
@@ -25,7 +31,7 @@
 					<img src="./getcode" alt="驗證碼" valign="middle">
 					<p />
 					<button type="submit" class="pure-button pure-button-primary">前台登入</button>
-					<button type="submit" class="pure-button pure-button-primary">😺Github 登入</button>
+					<button type="button" class="pure-button pure-button-primary" onclick="githubLoginBackend()">😺Github 登入</button>
 					<button type="button" class="pure-button pure-button-primary" onclick="loginBackend()" >後台登入</button>
 					
 				</fieldset>

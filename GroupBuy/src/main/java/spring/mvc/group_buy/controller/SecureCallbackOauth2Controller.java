@@ -40,7 +40,6 @@ public class SecureCallbackOauth2Controller {
 		String userInfo = OAuth2Util.getUserInfoFromGitHub(accessToken);
 		
 		// 4. 利用 Gson 來分析資料
-		
 		GithubUser githubUser = new Gson().fromJson(userInfo, GithubUser.class);
 		
 		// 5. 檢查會員資料表中是否有此人, 若無則將該會員資料自動新增到資料表

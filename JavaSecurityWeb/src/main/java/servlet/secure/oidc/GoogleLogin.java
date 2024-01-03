@@ -34,8 +34,7 @@ public class GoogleLogin extends HttpServlet {
 		
 		// 取得 Google 授權 URL
 		String authURL = OIDCUtil.getAuthorizationUrl(responseType, scope);
-		
-		
+	
 		// 重新導向到 Google 授權頁面
 		resp.sendRedirect(authURL);
 		
